@@ -37,11 +37,6 @@
     padding: 30px;
 }
 
-.form.signup {
-    opacity: 0;
-    pointer-events: none;
-}
-
 
 header {
     font-size: 28px;
