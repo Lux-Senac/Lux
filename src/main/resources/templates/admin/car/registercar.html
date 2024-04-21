@@ -15,8 +15,23 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebarMenu">
-
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/cadastrar-carro">
+                            <span data-feather="file"></span>
+                            Registrar Carros
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -24,72 +39,72 @@
             <form action="/create-car" method="post" enctype="multipart/form-data" class="container">
                 <div class="mb-3">
                     <label class="form-label" for="name">Nome do Carro</label>
-                    <input class="form-control" type="text" name="name" id="name" th:value="${car.name}">
+                    <input class="form-control" type="text" name="name" id="name" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="motor">Motor</label>
-                    <input class="form-control" type="text" name="motor" id="motor" th:value="${car.motor}">
+                    <input class="form-control" type="text" name="motor" id="motor" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="cil">Cilindrada</label>
-                    <input class="form-control" type="text" name="cil" id="cil" th:value="${car.cil}">
+                    <input class="form-control" type="text" name="cil" id="cil" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="acel">Aceleração</label>
-                    <input class="form-control" type="text" name="acel" id="acel" th:value="${car.acel}">
+                    <input class="form-control" type="text" name="acel" id="acel" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="hp">Potência</label>
-                    <input class="form-control" type="text" name="hp" id="hp" th:value="${car.hp}">
+                    <input class="form-control" type="text" name="hp" id="hp">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="torque">Torque</label>
-                    <input class="form-control" type="text" name="torque" id="torque" th:value="${car.torque}">
+                    <input class="form-control" type="text" name="torque" id="torque" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="velmax">Velocidade Máxima</label>
-                    <input class="form-control" type="text" name="velmax" id="velmax" th:value="${car.velmax}">
+                    <input class="form-control" type="text" name="velmax" id="velmax">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="doors">Portas</label>
-                    <input class="form-control" type="number" name="doors" id="doors" th:value="${car.doors}">
+                    <input class="form-control" type="number" name="doors" id="doors" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="seats">Bancos</label>
-                    <input class="form-control" type="number" name="seats" id="seats" th:value="${car.seats}">
+                    <input class="form-control" type="number" name="seats" id="seats" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="val">Válvulas/Tração</label>
-                    <input class="form-control" type="text" name="val" id="val" th:value="${car.val}">
+                    <input class="form-control" type="text" name="val" id="val">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="price">Preço</label>
-                    <input class="form-control" type="number" step="0.01" name="price" id="price" th:value="${car.price}">
+                    <input class="form-control" type="number" step="0.01" name="price" id="price" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="image">Imagem</label>
-                    <input class="form-control" type="text" name="image" id="image" th:value="${car.image}">
+                    <input class="form-control" type="text" name="image" id="image">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Título</label>
-                    <input class="form-control" type="text" name="title" id="title" th:value="${car.title}">
+                    <input class="form-control" type="text" name="title" id="title" >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="page">Página</label>
-                    <input class="form-control" type="text" name="page" id="page" th:value="${car.page}">
+                    <input class="form-control" type="text" name="page" id="page">
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
