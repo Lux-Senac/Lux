@@ -30,7 +30,7 @@ public class CadastrarController
     public String cadastrarPost(@RequestParam String username, @RequestParam String email, @RequestParam String password, Model model)
     {
         Optional<User> optionalUser = userService.createUser(username, email, password);
-        
+
         if(optionalUser.isPresent())
         {
             model.addAttribute("message", "Usuário cadastrado com sucesso!");
