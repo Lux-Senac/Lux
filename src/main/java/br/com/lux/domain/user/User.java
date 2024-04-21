@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "USR")
@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class User implements Serializable
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(unique = true, nullable = false)
@@ -31,16 +31,10 @@ public class User implements Serializable
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UserType tipoDeUser;
+    @Column(unique = true, nullable = false)
+    private UserType tipo;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client cliente;
-
-    public enum UserType {
-        Admin,
-        cliente,
-        funci
-    }
 }
