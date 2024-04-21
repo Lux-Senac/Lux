@@ -13,11 +13,11 @@ INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, 
 INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, price, image, title, page) VALUES ('Car 5', 'Motor 5', 'Cil 5', 'Acel 5', 'Hp 5', 'Torque 5', 'Velmax 5', 4, 5, 'Val 5', 50000.00, 'Image 5', 'Title 5', 'Page 5');
 
 -- Inserts for USR table
-INSERT INTO USR (username, password, email, tipoDeUser, id_cliente) VALUES ('User 1', 'Password 1', 'user1@example.com', 'Admin', 1);
-INSERT INTO USR (username, password, email, tipoDeUser, id_cliente) VALUES ('User 2', 'Password 2', 'user2@example.com', 'cliente', 2);
-INSERT INTO USR (username, password, email, tipoDeUser, id_cliente) VALUES ('User 3', 'Password 3', 'user3@example.com', 'funci', 3);
-INSERT INTO USR (username, password, email, tipoDeUser, id_cliente) VALUES ('User 4', 'Password 4', 'user4@example.com', 'Admin', 4);
-INSERT INTO USR (username, password, email, tipoDeUser, id_cliente) VALUES ('User 5', 'Password 5', 'user5@example.com', 'cliente', 5);
+INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 1', 'Password 1', 'user1@example.com', 'Admin', 1);
+INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 2', 'Password 2', 'user2@example.com', 'cliente', 2);
+INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 3', 'Password 3', 'user3@example.com', 'funci', 3);
+INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 4', 'Password 4', 'user4@example.com', 'Admin', 4);
+INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 5', 'Password 5', 'user5@example.com', 'cliente', 5);
 
 -- Inserts for Vendas table
 INSERT INTO Vendas (id_carro, id_cliente, data_venda, preco_venda) VALUES (1, 1, '2024-04-20', 10000.00);
