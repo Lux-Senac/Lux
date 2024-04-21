@@ -19,6 +19,7 @@ public class LoginController
     @Autowired
     private UserService userService;
 
+    @RequestMapping
     @GetMapping
     public String login()
     {
