@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
-
 import java.util.Optional;
 
 @Controller
@@ -36,7 +35,7 @@ public class LoginController
         if(optionalUser.isPresent())
         {
             User user = optionalUser.get();
-            session.setAttribute("user", user); // Armazena o usuário na sessão
+            session.setAttribute("user", user);
 
             if(user.getTipo() == UserType.Admin) {
                 return "redirect:/admin";
