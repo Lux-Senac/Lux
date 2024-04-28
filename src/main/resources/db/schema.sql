@@ -52,3 +52,25 @@ CREATE TABLE Avaliacoes (
     FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
     FOREIGN KEY (id_carro) REFERENCES Car(id)
 );
+
+CREATE TABLE Feed_carro (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            id_carro INT,
+                            feedback TEXT,
+                            FOREIGN KEY (id_carro) REFERENCES Car(id)
+);
+
+CREATE TABLE Feed_vendas (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             id_venda INT,
+                             feedback TEXT,
+                             FOREIGN KEY (id_venda) REFERENCES Vendas(id)
+);
+
+CREATE TABLE user_carros (
+                             id INT AUTO_INCREMENT PRIMARY KEY,
+                             id_usuario INT,
+                             id_carro INT,
+                             FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+                             FOREIGN KEY (id_carro) REFERENCES Car(id)
+)
