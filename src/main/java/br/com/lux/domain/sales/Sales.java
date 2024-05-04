@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Sales
+public class    Sales
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

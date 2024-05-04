@@ -236,13 +236,3 @@ body {
         stroke-dashoffset: 401;
     }
 }
-
-@keyframes show25 {
-    from {
-        stroke-dashoffset: 537;
-    }
-
-    to {
-        stroke-dashoffset: 401;
-    }
-}

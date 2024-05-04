@@ -80,6 +80,7 @@ body {
 }
 
 .bd-placeholder-img {
+
     font-size: 1.125rem;
     text-anchor: middle;
     -webkit-user-select: none;
@@ -171,4 +172,7 @@ body {
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+
 }
+}
+
