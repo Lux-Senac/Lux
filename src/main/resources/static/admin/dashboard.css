@@ -1,6 +1,5 @@
 body {
-<<<<<<< HEAD
-font-size: .875rem;
+    font-size: .875rem;
 }
 
 .feather {
@@ -80,81 +79,170 @@ font-size: .875rem;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-
-.feather {
-    width: 16px;
-    height: 16px;
+.container {
+    padding: 50px 0;
+    text-align: center;
 }
 
-.sidebar {
-    position: fixed;
+.chart {
+    position: relative;
+    display: inline-block;
+    color: #000000;
+    font-size: 20px;
+    text-align: center;
+}
+
+.chart figcaption {
+    padding: 70px 55px;
+    width: 100px;
+    height: 50px;
+    border-radius: 100px;
+    line-height: 50px;
+}
+
+.chart img {
+    position: absolute;
+    max-width: 100px;
+    max-height: 100px;
+    background: white;
+}
+
+.html {
+    top: 50px;
+    left: 45px;
+}
+
+.css {
+    top: 55px;
+    left: 48px;
+}
+
+.css+svg .outer {
+    stroke: #0d84ce;
+}
+
+.chart svg {
+    position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    z-index: 100;
-    padding: 48px 0 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-@media (max-width: 767.98px) {
-    .sidebar {
-        top: 5rem;
+.outer {
+    fill: transparent;
+    stroke: #333;
+    stroke-width: 20;
+    stroke-dasharray: 534;
+    transition: stroke-dashoffset 1s;
+    -webkit-animation-play-state: running;
+
+    -moz-transform: rotate(-89deg) translateX(-190px);
+}
+
+.chart:hover .outer {
+    stroke-dashoffset: 534 !important;
+    -webkit-animation-play-state: paused;
+}
+
+.chart[data-percent='100'] .outer {
+    stroke-dashoffset: 0;
+    -webkit-animation: show100 2s;
+    animation: show100 2s;
+}
+
+.chart[data-percent='75'] .outer {
+    stroke-dashoffset: 133;
+    -webkit-animation: show75 2s;
+    animation: show75 2s;
+}
+
+.chart[data-percent='50'] .outer {
+    stroke-dashoffset: 267;
+    -webkit-animation: show50 2s;
+    animation: show50 2s;
+}
+
+.chart[data-percent='25'] .outer {
+    stroke-dashoffset: 401;
+    -webkit-animation: show25 2s;
+    animation: show25 2s;
+}
+
+@-webkit-keyframes show100 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 0;
     }
 }
 
-.sidebar-sticky {
-    height: calc(100vh - 48px);
-    overflow-x: hidden;
-    overflow-y: auto;
+@keyframes show100 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
-.sidebar .nav-link {
-    font-weight: 500;
-    color: #333;
+@-webkit-keyframes show75 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 134;
+    }
 }
 
-.sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #727272;
+@keyframes show75 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 124;
+    }
 }
 
-.sidebar .nav-link.active {
-    color: #2470dc;
+@-webkit-keyframes show50 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 267;
+    }
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: inherit;
+@keyframes show50 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 267;
+    }
 }
 
-.sidebar-heading {
-    font-size: .75rem;
+@-webkit-keyframes show25 {
+    from {
+        stroke-dashoffset: 537;
+    }
+
+    to {
+        stroke-dashoffset: 401;
+    }
 }
 
-.navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
+@keyframes show25 {
+    from {
+        stroke-dashoffset: 537;
+    }
 
-.navbar .navbar-toggler {
-    top: .25rem;
-    right: 1rem;
+    to {
+        stroke-dashoffset: 401;
+    }
 }
-
-.navbar .form-control {
-    padding: .75rem 1rem;
-}
-
-.form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
-}
-
-.form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
->>>>>>> backup2
