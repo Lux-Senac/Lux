@@ -102,7 +102,7 @@
             <i class="fa-solid fa-xmark close"></i>
             <div class="progress active"></div>
         </div>
-        <button onclick="showToast()">Comprar por R$<span th:text="${car.price}"></span></button>
+        <button onclick="showToast()"><a class="link1" th:href="@{/cart/cart}">Comprar por R$</a><span th:text="${car.price}"></span></button>
     </div>
 </div>
 <footer>
