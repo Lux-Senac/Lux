@@ -4,6 +4,7 @@ import br.com.lux.domain.sales.Sales;
 
 import java.util.SequencedCollection;
 
-public interface SalesAdminService {
+public interface SalesAdminService
+{
     SequencedCollection<Object[]> findSalesByName();
 }

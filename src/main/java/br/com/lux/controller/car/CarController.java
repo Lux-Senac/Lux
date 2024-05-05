@@ -2,6 +2,7 @@ package br.com.lux.controller.car;
 
 import br.com.lux.domain.car.Car;
 import br.com.lux.repository.car.CarRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class CarController
     {
         List<Car> cars = carRepository.findAll();
         model.addAttribute("cars", cars);
+
         return "offers/ofertas";
     }
 

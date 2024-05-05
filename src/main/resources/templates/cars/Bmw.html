@@ -86,7 +86,7 @@
             <h3>Tracao: <span th:text="${car.val}"></span></h3>
 
             <div class="car-img">
-                <img src= "https://images8.alphacoders.com/482/482831.jpg" alt="BMW i8">
+                <img th:src= "${car.image}" alt="BMW i8">
             </div>
         </div>
         <div class="toast">
@@ -102,7 +102,7 @@
             <i class="fa-solid fa-xmark close"></i>
             <div class="progress active"></div>
         </div>
-        <button onclick="showToast()"><a class="link1" th:href="@{/cart/cart}">Comprar por R$</a><span th:text="${car.price}"></span></button>
+        <button><a class="link1" th:href="@{/agendar-test-drive/{id}(id=${car.id})}">Comprar por R$</a><span th:text="${car.price}"></span></button>
     </div>
 </div>
 <footer>

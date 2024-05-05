@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet" href="//agendar/agendar.css">
+        <title>LUX Agende Test-Drive</title>
+    </head>
+
+    <body>
+        <nav>
+            <p class="logo">LUX</p>
+            <div class="links">
+                <ul class="nav-itens">
+                    <li><a th:href="@{/home}">Home</a></li>
+                    <li><a th:href="@{/sobre}">Sobre</a></li>
+                    <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
+                </ul>
+            </div>
+            <div class="right-icons">
+                <div class="btn">
+                    <a th:href="@{/login}" class="field profile">
+                        <i class='bx bx-user-circle profile-icon'></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="carros">
+            <div class="carro1">
+                <div class="car">
+                    <h3>Motor: <span th:text="${car.motor}"></span></h3>
+                    <h3>Potencia: <span th:text="${car.hp}"></span></h3>
+                    <h3>Portas: <span th:text="${car.doors}"></span></h3>
+                    <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
+                    <h3>Torque: <span th:text="${car.torque}"></span></h3>
+                    <h3>Lugares: <span th:text="${car.seats}"></span></h3>
+                    <h3>Aceleracao: <span th:text="${car.acel}"></span></h3>
+                    <h3>Velocidade Maxima: <span th:text="${car.velmax}"></span></h3>
+                    <h3>Tracao: <span th:text="${car.val}"></span></h3>
+
+                    <div class="car-img">
+                        <img th:src= "${car.image}" alt="BMW i8">
+                    </div>
+                </div>
+            </div>
+            <div class="cliente">
+                <form th:action="@{/agendar-test-drive/{id}(id=${car.id})}" th:object="${client}" method="post" enctype="multipart/form-data" class="container">
+                    <h2>Agende seu Test-Drive</h2>
+
+                    <input type="hidden" name="id" id="id" th:field="*{id}">
+                    <div class="mb-3">
+                        <label class="form-label" for="nome">Nome:</label>
+                        <input class="form-control" type="text" name="nome" id="nome" th:field="*{nome}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="sobrenome">Sobrenome:</label>
+                        <input class="form-control" type="text" name="sobrenome" id="sobrenome" th:field="*{sobrenome}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="contato">Contato:</label>
+                        <input class="form-control" type="number" name="contato" id="contato" th:field="*{contato}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email:</label>
+                        <input class="form-control" type="text" name="email" id="email" th:field="*{email}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="cep">CEP:</label>
+                        <input class="form-control" type="number" name="cep" id="cep" th:field="*{cep}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="pais">Pais:</label>
+                        <input class="form-control" type="text" name="pais" id="pais" th:field="*{pais}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                    </div>
+
+                    <button type="submit" class="btn">Agendar</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="secoes">
+                <section class="informacoes">
+                    <div class="info1">
+                        <li><a class="link1" th:href="@{/home}">Home</a></li>
+                    </div>
+                    <div class="info2">
+                        <li><a class="link1" th:href="@{/carros/find-all}">Veiculos</a></li>
+                    </div>
+                    <div class="info3">
+                        <li><a class="link1" th:href="@{/sobre}">Sobre</a></li>
+                    </div>
+                </section>
+
+                <hr class="divisao">
+
+                <section class="contato">
+                    <ul class="redes-sociais">
+                        <a href="#" class="redes-sociais"><i class='bx bxl-instagram'></i></a>
+                    </ul>
+                    <ul class="redes-sociais">
+                        <a href="#" class="redes-sociais"><i class='bx bxl-github'></i></a>
+                    </ul>
+                    <ul class="redes-sociais">
+                        <a href="#" class="redes-sociais"><i class='bx bxl-facebook'></i></a>
+                    </ul>
+                    <ul class="redes-sociais">
+                        <a href="#" class="redes-sociais"><i class='bx bxl-twitter'></i></a>
+                    </ul>
+                </section>
+                <section class="creditos">
+                    <p>© LUX</p>
+                </section>
+            </div>
+        </footer>
+    </body>
+</html>

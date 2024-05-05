@@ -1,5 +1,6 @@
 package br.com.lux.services.user.login;
 
+import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.user.UserService;
@@ -52,4 +53,16 @@ public class LoginService implements UserService
         }
     }
 
+    @Override
+    public void changeClientId(Integer id, Client client)
+    {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if(optionalUser.isPresent())
+        {
+            User user = optionalUser.get();
+            user.setCliente(client);
+            userRepository.save(user);
+        }
+    }
 }
