@@ -25,16 +25,13 @@ public class ReservationTrigger implements Trigger
         {
             if (!oldRow[4].equals(newRow[4]))
             {
-                System.out.println("Status da reserva modificada: " + newRow[4]);
+               // System.out.println("Status da reserva modificada: " + newRow[4]);
             }
         }
         else if (newRow != null)
         {
-            System.out.println("Nova reserva criada com status: " + newRow[4]);
+            // System.out.println("Nova reserva criada com status: " + newRow[4]);
         }
-
-        Email email = new Email("destinatario@email.com", "Assunto do email", "Corpo do email");
-
     }
 
     @Override
