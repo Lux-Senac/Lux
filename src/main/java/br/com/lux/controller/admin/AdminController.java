@@ -35,7 +35,6 @@ public class AdminController
             CarPageType carPageType = (CarPageType) row[0];
             salesMap.put(carPageType.name(), ((Long) row[1]).intValue());
         }
-        System.out.println(salesMap);
 
         model.addAttribute("sales", salesMap);
 
