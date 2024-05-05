@@ -1,120 +1,177 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="/admin/dashboard.css" rel="stylesheet">
-    <link href="/admin/admin.css" rel="stylesheet">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/cdb.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <title>Lux | Registro</title>
 </head>
+
 <body>
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
 
-</header>
+    </header>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin">
-                            <span data-feather="home"></span>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/cadastrar-carro">
-                            <span class="bi bi-house"></span>
-                            Registrar Carros
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+        }
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <h2>Registrar Carros</h2>
-            <form action="/admin/cadastrar-carro" method="post" enctype="multipart/form-data" class="container">
-                <div class="mb-3">
-                    <label class="form-label" for="name">Nome do Carro</label>
-                    <input class="form-control" type="text" name="name" id="name" >
+        h2 {
+            text-align: center;
+        }
+
+        .sidebar a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .chart-container {
+            width: 50vw;
+            height: 50vh;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            margin-bottom: 5px;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin">
+                                <span class="bi bi-house"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" id="carrosDropdown" role="button"
+                                data-bs-toggle="collapse" data-bs-target="#carrosMenu" aria-expanded="false">
+                                <span class="bi bi-car-front"></span>
+                                Opções de Carros
+                            </a>
+                            <div class="collapse" id="carrosMenu">
+                                <ul class="carro1">
+                                    <li><a href="/admin/cadastrar-carro" class="link-dark rounded">Registrar Carros</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="collapse" id="carrosMenu">
+                                <ul class="carro2">
+                                    <li><a href="/carros/find-all" class="link-dark rounded">Modelos de Carros</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <span class="bi bi-person-circle"></span>
+                                Login
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="motor">Motor</label>
-                    <input class="form-control" type="text" name="motor" id="motor" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="cil">Cilindrada</label>
-                    <input class="form-control" type="text" name="cil" id="cil" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="acel">Aceleração</label>
-                    <input class="form-control" type="text" name="acel" id="acel" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="hp">Potência</label>
-                    <input class="form-control" type="text" name="hp" id="hp">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="torque">Torque</label>
-                    <input class="form-control" type="text" name="torque" id="torque" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="velmax">Velocidade Máxima</label>
-                    <input class="form-control" type="text" name="velmax" id="velmax">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="doors">Portas</label>
-                    <input class="form-control" type="number" name="doors" id="doors" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="seats">Bancos</label>
-                    <input class="form-control" type="number" name="seats" id="seats" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="val">Válvulas/Tração</label>
-                    <input class="form-control" type="text" name="val" id="val">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="price">Preço</label>
-                    <input class="form-control" type="number" step="0.01" name="price" id="price" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="image">Imagem</label>
-                    <input class="form-control" type="text" name="image" id="image">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="title">Título</label>
-                    <input class="form-control" type="text" name="title" id="title" >
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="page">Página</label>
-                    <input class="form-control" type="text" name="page" id="page">
-                </div>
-
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary" type="submit">Registrar</button>
-                </div>
-            </form>
-        </main>
+            </nav>
+        </div>
     </div>
-</div>
-<script src="http://localhost:8080/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <h2>Registrar Carros</h2>
+
+        <form action="/admin/cadastrar-carro" method="post" enctype="multipart/form-data" class="container">
+            <div class="mb-3">
+                <label class="form-label" for="name">Nome do Carro</label>
+                <input class="form-control" type="text" name="name" id="name">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="motor">Motor</label>
+                <input class="form-control" type="text" name="motor" id="motor">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cil">Cilindrada</label>
+                <input class="form-control" type="text" name="cil" id="cil">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="acel">Aceleração</label>
+                <input class="form-control" type="text" name="acel" id="acel">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="hp">Potência</label>
+                <input class="form-control" type="text" name="hp" id="hp">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="torque">Torque</label>
+                <input class="form-control" type="text" name="torque" id="torque">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="velmax">Velocidade Máxima</label>
+                <input class="form-control" type="text" name="velmax" id="velmax">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="doors">Portas</label>
+                <input class="form-control" type="number" name="doors" id="doors">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="seats">Bancos</label>
+                <input class="form-control" type="number" name="seats" id="seats">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="val">Válvulas/Tração</label>
+                <input class="form-control" type="text" name="val" id="val">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="price">Preço</label>
+                <input class="form-control" type="number" step="0.01" name="price" id="price">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="image">Imagem</label>
+                <input class="form-control" type="text" name="image" id="image">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="title">Título</label>
+                <input class="form-control" type="text" name="title" id="title">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="page">Página</label>
+                <input class="form-control" type="text" name="page" id="page">
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" type="submit">Registrar</button>
+            </div>
+        </form>
+    </main>
+    
 </body>
+<script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/cdb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
 </html>
