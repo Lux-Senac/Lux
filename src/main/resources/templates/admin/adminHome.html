@@ -106,11 +106,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="sale : ${sales}">
-                    <td th:text="${sale.CarName}"></td>
-                    <td th:text="${#dates.format(sale.SaleDate, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${sale.SalePrice}"></td>
-                </tr>
+
             </tbody>
         </table>
     </main>
@@ -121,4 +117,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <script src="\admin\bootstrap\js\dashboard.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const salesData = /*[[${sales}]]*/ {};
+    const labels = ["Tesla Model S", "Tesla Model X", "Porsche Taycan Turbo S", "Bmw I8", "BYD Yuan", "BYD Tan"];
+    const enumNames = {"Tesla Model S": "TeslaModelS", "Tesla Model X": "TeslaModelX", "Porsche Taycan Turbo S": "Porsche", "Bmw I8": "Bmw", "BYD Yuan": "BYDYuan", "BYD Tan": "BYDTan"};
+    const data = labels.map(label => salesData[enumNames[label]] || 0);
+
+    const ctx = document.getElementById("chart").getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Vendas',
+                backgroundColor: 'rgba(161, 198, 247, 1)',
+                borderColor: 'rgb(47, 128, 237)',
+                data: data,
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    }
+                }]
+            }
+        },
+    });
+    /*]]>*/
+</script>
+
 </html>
