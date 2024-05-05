@@ -22,9 +22,11 @@ public class SalesController {
     private SalesAdminService salesAdminService;
 
     @GetMapping
-    public String findSalesByName(Model model) {
+    public String findSalesByName(Model model)
+    {
        SequencedCollection<Object[]> sales = salesAdminService.findSalesByName();
-            model.addAttribute("sales", sales);
+       model.addAttribute("sales", sales);
+
         return "admin/adminHome";
     }
 }
