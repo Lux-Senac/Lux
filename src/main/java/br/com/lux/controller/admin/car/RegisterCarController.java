@@ -2,7 +2,7 @@ package br.com.lux.controller.admin.car;
 
 import br.com.lux.controller.car.CarController;
 import br.com.lux.domain.car.Car;
-import br.com.lux.services.car.CarAdminService;
+import br.com.lux.services.car.CarService;
 
 import org.springframework.ui.Model;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterCarController
 {
     @Autowired
-    private CarAdminService carAdminService;
+    private CarService carService;
 
     @Autowired
     private CarController carController(CarController carController)
@@ -45,7 +45,7 @@ public class RegisterCarController
             return "admin/car/registercar";
         }
 
-        carAdminService.registerCar(car);
+        carService.registerCar(car);
         return "admin/car/registercar";
     }
 }
