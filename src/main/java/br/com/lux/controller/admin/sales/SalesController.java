@@ -1,7 +1,7 @@
 package br.com.lux.controller.admin.sales;
 
 
-import br.com.lux.services.sales.SalesAdminService;
+import br.com.lux.services.sales.SalesService;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +15,12 @@ import java.util.SequencedCollection;
 public class SalesController {
 
     @Autowired
-    private SalesAdminService salesAdminService;
+    private SalesService salesService;
 
     @GetMapping
     public String findSalesByName(Model model)
     {
-       SequencedCollection<Object[]> sales = salesAdminService.findSalesByName();
+       SequencedCollection<Object[]> sales = salesService.findSalesByName();
        model.addAttribute("sales", sales);
 
        return "admin/adminHome";

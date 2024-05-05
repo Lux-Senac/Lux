@@ -81,6 +81,7 @@ public class Car implements Serializable
     private String title;
 
     @NotBlank(message = "A pagina do carro é obrigatória.")
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String page;
+    private CarPageType page;
 }
