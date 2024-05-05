@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -83,91 +82,122 @@
                             </a>
                         </li>
                     </ul>
+              </div>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/cadastrar-carro">
+                            <span class="bi bi-house"></span>
+                            Registrar Carros
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h2>Registrar Carros</h2>
+            <form th:action="@{/admin/cadastrar-carro}" th:object="${car}" method="post" enctype="multipart/form-data" class="container">
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nome do Carro</label>
+                    <input class="form-control" type="text" name="name" id="name" th:field="*{name}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                 </div>
-            </nav>
-        </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="motor">Motor</label>
+                    <input class="form-control" type="text" name="motor" id="motor" th:field="*{motor}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('motor')}" th:errors="*{motor}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="cil">Cilindrada</label>
+                    <input class="form-control" type="text" name="cil" id="cil" th:field="*{cil}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('cil')}" th:errors="*{cil}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="acel">Aceleração</label>
+                    <input class="form-control" type="text" name="acel" id="acel" th:field="*{acel}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('acel')}" th:errors="*{acel}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="hp">Potência</label>
+                    <input class="form-control" type="text" name="hp" id="hp" th:field="*{hp}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('hp')}" th:errors="*{hp}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="torque">Torque</label>
+                    <input class="form-control" type="text" name="torque" id="torque" th:field="*{torque}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('torque')}" th:errors="*{torque}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="velmax">Velocidade Máxima</label>
+                    <input class="form-control" type="text" name="velmax" id="velmax" th:field="*{velmax}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('velmax')}" th:errors="*{velmax}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="doors">Portas</label>
+                    <input class="form-control" type="number" name="doors" id="doors" th:field="*{doors}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('doors')}" th:errors="*{doors}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="seats">Bancos</label>
+                    <input class="form-control" type="number" name="seats" id="seats" th:field="*{seats}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="val">Válvulas/Tração</label>
+                    <input class="form-control" type="text" name="val" id="val" th:field="*{val}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('val')}" th:errors="*{val}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Preço</label>
+                    <input class="form-control" type="number" step="0.01" name="price" id="price" th:field="*{price}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="image">Imagem</label>
+                    <input class="form-control" type="text" name="image" id="image" th:field="*{image}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="title">Título</label>
+                    <input class="form-control" type="text" name="title" id="title" th:field="*{title}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="page">Página</label>
+                    <input class="form-control" type="text" name="page" id="page" th:field="*{page}">
+                    <span class="text-danger" th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" type="submit">Registrar</button>
+                </div>
+            </form>
+        </main>
     </div>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-        <h2>Registrar Carros</h2>
-
-        <form action="/admin/cadastrar-carro" method="post" enctype="multipart/form-data" class="container">
-            <div class="mb-3">
-                <label class="form-label" for="name">Nome do Carro</label>
-                <input class="form-control" type="text" name="name" id="name">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="motor">Motor</label>
-                <input class="form-control" type="text" name="motor" id="motor">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="cil">Cilindrada</label>
-                <input class="form-control" type="text" name="cil" id="cil">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="acel">Aceleração</label>
-                <input class="form-control" type="text" name="acel" id="acel">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="hp">Potência</label>
-                <input class="form-control" type="text" name="hp" id="hp">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="torque">Torque</label>
-                <input class="form-control" type="text" name="torque" id="torque">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="velmax">Velocidade Máxima</label>
-                <input class="form-control" type="text" name="velmax" id="velmax">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="doors">Portas</label>
-                <input class="form-control" type="number" name="doors" id="doors">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="seats">Bancos</label>
-                <input class="form-control" type="number" name="seats" id="seats">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="val">Válvulas/Tração</label>
-                <input class="form-control" type="text" name="val" id="val">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="price">Preço</label>
-                <input class="form-control" type="number" step="0.01" name="price" id="price">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="image">Imagem</label>
-                <input class="form-control" type="text" name="image" id="image">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="title">Título</label>
-                <input class="form-control" type="text" name="title" id="title">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="page">Página</label>
-                <input class="form-control" type="text" name="page" id="page">
-            </div>
-
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" type="submit">Registrar</button>
-            </div>
-        </form>
-    </main>
-    
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/cdb.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/bootstrap.min.js"></script>
