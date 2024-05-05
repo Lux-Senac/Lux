@@ -1,10 +1,11 @@
 package br.com.lux.services.sales;
 
-import br.com.lux.domain.sales.Sales;
-
+import java.util.List;
 import java.util.SequencedCollection;
 
-public interface SalesAdminService
+public interface SalesService
 {
     SequencedCollection<Object[]> findSalesByName();
+
+    List<Object[]> findTotalSalesPerCarModel();
 }
