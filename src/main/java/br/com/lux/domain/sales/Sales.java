@@ -2,6 +2,7 @@ package br.com.lux.domain.sales;
 
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,24 +18,28 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class    Sales
+public class Sales
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "iD do carro é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_carro", referencedColumnName = "id")
     private Car carro;
 
+    @NotNull(message = "iD do cliente é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client cliente;
 
+    @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date data_venda;
 
+    @NotNull(message = "Preço de venda é obrigatório.")
     @Column(precision = 10, scale = 2)
     private BigDecimal preco_venda;
 }
