@@ -2,6 +2,7 @@ package br.com.lux.services.gravatar;
 
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -10,20 +11,28 @@ import java.util.Base64;
 public class GravatarService {
 
     public String getGravatarUrl(String email) {
-        String hash = md5Hex(email);
-        return "https://www.gravatar.com/avatar/" + hash;
-    }
-
-    private String md5Hex(String message) {
         try
         {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digest = md.digest(message.getBytes());
-            return Base64.getEncoder().encodeToString(digest);
-        }
-        catch (NoSuchAlgorithmException e)
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            return "https://www.gravatar.com/avatar/" + hex(md.digest(email.getBytes("UTF-8")));
+        } catch (NoSuchAlgorithmException e)
         {
-            throw new RuntimeException(e);
+
+        } catch (UnsupportedEncodingException e)
+        {
+
         }
+        return null;
+    }
+
+    private String hex(byte[] array)
+    {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < array.length; ++i)
+        {
+            sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+        }
+        return sb.toString();
     }
 }
