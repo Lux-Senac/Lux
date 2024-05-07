@@ -1,16 +1,14 @@
 package br.com.lux.controller.admin;
 
-import br.com.lux.domain.car.CarPageType;
+import br.com.lux.domain.user.User;
 import br.com.lux.services.sales.SalesService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.SequencedCollection;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,17 +24,14 @@ public class AdminController
     }
 
     @RequestMapping
-    public String adminHome(Model model)
+    public String adminHome(Model model, HttpSession session)
     {
-        List<Object[]> salesData = salesService.findTotalSalesPerCarModel();
-
-        Map<String, Integer> salesMap = new HashMap<>();
-        for (Object[] row : salesData) {
-            CarPageType carPageType = (CarPageType) row[0];
-            salesMap.put(carPageType.name(), ((Long) row[1]).intValue());
-        }
-
+        List<Object[]> salesMap = salesService.findTotalSalesPerCarModel();
         model.addAttribute("sales", salesMap);
+
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+
 
         return "admin/adminHome";
     }
