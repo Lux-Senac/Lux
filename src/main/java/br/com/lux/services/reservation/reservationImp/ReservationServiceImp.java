@@ -27,12 +27,21 @@ public class ReservationServiceImp implements ReservationService
     @Override
     public void registerReservation(Client client, Car car, ReservationType testDrive)
     {
-        Reservation reservation = new Reservation();
-        reservation.setClient(client);
-        reservation.setCar(car);
-        reservation.setDatareserva(LocalDate.from(LocalDateTime.now()));
-        reservation.setStatusreserva(ReservationStatus.ESPERA);
-        reservation.setTiporeserva(testDrive);
-        reservationRepository.save(reservation);
+        try
+        {
+            Reservation reservation = new Reservation();
+
+            reservation.setClient(client);
+            reservation.setCar(car);
+            reservation.setDatareserva(LocalDate.from(LocalDateTime.now()));
+            reservation.setStatusreserva(ReservationStatus.ESPERA);
+            reservation.setTiporeserva(testDrive);
+
+            reservationRepository.save(reservation);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
