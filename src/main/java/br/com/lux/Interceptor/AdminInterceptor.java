@@ -14,7 +14,7 @@ public class AdminInterceptor implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
 
-        if (user != null && user.getTipo() == UserType.Admin)
+        if (user != null && user.getTipo() == UserType.ADMIN)
         {
             return true;
         }
