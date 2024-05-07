@@ -3,6 +3,7 @@ package br.com.lux.services.user.login;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
+import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,15 @@ import java.util.Optional;
 public class LoginService implements UserService
 {
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final GravatarService gravatarService;
+
+    public LoginService(UserRepository userRepository, GravatarService gravatarService) {
+        this.userRepository = userRepository;
+        this.gravatarService = gravatarService;
+    }
 
     @Override
     public Optional<User> authenticate(String email, String password) {
@@ -31,9 +40,9 @@ public class LoginService implements UserService
     }
 
     @Override
-    public Optional<User> createUser(String username, String email, String password)
+    public Optional<User> createUser(User user)
     {
-        Optional<User> existingUser = userRepository.findByEmail(email);
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
 
         if (existingUser.isPresent())
         {
@@ -41,11 +50,10 @@ public class LoginService implements UserService
         }
         else
         {
-            User user = new User();
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setTipo(UserType.cliente);
+            String urlAvatar = gravatarService.getGravatarUrl(user.getEmail());
+            user.setUrlavatar(urlAvatar);
+
+            user.setTipo(UserType.CLIENTE);
 
             userRepository.save(user);
 
