@@ -12,8 +12,12 @@ public class DatabaseInitializer implements CommandLineRunner {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void run(String... args) throws Exception {
-        jdbcTemplate.execute("CREATE TRIGGER reserva_modificada AFTER UPDATE ON Reserva FOR EACH ROW CALL \"br.com.lux.domain.reservation.trigger.ReservationTrigger\"");
-        jdbcTemplate.execute("CREATE TRIGGER reserva_criada AFTER INSERT ON Reserva FOR EACH ROW CALL \"br.com.lux.domain.reservation.trigger.ReservationTrigger\"");
+    public void run(String... args) throws Exception
+    {
+        // Reserva Trigger
+        // jdbcTemplate.execute("CREATE TRIGGER reserva_modificada AFTER UPDATE ON Reserva FOR EACH ROW CALL \"br.com.lux.domain.trigger.ReservationTrigger\"");
+        // jdbcTemplate.execute("CREATE TRIGGER reserva_criada AFTER INSERT ON Reserva FOR EACH ROW CALL \"br.com.lux.domain.trigger.ReservationTrigger\"");
+
+        // User Trigger
     }
 }
