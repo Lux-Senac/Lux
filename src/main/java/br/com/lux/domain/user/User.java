@@ -39,7 +39,7 @@ public class User implements Serializable
     private String urlavatar;
 
     @Enumerated(EnumType.STRING)
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private UserType tipo;
 
     @ManyToOne
