@@ -1,13 +1,13 @@
 package br.com.lux.controller.user.login;
 
 import br.com.lux.domain.user.User;
+import br.com.lux.services.email.Email;
 import br.com.lux.services.user.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.Optional;
@@ -19,17 +19,24 @@ public class CadastrarController
     @Autowired
     private UserService userService;
 
-    @RequestMapping
     @GetMapping
-    public String cadastrar()
+    public String cadastrar(Model model)
     {
+        model.addAttribute("user", new User());
+
         return "login/cadastrar";
     }
 
     @PostMapping
-    public String cadastrarPost(@RequestParam String username, @RequestParam String email, @RequestParam String password, Model model)
+    public String cadastrarPost(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult)
     {
-        Optional<User> optionalUser = userService.createUser(username, email, password);
+        if(!bindingResult.hasErrors())
+        {
+            model.addAttribute("message", "Erro ao cadastrar usuário!");
+            return "/login/cadastrar";
+        }
+
+        Optional<User> optionalUser = userService.createUser(user);
 
         if(optionalUser.isPresent())
         {
@@ -38,6 +45,7 @@ public class CadastrarController
         }
 
         model.addAttribute("message", "Usuário já cadastrado!");
+
         return "login/cadastrar";
     }
 }
