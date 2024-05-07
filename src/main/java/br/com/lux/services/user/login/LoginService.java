@@ -50,7 +50,7 @@ public class LoginService implements UserService
         }
         else
         {
-            String urlAvatar = gravatarService.getGravatarUrl(user.getEmail());
+            String urlAvatar = gravatarService.getGravatarUrl(user.getEmail().toLowerCase());
             user.setUrlavatar(urlAvatar);
 
             user.setTipo(UserType.CLIENTE);
