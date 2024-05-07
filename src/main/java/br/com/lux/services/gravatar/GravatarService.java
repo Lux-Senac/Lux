@@ -10,20 +10,22 @@ import java.util.Base64;
 @Service
 public class GravatarService {
 
-    public String getGravatarUrl(String email) {
+    public String getGravatarUrl(String email)
+    {
         try
         {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
 
             return "https://www.gravatar.com/avatar/" + hex(md.digest(email.getBytes("UTF-8")));
-        } catch (NoSuchAlgorithmException e)
-        {
-
-        } catch (UnsupportedEncodingException e)
-        {
-
         }
-        return null;
+        catch (NoSuchAlgorithmException e)
+        {
+            return "https://www.gravatar.com/avatar/pmJ/n7umDWOlthLrafpdnw==";
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            return "https://www.gravatar.com/avatar/pmJ/n7umDWOlthLrafpdnw==";
+        }
     }
 
     private String hex(byte[] array)
