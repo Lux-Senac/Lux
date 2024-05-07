@@ -1,6 +1,7 @@
 package br.com.lux.domain.user;
 
 import br.com.lux.domain.client.Client;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,14 +22,21 @@ public class User implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "O campo username é obrigatório!")
     @Column(unique = true, nullable = false)
     private String username;
 
+    @NotNull(message = "O campo password é obrigatório!")
     @Column(nullable = false)
     private String password;
 
+    @NotNull(message = "O campo email é obrigatório!")
     @Column(unique = true, nullable = false)
     private String email;
+
+    @NotNull(message = "O campo urlavatar é obrigatório!")
+    @Column(nullable = false)
+    private String urlavatar;
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
