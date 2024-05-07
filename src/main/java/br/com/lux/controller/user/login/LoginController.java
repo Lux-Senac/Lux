@@ -37,7 +37,7 @@ public class LoginController
             User user = optionalUser.get();
             session.setAttribute("user", user);
 
-            if(user.getTipo() == UserType.Admin) {
+            if(user.getTipo() == UserType.ADMIN) {
                 return "redirect:/admin";
             }
             model.addAttribute("message", "Logado com Sucesso!");
