@@ -24,8 +24,8 @@ INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, 
 
 
 -- Inserts for USR table
-INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', 'Password 1', 'user1@example.com', 'Admin', 'https://gravatar.com/cry199');
-INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', 'Password 2', 'user2@example.com', 'cliente', 1,'https://gravatar.com/cry199');
+INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', 'Password 1', 'user1@example.com', 'ADMIN', 'https://gravatar.com/cry199');
+INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', 'Password 2', 'user2@example.com', 'CLIENTE', 1,'https://gravatar.com/cry199');
 
 
 
