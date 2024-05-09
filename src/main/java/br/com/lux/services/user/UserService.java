@@ -9,7 +9,7 @@ public interface UserService
 {
     Optional<User> authenticate(String email, String password);
 
-    Optional<User> createUser(String username, String email, String password);
+    Optional<User> createUser(User user);
 
     void changeClientId(Integer id, Client client);
 }

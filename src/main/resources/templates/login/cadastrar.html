@@ -9,25 +9,28 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
 </head>
 <body>
-
 <section class="container forms">
     <div class="form signup">
         <div class="form-content">
             <header>Cadastro</header>
-            <form action="/cadastro" method="post">
+            <form th:action="@{/cadastro}" th:object="${user}" method="post" enctype="multipart/form-data">
+
                 <h5 th:text="${message}"></h5>
                 <div class="field input-field">
-                    <input type="username" name="username" placeholder="username" class="input" required>
+                    <input type="username" name="username" placeholder="username" class="input" th:field="*{username}" required>
+                    <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 </div>
                 <div class="field input-field">
-                    <input type="email" name="email" placeholder="Email" class="input" required>
+                    <input type="email" name="email" placeholder="Email" class="input" th:field="*{email}" required>
+                    <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </div>
                 <div class="field input-field">
-                    <input type="password" name="password" placeholder="Senha" class="input" required>
+                    <input type="password" name="password" placeholder="Senha" class="input" th:field="*{password}" required>
+                    <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     <i class="bx bx-hide eye-icon"></i>
                 </div>
                 <div class="field input-field">
-                    <input type="password" placeholder="Confirmar Senha" class="input">
+                    <input type="password" placeholder="Confirmar Senha" class="input" required>
                     <i class="bx bx-hide eye-icon"></i>
                 </div>
                 <div class="field button-field">

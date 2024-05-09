@@ -1,9 +1,5 @@
-package br.com.lux.domain.reservation.trigger;
+package br.com.lux.triggers;
 
-import br.com.lux.services.email.Email;
-import br.com.lux.services.email.EmailService;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextListener;
 import org.h2.api.Trigger;
 
 import java.sql.Connection;

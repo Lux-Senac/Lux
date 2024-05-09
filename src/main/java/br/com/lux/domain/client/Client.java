@@ -48,3 +48,4 @@ public class Client implements Serializable
     @Column(nullable = false)
     private String pais;
 }
+// 

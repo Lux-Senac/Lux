@@ -64,7 +64,8 @@ public class TestDriveReserveController
 
     @PostMapping("/agendar-test-drive/{id}")
     public String agendarTestDrive(@PathVariable Integer id, @Valid @ModelAttribute Client client,
-                                   BindingResult bindingResult, Model model, HttpSession session) {
+                                   BindingResult bindingResult, Model model, HttpSession session)
+    {
         Car car = carService.findCarById(id);
 
         if (car == null)

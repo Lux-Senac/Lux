@@ -22,9 +22,12 @@ INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, 
                                                                                                                ('BYD Yuan', 'Motor5', 'Cil5', 'Acel5', 'HP5', 'Torque5', 'VelMax5', 4, 5, 'Val5', 35000.00, 'https://i.pinimg.com/originals/e1/80/36/e18036de3669defc2f0f6a05533d5e6b.gif', 'Title5', 'BYDYuan'),
                                                                                                                ('BYD Tan', 'Motor6', 'Cil6', 'Acel6', 'HP6', 'Torque6', 'VelMax6', 4, 5, 'Val6', 40000.00, 'https://i.pinimg.com/originals/78/0a/ff/780aff211e0e33d9349c35f614a2ea44.gif', 'Title6', 'BYDTan');
 
+
 -- Inserts for USR table
-INSERT INTO USR (username, password, email, tipo) VALUES ('User 1', 'Password 1', 'user1@example.com', 'Admin');
-INSERT INTO USR (username, password, email, tipo, id_cliente) VALUES ('User 2', 'Password 2', 'user2@example.com', 'cliente', 1);
+INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', 'Password 1', 'user1@example.com', 'ADMIN', 'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
+INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', 'Password 2', 'user2@example.com', 'CLIENTE', 1,'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
+
+
 
 -- Inserts for Vendas table
 INSERT INTO Vendas (id_carro, id_cliente, data_venda, preco_venda) VALUES
