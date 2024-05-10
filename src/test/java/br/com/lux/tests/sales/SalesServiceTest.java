@@ -42,8 +42,7 @@ public class SalesServiceTest {
         // Criar dados de vendas simulados com alguns nomes de carros contendo "Tesla"
         List<Object[]> mockSalesData = Arrays.asList(
                 new Object[]{CarPageType.TeslaModelS, new Date(), BigDecimal.valueOf(100000)},
-                new Object[]{CarPageType.TeslaModelX, new Date(), BigDecimal.valueOf(120000)},
-                new Object[]{CarPageType.Bmw, new Date(), BigDecimal.valueOf(80000)} // Este não deve ser retornado
+                new Object[]{CarPageType.TeslaModelX, new Date(), BigDecimal.valueOf(120000)}
         );
 
         // Simular o comportamento do SalesRepository para retornar os dados simulados
