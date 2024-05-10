@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 
-import javax.xml.transform.Source;
 import java.io.Serializable;
 
 @Entity(name = "Clientes")
