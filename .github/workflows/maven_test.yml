@@ -1,4 +1,4 @@
-# .github/workflows/maven_test.yml
+# .GitHub/workflows/maven_test.yml
 name: Java CI with Maven
 
 on:
