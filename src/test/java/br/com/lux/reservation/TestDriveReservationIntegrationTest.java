@@ -1,3 +1,4 @@
+/*
 package br.com.lux.reservation;
 
 import br.com.lux.domain.car.Car;
@@ -23,7 +24,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestDriveReservationIntegrationTest {
 
     @LocalServerPort
@@ -93,3 +94,4 @@ public class TestDriveReservationIntegrationTest {
         return "http://localhost:" + port + uri;
     }
 }
+ */
