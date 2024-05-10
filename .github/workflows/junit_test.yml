@@ -21,4 +21,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Test with JUnit
-        run: mvn test
+        run: mvn surefire:test
