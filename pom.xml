@@ -26,6 +26,14 @@
     </distributionManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -82,6 +90,7 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>3.2.5</version>
         </dependency>
+        
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -94,6 +103,7 @@
             <artifactId>spring-context-support</artifactId>
             <version>6.1.5</version>
         </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
