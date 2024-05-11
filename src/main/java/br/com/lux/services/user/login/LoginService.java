@@ -5,10 +5,11 @@ import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
+import br.com.lux.domain.user.UserType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.lux.domain.user.UserType;
 import java.util.Optional;
 
 @Service
@@ -26,15 +27,12 @@ public class LoginService implements UserService
     }
 
     @Override
-    public Optional<User> authenticate(String email, String password) {
+    public Optional<User> authenticate(String email, String password)
+    {
         Optional<User> optionalUser = userRepository.findByEmail(email);
 
-        if(optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if(user.getPassword().equals(password)) {
-                return Optional.of(user);
-            }
-        }
+        if(optionalUser.isPresent() && PasswordUtils.checkPassword(password, optionalUser.get().getPassword()))
+            return Optional.of(optionalUser.get());
 
         return Optional.empty();
     }
@@ -51,9 +49,10 @@ public class LoginService implements UserService
         else
         {
             String urlAvatar = gravatarService.getGravatarUrl(user.getEmail().toLowerCase());
-            user.setUrlavatar(urlAvatar);
 
+            user.setUrlavatar(urlAvatar);
             user.setTipo(UserType.CLIENTE);
+            user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
 
             userRepository.save(user);
 
