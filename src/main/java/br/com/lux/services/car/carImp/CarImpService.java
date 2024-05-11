@@ -51,4 +51,10 @@ public class CarImpService implements CarService
     {
         return carRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void deleteCar(Integer id)
+    {
+        carRepository.deleteById(id);
+    }
 }
