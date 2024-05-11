@@ -43,9 +43,9 @@ public class Sales
     @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date data_venda;
+    private Date datavenda;
 
     @NotNull(message = "Preço de venda é obrigatório.")
     @Column(precision = 10, scale = 2)
-    private BigDecimal preco_venda;
+    private BigDecimal precovenda;
 }
