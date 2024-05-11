@@ -18,7 +18,7 @@
             rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href=/dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href=/dashboard/css/sb-admin-2.min.css rel="stylesheet">
 
 </head>
 
@@ -43,7 +43,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" th:href="@{/admin}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Admin</span></a>
         </li>
@@ -61,13 +61,13 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Teste</span>
+                <span>Carros</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Teste:</h6>
-                    <a class="collapse-item" href="#">Teste 1</a>
-                    <a class="collapse-item" href="#">Teste 2</a>
+                    <h6 class="collapse-header">Carros:</h6>
+                    <a class="collapse-item" th:href="@{/admin/all-cars}">Tabela</a>
+                    <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
                 </div>
             </div>
         </li>
@@ -137,10 +137,8 @@
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -163,9 +161,7 @@
                             </a>
                         </div>
                     </li>
-
                 </ul>
-
             </nav>
             <!-- End of Topbar -->
 
