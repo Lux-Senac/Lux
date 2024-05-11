@@ -80,7 +80,7 @@ public class Car implements Serializable
     @Column(nullable = false)
     private String title;
 
-    @NotBlank(message = "A pagina do carro é obrigatória.")
+    @NotNull(message = "A pagina do carro é obrigatória.")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CarPageType page;
