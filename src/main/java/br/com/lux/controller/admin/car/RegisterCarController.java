@@ -54,7 +54,7 @@ public class RegisterCarController
         }
 
         carService.registerCar(car);
-        
+
         return "redirect:/admin/all-cars";
     }
 }
