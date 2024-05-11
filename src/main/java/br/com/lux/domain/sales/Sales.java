@@ -2,6 +2,7 @@ package br.com.lux.domain.sales;
 
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
+import br.com.lux.domain.user.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,11 @@ public class Sales
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client cliente;
+
+    @NotNull(message = "iD do Usuario é obrigatório.")
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    private User usuario;
 
     @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
