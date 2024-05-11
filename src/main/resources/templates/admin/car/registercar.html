@@ -1,191 +1,363 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdbootstrap/css/cdb.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <title>Lux | Registro Car</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lux | Cadastrar Carro</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href=/dashboard/css/sb-admin-2.min.css rel="stylesheet">
+
 </head>
 
-<body>
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+<body id="page-top">
 
-</header>
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-<style>
-    body {
-        font-family: "Poppins", sans-serif;
-    }
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    h2 {
-        text-align: center;
-    }
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <img class="img-profile rounded-circle" th:src="${user.urlavatar}" width="50px">
+            </div>
+            <div class="sidebar-brand-text mx-3">Lux Admin</div>
+        </a>
 
-    .sidebar a {
-        color: #000;
-        text-decoration: none;
-    }
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-    .chart-container {
-        width: 50vw;
-        height: 50vh;
-        margin: auto;
-        margin-bottom: 20px;
-    }
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Admin</span></a>
+        </li>
 
-    .btn-primary {
-        margin-bottom: 5px;
-    }
-</style>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin">
-                            <span class="bi bi-house"></span>
-                            Dashboard
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            GERAL
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Carros</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Carros:</h6>
+                    <a class="collapse-item" th:href="@{/admin/all-cars}">Tabela</a>
+                    <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Teste
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+               aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Teste</h6>
+                    <a class="collapse-item" href="#">Teste</a>
+                    <a class="collapse-item" href="#">Teste</a>
+                    <a class="collapse-item" href="#">Teste</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Teste:</h6>
+                    <a class="collapse-item" href="#">Teste</a>
+                    <a class="collapse-item active" href="#">Teste</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${user.username}"></span>
+                            <img class="img-profile rounded-circle"
+                                 th:src="${user.urlavatar}">
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" href="#" id="carrosDropdown" role="button"
-                           data-bs-toggle="collapse" data-bs-target="#carrosMenu" aria-expanded="false">
-                            <span class="bi bi-car-front"></span>
-                            Opções de Carros
-                        </a>
-                        <div class="collapse" id="carrosMenu">
-                            <ul class="carro1">
-                                <li><a href="/admin/cadastrar-carro" class="link-dark rounded">Registrar Carros</a>
-                                </li>
-                            </ul>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Sair
+                            </a>
                         </div>
-
-                        <div class="collapse" id="carrosMenu">
-                            <ul class="carro2">
-                                <li><a href="/carros/find-all" class="link-dark rounded">Modelos de Carros</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <span class="bi bi-person-circle"></span>
-                            Login
-                        </a>
                     </li>
                 </ul>
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Cadastrar Carro</h1>
+
+                <form class="user" th:action="@{/admin/cadastrar-carro}" th:object="${car}" method="post" enctype="multipart/form-data">
+                    <div class="form-group col-auto my-1">
+                        <label for="name">Nome Do Carro:</label>
+                        <input type="text" class="form-control form-text" id="name"
+                               placeholder="Digite o nome do Carro" required th:field="*{name}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="motor">Motor:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="motor" placeholder="Digite do motor" required th:field="*{motor}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('motor')}" th:errors="*{motor}"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="cil">Cilindro:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="cil" placeholder="Digite o Cilindro" required th:field="*{cil}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('cil')}" th:errors="*{cil}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="acel">Aceleração:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="acel" placeholder="Digite a Aceleração" required th:field="*{acel}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('acel')}" th:errors="*{acel}"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="hp">Potência:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="hp" placeholder="Digite o Potência" required th:field="*{hp}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('hp')}" th:errors="*{hp}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="torque">Torque:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="torque" placeholder="Digite o Torque" required th:field="*{torque}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('torque')}" th:errors="*{torque}"></span>
+                        </div>
+                        <div class="col-sm-6 mb-sm-0">
+                            <label for="velmax">A Velocidade máxima:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="velmax" placeholder="Digite a Velocidade máxima" required th:field="*{velmax}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('velmax')}" th:errors="*{velmax}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-1">
+                            <label for="doors">O numero de portas do carro:</label>
+                            <input type="number" class="form-control form-text"
+                                   id="doors" placeholder="Digite o numero de Portas" required th:field="*{doors}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('doors')}" th:errors="*{doors}"></span>
+                        </div>
+                        <div class="col-sm-6 mb-sm-1">
+                            <label for="seats">O numero de assentos do carro:</label>
+                            <input type="number" class="form-control form-text"
+                                   id="seats" placeholder="Digite o numero de assentos" required th:field="*{seats}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-1">
+                            <label for="val">Valor da válvula ou tipo da tração:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="val" placeholder="Coloquei o valor da válvula do carro ou tipo da tração." required
+                                   th:field="*{val}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('val')}" th:errors="*{val}"></span>
+                        </div>
+                        <div class="col-sm-6 mb-sm-1">
+                            <label for="price">O preço do carro:</label>
+                            <input type="number" class="form-control form-text"
+                                   id="price" placeholder="Digite o preço do carro" required th:field="*{price}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-auto my-1">
+                        <label for="title">A descrição do carro:</label>
+                        <input type="text" class="form-control form-text" id="title"
+                               placeholder="Digite a descrição" required th:field="*{title}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                    </div>
+
+                    <div class="form-group col-auto my-1">
+                        <label class="mr-sm-2" for="page">Pagina do Carro:</label>
+                        <select class="custom-select mr-sm-2" id="page" required th:field="*{page}">
+                            <option value="Bmw" selected>Bmw</option>
+                            <option value="BYDTan" selected>BYDTan</option>
+                            <option value="BYDYuan" selected>BYDYuan</option>
+                            <option value="Porsche" selected>Porsche</option>
+                            <option value="TeslaModelS" selected>TeslaModelS</option>
+                            <option value="TeslaModelX" selected>TeslaModelX</option>
+                        </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="image">A URL da imagem:</label>
+                            <input type="text" class="form-control form-text"
+                                   id="image" placeholder="Coloque a URL da imagem" required
+                                   oninput="updateImageSrc()" th:field="*{image}">
+                            <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="https://www.gravatar.com/avatar/pmJ/n7umDWOlthLrafpdnw=="
+                                 class="rounded mx-auto d-block" alt="imagem" id="previewImage" width="100" height="100">
+
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="submit">Registrar</button>
+                    </div>
+                </form>
             </div>
-        </nav>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Lux 2024</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" th:href="@{/logout}">Sair</a>
+            </div>
+        </div>
     </div>
 </div>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-    <h2>Registrar Carros</h2>
+<!-- Bootstrap core JavaScript-->
+<script src="/dashboard/vendor/jquery/jquery.min.js"></script>
+<script src="/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <form th:action="@{/admin/cadastrar-carro}" th:object="${car}" method="post" enctype="multipart/form-data" class="container">
-        <div class="mb-3">
-            <label class="form-label" for="name">Nome do Carro</label>
-            <input class="form-control" type="text" name="name" id="name" th:field="*{name}">
-            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-        </div>
+<!-- Core plugin JavaScript-->
+<script src="/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <div class="mb-3">
-            <label class="form-label" for="motor">Motor</label>
-            <input class="form-control" type="text" name="motor" id="motor" th:field="*{motor}">
-            <span class="text-danger" th:if="${#fields.hasErrors('motor')}" th:errors="*{motor}"></span>
-        </div>
+<!-- Custom scripts for all pages-->
+<script src="/dashboard/js/sb-admin-2.min.js"></script>
 
-        <div class="mb-3">
-            <label class="form-label" for="cil">Cilindrada</label>
-            <input class="form-control" type="text" name="cil" id="cil" th:field="*{cil}">
-            <span class="text-danger" th:if="${#fields.hasErrors('cil')}" th:errors="*{cil}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="acel">Aceleração</label>
-            <input class="form-control" type="text" name="acel" id="acel" th:field="*{acel}">
-            <span class="text-danger" th:if="${#fields.hasErrors('acel')}" th:errors="*{acel}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="hp">Potência</label>
-            <input class="form-control" type="text" name="hp" id="hp" th:field="*{hp}">
-            <span class="text-danger" th:if="${#fields.hasErrors('hp')}" th:errors="*{hp}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="torque">Torque</label>
-            <input class="form-control" type="text" name="torque" id="torque" th:field="*{torque}">
-            <span class="text-danger" th:if="${#fields.hasErrors('torque')}" th:errors="*{torque}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="velmax">Velocidade Máxima</label>
-            <input class="form-control" type="text" name="velmax" id="velmax" th:field="*{velmax}">
-            <span class="text-danger" th:if="${#fields.hasErrors('velmax')}" th:errors="*{velmax}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="doors">Portas</label>
-            <input class="form-control" type="number" name="doors" id="doors" th:field="*{doors}">
-            <span class="text-danger" th:if="${#fields.hasErrors('doors')}" th:errors="*{doors}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="seats">Bancos</label>
-            <input class="form-control" type="number" name="seats" id="seats" th:field="*{seats}">
-            <span class="text-danger" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="val">Válvulas/Tração</label>
-            <input class="form-control" type="text" name="val" id="val" th:field="*{val}">
-            <span class="text-danger" th:if="${#fields.hasErrors('val')}" th:errors="*{val}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="price">Preço</label>
-            <input class="form-control" type="number" step="0.01" name="price" id="price" th:field="*{price}">
-            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="image">Imagem</label>
-            <input class="form-control" type="text" name="image" id="image" th:field="*{image}">
-            <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="title">Título</label>
-            <input class="form-control" type="text" name="title" id="title" th:field="*{title}">
-            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="page">Página</label>
-            <input class="form-control" type="text" name="page" id="page" th:field="*{page}">
-            <span class="text-danger" th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
-        </div>
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" type="submit">Registrar</button>
-        </div>
-    </form>
-</main>
+<script>
+    function updateImageSrc() {
+        var inputField = document.getElementById("image");
+        var imageElement = document.getElementById("previewImage");
+        imageElement.src = inputField.value;
+    }
+</script>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/cdb.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cdbootstrap/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
 </html>
