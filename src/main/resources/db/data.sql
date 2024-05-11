@@ -28,17 +28,17 @@ INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', '
 INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', '$2a$10$z0p6uXfjFrmkEv5O4aMdAOY1PFJcZNzQjmcMMux.QPV/AemxwUdkC', 'user2@example.com', 'CLIENTE', 1,'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
 
 -- Inserts for Vendas table
-INSERT INTO Vendas (id_carro, id_cliente, data_venda, preco_venda) VALUES
-(1, 1, '2024-05-01', 80000.00),
-(2, 2, '2024-05-02', 85000.00),
-(3, 3, '2024-05-03', 150000.00),
-(4, 4, '2024-05-04', 140000.00),
-(5, 5, '2024-05-05', 35000.00),
-(6, 1, '2024-05-06', 40000.00),
-(1, 2, '2024-05-07', 80000.00),
-(2, 3, '2024-05-08', 85000.00),
-(3, 4, '2024-05-09', 150000.00),
-(4, 5, '2024-05-10', 140000.00);
+INSERT INTO Vendas (id_carro, id_cliente, id_user, data_venda, preco_venda) VALUES
+(1, 1, 1, '2024-05-01', 80000.00),
+(2, 2, 1, '2024-05-02', 85000.00),
+(3, 3, 1, '2024-05-03', 150000.00),
+(4, 4, 1, '2024-05-04', 140000.00),
+(5, 5, 1, '2024-05-05', 35000.00),
+(6, 1, 1, '2024-05-06', 40000.00),
+(1, 2, 1, '2024-05-07', 80000.00),
+(2, 3, 1, '2024-05-08', 85000.00),
+(3, 4, 1, '2024-05-09', 150000.00),
+(4, 5, 1, '2024-05-10', 140000.00);
 
 -- Inserts for Avaliacoes table
 INSERT INTO Avaliacoes (id_cliente, id_carro, avaliacao, feedback) VALUES (1, 1, 5, 'Great car!');
