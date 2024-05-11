@@ -1,6 +1,5 @@
 package br.com.lux.controller.admin.car;
 
-import br.com.lux.controller.car.CarController;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
