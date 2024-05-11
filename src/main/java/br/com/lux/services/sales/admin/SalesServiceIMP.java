@@ -7,10 +7,7 @@ import br.com.lux.services.sales.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.SequencedCollection;
+import java.util.*;
 
 
 @Service
@@ -23,8 +20,16 @@ public class SalesServiceIMP implements SalesService {
         this.salesRepository = salesRepository;
     }
 
-    public SequencedCollection<Object[]> findSalesByName() {
-        return salesRepository.findCarSalesDetails();
+    public SequencedCollection<Object[]> findSalesByName(String carNameFilter) {
+        List<Object[]> salesData = salesRepository.findCarSalesDetails();
+        List<Object[]> filteredSales = new ArrayList<>();
+        for (Object[] sale : salesData) {
+            CarPageType carPageType = (CarPageType) sale[0];
+            if (carPageType.name().contains(carNameFilter)) {
+                filteredSales.add(sale);
+            }
+        }
+        return filteredSales;
     }
 
     public List<Object[]> findTotalSalesPerCarModel()

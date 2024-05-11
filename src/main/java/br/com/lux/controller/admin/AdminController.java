@@ -32,7 +32,6 @@ public class AdminController
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
 
-
         return "admin/adminHome";
     }
 }

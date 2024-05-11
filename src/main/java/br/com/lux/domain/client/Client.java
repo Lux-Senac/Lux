@@ -1,6 +1,5 @@
 package br.com.lux.domain.client;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,9 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Date;
 
 @Entity(name = "Clientes")
 @Table(name = "Clientes")
@@ -19,8 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Client implements Serializable
-{
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -47,5 +44,5 @@ public class Client implements Serializable
     @NotBlank(message = "O campo Endereço é obrigatório.")
     @Column(nullable = false)
     private String pais;
+
 }
-// 

@@ -5,7 +5,7 @@ import java.util.SequencedCollection;
 
 public interface SalesService
 {
-    SequencedCollection<Object[]> findSalesByName();
+    SequencedCollection<Object[]> findSalesByName(String carNameFilter);
 
     List<Object[]> findTotalSalesPerCarModel();
 }
