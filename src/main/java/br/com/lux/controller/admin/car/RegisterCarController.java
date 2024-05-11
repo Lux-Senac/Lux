@@ -2,8 +2,10 @@ package br.com.lux.controller.admin.car;
 
 import br.com.lux.controller.car.CarController;
 import br.com.lux.domain.car.Car;
+import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import jakarta.validation.Valid;
 
@@ -30,22 +32,29 @@ public class RegisterCarController
 
     @RequestMapping
     @GetMapping
-    public String registerCar(Model model)
+    public String registerCar(Model model, HttpSession session)
     {
         model.addAttribute("car", new Car());
+
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
 
         return "admin/car/registercar";
     }
 
     @PostMapping
-    public String registerCarPost(@Valid @ModelAttribute Car car, BindingResult bindingResult)
+    public String registerCarPost(@Valid @ModelAttribute Car car, BindingResult bindingResult, HttpSession session, Model model)
     {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+
         if (bindingResult.hasErrors())
         {
             return "admin/car/registercar";
         }
 
         carService.registerCar(car);
-        return "admin/car/registercar";
+        
+        return "redirect:/admin/all-cars";
     }
 }
