@@ -24,12 +24,6 @@ public class RegisterCarController
     @Autowired
     private CarService carService;
 
-    @Autowired
-    private CarController carController(CarController carController)
-    {
-        return carController;
-    }
-
     @RequestMapping
     @GetMapping
     public String registerCar(Model model, HttpSession session)
