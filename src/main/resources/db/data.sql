@@ -28,7 +28,7 @@ INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', '
 INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', '$2a$10$z0p6uXfjFrmkEv5O4aMdAOY1PFJcZNzQjmcMMux.QPV/AemxwUdkC', 'user2@example.com', 'CLIENTE', 1,'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
 
 -- Inserts for Vendas table
-INSERT INTO Vendas (id_carro, id_cliente, id_user, data_venda, preco_venda) VALUES
+INSERT INTO Vendas (id_carro, id_cliente, id_user, datavenda, precovenda) VALUES
 (1, 1, 1, '2024-05-01', 80000.00),
 (2, 2, 1, '2024-05-02', 85000.00),
 (3, 3, 1, '2024-05-03', 150000.00),
