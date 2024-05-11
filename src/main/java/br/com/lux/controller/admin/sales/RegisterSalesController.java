@@ -4,6 +4,7 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.sales.SalesService;
+import br.com.lux.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 
 import jakarta.validation.Valid;
@@ -16,12 +17,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/register-sales")
 public class RegisterSalesController
 {
     @Autowired
     private SalesService saleService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public String registerSales(Model model, HttpSession session)
@@ -31,7 +37,9 @@ public class RegisterSalesController
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
 
-        return "admin/sales/registerSales";
+        model.addAttribute("users", userService.findAllUsers());
+
+        return "admin/sales/registersales";
     }
 
     @PostMapping
@@ -40,9 +48,11 @@ public class RegisterSalesController
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
 
+        model.addAttribute("users", userService.findAllUsers());
+
         if (bindingResult.hasErrors())
         {
-            return "admin/sales/registerSales";
+            return "admin/sales/registersales";
         }
 
         saleService.registerSale(sales);
