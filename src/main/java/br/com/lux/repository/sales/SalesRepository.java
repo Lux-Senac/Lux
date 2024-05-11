@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
-    @Query("SELECT c.name AS CarName, s.data_venda AS SaleDate, s.preco_venda AS " +
+    @Query("SELECT c.name AS CarName, s.datavenda AS SaleDate, s.precovenda AS " +
             "SalePrice FROM Vendas s INNER JOIN s.carro c")
     List<Object[]> findCarSalesDetails();
 
