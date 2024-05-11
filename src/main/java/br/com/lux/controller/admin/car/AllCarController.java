@@ -21,12 +21,6 @@ public class AllCarController
     @Autowired
     private CarService carService;
 
-    @Autowired
-    private CarController carController(CarController carController)
-    {
-        return carController;
-    }
-
     @GetMapping
     public String allCars(Model model, HttpSession session)
     {
