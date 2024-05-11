@@ -190,6 +190,7 @@
                                     <th>Imagem</th>
                                     <th>Tipo Da Pagina</th>
                                     <th>Pagina do carro</th>
+                                    <th>Editar / Excluir</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -200,6 +201,7 @@
                                     <th>Imagem</th>
                                     <th>Tipo Da Pagina</th>
                                     <th>Pagina do carro</th>
+                                    <th>Editar / Excluir</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -210,6 +212,11 @@
                                     <td><img th:src="@{${car.image}}" th:alt="${car.name}" height="50"></td>
                                     <td th:text="${car.page}"></td>
                                     <td><a th:href="@{/carros/detalhes-carro(id=${car.id})}">Link</a></td>
+                                    <td>
+                                        <a th:href="@{/admin/edit-car(id=${car.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-car(id=${car.id})}" onclick="event.preventDefault();
+                                        deleteCar(this)">Excluir</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -281,6 +288,25 @@
 
 <!-- Page level custom scripts -->
 <script src="/dashboard/js/demo/datatables-demo.js"></script>
+
+<script>
+    function deleteCar(link) {
+        const carId = link.getAttribute('href').split('=')[1];
+        fetch('/admin/delete-car?id=' + carId, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.status >= 200 || response.status <= 399) {
+                    location.reload();
+                } else {
+                    console.error('Erro ao excluir carro.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição DELETE:', error);
+            });
+    }
+</script>
 
 </body>
 
