@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
               rel="stylesheet">
-        <link rel="stylesheet" href="//agendar/agendar.css">
+        <link rel="stylesheet" href="/agendar/agendar.css">
         <title>LUX Agende Test-Drive</title>
     </head>
 
@@ -32,66 +32,58 @@
             </div>
         </nav>
 
-        <section class="carros">
-            <div class="carro1">
-                <div class="car">
-                    <h3>Motor: <span th:text="${car.motor}"></span></h3>
-                    <h3>Potencia: <span th:text="${car.hp}"></span></h3>
-                    <h3>Portas: <span th:text="${car.doors}"></span></h3>
-                    <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
-                    <h3>Torque: <span th:text="${car.torque}"></span></h3>
-                    <h3>Lugares: <span th:text="${car.seats}"></span></h3>
-                    <h3>Aceleracao: <span th:text="${car.acel}"></span></h3>
-                    <h3>Velocidade Maxima: <span th:text="${car.velmax}"></span></h3>
-                    <h3>Tracao: <span th:text="${car.val}"></span></h3>
+        <div class="container">
+            <div class="form-container">
+                <h1 class="namecar">Nome do carro</h1>
 
-                    <div class="car-img">
-                        <img th:src= "${car.image}" alt="BMW i8">
-                    </div>
-                </div>
-            </div>
-            <div class="cliente">
-                <form th:action="@{/agendar-test-drive/{id}(id=${car.id})}" th:object="${client}" method="post" enctype="multipart/form-data" class="container">
-                    <h2>Agende seu Test-Drive</h2>
 
-                    <input type="hidden" name="id" id="id" th:field="*{id}">
-                    <div class="mb-3">
-                        <label class="form-label" for="nome">Nome:</label>
-                        <input class="form-control" type="text" name="nome" id="nome" th:field="*{nome}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" id="nome" name="nome" required placeholder="Nome">
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="sobrenome">Sobrenome:</label>
-                        <input class="form-control" type="text" name="sobrenome" id="sobrenome" th:field="*{sobrenome}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                    <div class="form-group">
+                        <input type="text" id="sobrenome" name="sobrenome" required placeholder="Sobrenome">
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="contato">Contato:</label>
-                        <input class="form-control" type="number" name="contato" id="contato" th:field="*{contato}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
+                    <div class="form-group">
+                        <label for="pais">País</label>
+                        <select name="pais" id="pais">
+                            <option value="brasil">Brasil</option>
+                        </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="email">Email:</label>
-                        <input class="form-control" type="text" name="email" id="email" th:field="*{email}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="cep">CEP:</label>
-                        <input class="form-control" type="number" name="cep" id="cep" th:field="*{cep}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="pais">Pais:</label>
-                        <input class="form-control" type="text" name="pais" id="pais" th:field="*{pais}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                    <div class="form-group">
+                        <input type="text" id="cep" name="cep" required placeholder="CEP" color="white">
                     </div>
 
-                    <button type="submit" class="btn">Agendar</button>
+                    <div class="form-group">
+                        <label for="preferencia">Preferência de contato</label>
+                        <select name="preferencia" id="preferencia">
+                            <option value="telefone">Telefone</option>
+                            <option value="email">E-mail</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="telefone" name="telefone" required placeholder="Telefone">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </div>
+
+                    <button type="submit" >ENVIAR</button>
+
                 </form>
+
+
             </div>
-        </section>
+
+            <div class="image-container">
+                <img src="https://www.byd.com/content/dam/byd-site/br/product/byd-seal/pc/section01.jpg" alt="BYD Dolphin Plus EV">
+            </div>
+        </div>
 
         <footer>
             <div class="secoes">
