@@ -5,9 +5,11 @@ import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.login.LoginService;
 
+import br.com.lux.services.user.login.PasswordUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -27,6 +29,7 @@ public class LoginServiceTest {
     @Mock
     private GravatarService gravatarService;
 
+    @InjectMocks
     private LoginService loginService;
 
     @Before
@@ -41,7 +44,8 @@ public class LoginServiceTest {
         String password = "password";
         User user = new User();
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(PasswordUtils.encryptPassword(password));
+
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
         // Act
@@ -60,7 +64,7 @@ public class LoginServiceTest {
         when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
 
         // Act
-        Optional<User> result = loginService.authenticate(email, password);
+        Optional<User> result = loginService.authenticate(email, PasswordUtils.encryptPassword(password));
 
         // Assert
         assertFalse(result.isPresent());
@@ -71,15 +75,18 @@ public class LoginServiceTest {
         // Arrange
         String email = "test@example.com";
         String password = "wrongpassword";
+        String correctPassword = "password";
+
         User user = new User();
         user.setEmail(email);
-        user.setPassword("password"); // Senha correta diferente da usada no teste
+        user.setPassword(PasswordUtils.encryptPassword(correctPassword)); // Define a senha criptografada
+
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
         // Act
         Optional<User> result = loginService.authenticate(email, password);
 
         // Assert
-        assertFalse(result.isPresent());
+        assertFalse(result.isPresent()); // A autenticação deve falhar
     }
 }
