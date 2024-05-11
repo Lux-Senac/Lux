@@ -27,8 +27,6 @@ INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, 
 INSERT INTO USR (username, password, email, tipo, urlavatar) VALUES ('User 1', '$2a$10$82J2fDP6kak99vcroDzAFOmxrjHQxVo/LhhVmcbPycbWWRW7Y43K2', 'user1@example.com', 'ADMIN', 'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
 INSERT INTO USR (username, password, email, tipo, id_cliente, urlavatar) VALUES ('User 2', '$2a$10$z0p6uXfjFrmkEv5O4aMdAOY1PFJcZNzQjmcMMux.QPV/AemxwUdkC', 'user2@example.com', 'CLIENTE', 1,'https://www.gravatar.com/avatar/0f8ededc78c2d265f41bb2ef64cbb6f1ea551bc15b2b72ee552f5fc2084e9671');
 
-
-
 -- Inserts for Vendas table
 INSERT INTO Vendas (id_carro, id_cliente, data_venda, preco_venda) VALUES
 (1, 1, '2024-05-01', 80000.00),
