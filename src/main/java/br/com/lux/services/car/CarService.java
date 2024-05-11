@@ -11,4 +11,6 @@ public interface CarService
     void registerCar(Car car);
 
     Car findCarById(Integer id);
+
+    void deleteCar(Integer id);
 }
