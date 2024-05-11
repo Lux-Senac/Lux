@@ -10,6 +10,7 @@ import br.com.lux.domain.user.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,12 @@ public class LoginService implements UserService
     public LoginService(UserRepository userRepository, GravatarService gravatarService) {
         this.userRepository = userRepository;
         this.gravatarService = gravatarService;
+    }
+
+    @Override
+    public List<User> findAllUsers()
+    {
+        return userRepository.findAll();
     }
 
     @Override
