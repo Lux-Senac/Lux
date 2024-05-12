@@ -59,4 +59,10 @@ public class ReservationServiceImp implements ReservationService
     {
         return reservationRepository.findAll();
     }
+
+    @Override
+    public void deleteReservation(Integer id)
+    {
+        reservationRepository.deleteById(id);
+    }
 }
