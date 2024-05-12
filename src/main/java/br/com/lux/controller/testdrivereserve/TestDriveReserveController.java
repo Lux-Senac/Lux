@@ -86,7 +86,7 @@ public class TestDriveReserveController
         else
             client = clientService.registerClient(client);
 
-        reservationService.registerReservation(client, car, ReservationType.TEST_DRIVE);
+        reservationService.registerReservation(client, car, ReservationType.TESTDRIVE);
 
         return "redirect:/agendar-test-drive/" + car.getId();
     }
