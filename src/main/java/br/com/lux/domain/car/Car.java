@@ -28,7 +28,7 @@ public class Car implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "O nome do carro é obrigatório.")
     @Column(nullable = false)
