@@ -44,5 +44,10 @@ INSERT INTO Vendas (id_carro, id_cliente, id_user, datavenda, precovenda) VALUES
 INSERT INTO Avaliacoes (id_cliente, id_carro, avaliacao, feedback) VALUES (1, 1, 5, 'Great car!');
 
 -- Inserts for Reserva table
-INSERT INTO Reserva (id_car, id_client, tipoReserva, statusReserva, dataReserva)
-VALUES (1, 1, 'TEST_DRIVE', 'ESPERA', '2024-05-05');
+INSERT INTO Reserva (id_car, id_client, tipoReserva, statusReserva, dataReserva) VALUES
+(1, 1, 'TESTDRIVE', 'ESPERA', '2024-05-10'),
+(5, 1, 'RESERVA', 'APROVADO', '2024-04-05'),
+(2, 5, 'TESTDRIVE', 'ESPERA', '2024-03-15'),
+(3, 3, 'RESERVA', 'ESPERA', '2024-02-07'),
+(4, 2, 'TESTDRIVE', 'REJEITADO', '2024-01-05'),
+(1, 2, 'RESERVA', 'ESPERA', '2024-05-05');

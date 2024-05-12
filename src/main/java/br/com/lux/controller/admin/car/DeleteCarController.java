@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DeleteCarController
 {
     @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public DeleteCarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @DeleteMapping
     public String deleteCar(@RequestParam("id") Integer id)

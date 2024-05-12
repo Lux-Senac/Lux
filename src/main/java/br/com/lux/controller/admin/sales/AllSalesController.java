@@ -19,16 +19,18 @@ import java.util.List;
 public class AllSalesController
 {
     @Autowired
-    private SalesService saleService;
+    private final SalesService saleService;
+
+    public AllSalesController(SalesService saleService) {
+        this.saleService = saleService;
+    }
 
     @GetMapping
     public String allSales(Model model, HttpSession session)
     {
         List<Sales> sales = saleService.findSaleAll();
         model.addAttribute("sales", sales);
-
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/sales/gridSales";
     }

@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 public class EditCarController
 {
     @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public EditCarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @RequestMapping
     @GetMapping()
@@ -36,9 +40,7 @@ public class EditCarController
         }
 
         model.addAttribute("car", car);
-
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/uptadecar";
     }
@@ -47,11 +49,10 @@ public class EditCarController
     public String editarCarPost(@Valid @ModelAttribute Car car,
                                 BindingResult bindingResult, HttpSession session, Model model)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
         if (bindingResult.hasErrors())
         {
+            model.addAttribute("user", session.getAttribute("user"));
+
             return "admin/car/uptadecar";
         }
 

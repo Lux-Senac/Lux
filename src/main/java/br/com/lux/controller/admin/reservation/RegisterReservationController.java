@@ -1,33 +1,28 @@
-package br.com.lux.controller.admin.sales;
+package br.com.lux.controller.admin.reservation;
 
-import br.com.lux.domain.sales.Sales;
-import br.com.lux.domain.user.User;
+import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.services.car.CarService;
 import br.com.lux.services.client.ClientService;
-import br.com.lux.services.sales.SalesService;
-import br.com.lux.services.user.UserService;
+import br.com.lux.services.reservation.ReservationService;
+
 import jakarta.servlet.http.HttpSession;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
-@RequestMapping("/admin/register-sales")
-public class RegisterSalesController
+@RequestMapping("/admin/create-reservation")
+public class RegisterReservationController
 {
     @Autowired
-    private final SalesService saleService;
-
-    @Autowired
-    private final UserService userService;
+    private final ReservationService reservationService;
 
     @Autowired
     private final CarService carService;
@@ -35,40 +30,39 @@ public class RegisterSalesController
     @Autowired
     private final ClientService clientService;
 
-    public RegisterSalesController(SalesService saleService, UserService userService, CarService carService, ClientService clientService) {
-        this.saleService = saleService;
-        this.userService = userService;
+    public RegisterReservationController(ReservationService reservationService, CarService carService, ClientService clientService) {
+        this.reservationService = reservationService;
         this.carService = carService;
         this.clientService = clientService;
     }
 
     @GetMapping
-    public String registerSales(Model model, HttpSession session)
+    public String createReservation(Model model, HttpSession session)
     {
         model.addAttribute("user", session.getAttribute("user"));
-        model.addAttribute("sales", new Sales());
-        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("reservation", new Reservation());
         model.addAttribute("cars", carService.findCarAll());
         model.addAttribute("clients", clientService.findAllClients());
 
-        return "admin/sales/registersales";
+        return "admin/reservation/registerrervation";
     }
 
     @PostMapping
-    public String registerCarPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
+    public String createReservationPost(@Valid @ModelAttribute Reservation reservation, HttpSession session,
+                                        Model model, BindingResult bindingResult)
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("users", userService.findAllUsers());
+            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("cars", carService.findCarAll());
             model.addAttribute("clients", clientService.findAllClients());
-            model.addAttribute("user", session.getAttribute("user"));
 
-            return "admin/sales/registersales";
+            return "admin/reservation/registerrervation";
         }
 
-        saleService.registerSale(sales);
+        reservationService.registerReservation(reservation);
 
-        return "redirect:/admin/all-sales";
+        return "redirect:/admin/all-reservation";
     }
+
 }

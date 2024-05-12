@@ -16,7 +16,11 @@ import java.util.SequencedCollection;
 public class SalesController {
 
     @Autowired
-    private SalesService salesService;
+    private final SalesService salesService;
+
+    public SalesController(SalesService salesService) {
+        this.salesService = salesService;
+    }
 
     @GetMapping
     public String findSalesByName(@PathVariable String carNameFilter, Model model)

@@ -87,6 +87,21 @@
             </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+               aria-expanded="true" aria-controls="collapseTwo2">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Reserva</span>
+            </a>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Reservas:</h6>
+                    <a class="collapse-item" th:href="@{/admin/all-reservation}">Tabela</a>
+                    <a class="collapse-item" th:href="@{/admin/create-reservation}">Cadastrar Venda</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -102,9 +117,19 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" th:href="@{/admin/all-sales}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+                <span>Tables de Vendas</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/all-reservation}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tabela De Reservas</span></a>
         </li>
 
         <!-- Divider -->
@@ -156,7 +181,7 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Cadastrar Venda</h1>
+                <h1 class="h3 mb-2 text-gray-800">Editar Venda</h1>
 
                 <form class="user" th:action="@{/admin/register-sales(id=${sales.id})}" th:object="${sales}" method="post" enctype="multipart/form-data">
 

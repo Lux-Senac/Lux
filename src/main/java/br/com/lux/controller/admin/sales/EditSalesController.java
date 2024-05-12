@@ -20,13 +20,19 @@ import org.springframework.web.bind.annotation.*;
 public class EditSalesController
 {
     @Autowired
-    private SalesService salesService;
+    private final SalesService salesService;
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    public EditSalesController(SalesService salesService, UserService userService, ClientService clientService) {
+        this.salesService = salesService;
+        this.userService = userService;
+        this.clientService = clientService;
+    }
 
     @GetMapping
     public String editSales(@RequestParam("id") Integer id, Model model, HttpSession session)
@@ -43,9 +49,7 @@ public class EditSalesController
             return "redirect:/admin/all-sales";
         }
 
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("sales", sales);
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.findAllClients());
@@ -56,9 +60,7 @@ public class EditSalesController
     @PostMapping
     public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.findAllClients());
 

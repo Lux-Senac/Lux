@@ -21,16 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterCarController
 {
     @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public RegisterCarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @RequestMapping
     @GetMapping
     public String registerCar(Model model, HttpSession session)
     {
         model.addAttribute("car", new Car());
-
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/registercar";
     }
@@ -38,11 +40,10 @@ public class RegisterCarController
     @PostMapping
     public String registerCarPost(@Valid @ModelAttribute Car car, BindingResult bindingResult, HttpSession session, Model model)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
         if (bindingResult.hasErrors())
         {
+            model.addAttribute("user", session.getAttribute("user"));
+
             return "admin/car/registercar";
         }
 

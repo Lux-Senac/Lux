@@ -2,5 +2,11 @@ package br.com.lux.domain.reservation;
 
 public enum ReservationType
 {
-    TEST_DRIVE, RESERVA
+    TESTDRIVE, RESERVA;
+
+    @Override
+    public String toString()
+    {
+        return name();
+    }
 }

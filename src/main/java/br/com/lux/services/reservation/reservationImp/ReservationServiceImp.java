@@ -7,11 +7,14 @@ import br.com.lux.domain.reservation.ReservationStatus;
 import br.com.lux.domain.reservation.ReservationType;
 import br.com.lux.repository.reservation.ReservationRepository;
 import br.com.lux.services.reservation.ReservationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import java.util.List;
 
 @Service
 public class ReservationServiceImp implements ReservationService
@@ -43,5 +46,29 @@ public class ReservationServiceImp implements ReservationService
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void registerReservation(Reservation reservation)
+    {
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    public List<Reservation> findAllReservations()
+    {
+        return reservationRepository.findAll();
+    }
+
+    @Override
+    public void deleteReservation(Integer id)
+    {
+        reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Reservation findReservationById(Integer id)
+    {
+        return reservationRepository.findById(id).orElse(null);
     }
 }
