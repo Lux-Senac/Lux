@@ -1,33 +1,54 @@
-package br.com.lux.controller.admin.sales;
+package br.com.lux.domain.sales;
 
+import br.com.lux.domain.car.Car;
+import br.com.lux.domain.client.Client;
+import br.com.lux.domain.user.User;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import br.com.lux.services.sales.SalesService;
-import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.SequencedCollection;
+import java.math.BigDecimal;
+import java.util.Date;
 
-@Controller
-@RequestMapping("/admin/vendas")
-public class SalesController {
+@Entity(name = "Vendas")
+@Table(name = "Vendas")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Sales
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Autowired
-    private final SalesService salesService;
+    @NotNull(message = "iD do carro é obrigatório.")
+    @ManyToOne
+    @JoinColumn(name = "id_carro", referencedColumnName = "id")
+    private Car carro;
 
-    public SalesController(SalesService salesService) {
-        this.salesService = salesService;
-    }
+    @NotNull(message = "iD do cliente é obrigatório.")
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    private Client cliente;
 
-    @GetMapping
-    public String findSalesByName(@PathVariable String carNameFilter, Model model)
-    {
-       SequencedCollection<Object[]> sales = salesService.findSalesByName(carNameFilter);
-       model.addAttribute("sales", sales);
+    @NotNull(message = "iD do Usuario é obrigatório.")
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    private User usuario;
 
-       return "admin/adminHome";
-    }
+    @NotNull(message = "Data da venda é obrigatória.")
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datavenda;
+
+    @NotNull(message = "Preço de venda é obrigatório.")
+    @Column(precision = 10, scale = 2)
+    private BigDecimal precovenda;
 }
