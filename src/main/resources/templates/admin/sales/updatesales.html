@@ -188,8 +188,10 @@
 
                     <div class="form-group col-auto my-1">
                         <label class="mr-sm-2" for="id_car">Carro:</label>
-                        <input type="text" class="form-control form-text"
-                               id="id_car" placeholder="" readonly th:field="*{carro.name}">
+                        <input type="hidden" class="form-control form-text"
+                               id="id_car" placeholder="" readonly th:field="*{carro.id}">
+                        <input type="text" class="form-control form-text" id="name"
+                               placeholder="" readonly th:field=="*{carro.name}">
                         <span class="text-danger" th:if="${#fields.hasErrors('carro.id')}" th:errors="*{carro.id}"></span>
                     </div>
 
