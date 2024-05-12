@@ -24,16 +24,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterSalesController
 {
     @Autowired
-    private SalesService saleService;
+    private final SalesService saleService;
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private CarService carService;
+    private final CarService carService;
 
     @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    public RegisterSalesController(SalesService saleService, UserService userService, CarService carService, ClientService clientService) {
+        this.saleService = saleService;
+        this.userService = userService;
+        this.carService = carService;
+        this.clientService = clientService;
+    }
 
     @GetMapping
     public String registerSales(Model model, HttpSession session)

@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AllReservationController
 {
     @Autowired
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
+
+    public AllReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @GetMapping
     public String allReservation(Model model, HttpSession session)

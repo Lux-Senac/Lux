@@ -20,13 +20,19 @@ import org.springframework.web.bind.annotation.*;
 public class EditSalesController
 {
     @Autowired
-    private SalesService salesService;
+    private final SalesService salesService;
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
+
+    public EditSalesController(SalesService salesService, UserService userService, ClientService clientService) {
+        this.salesService = salesService;
+        this.userService = userService;
+        this.clientService = clientService;
+    }
 
     @GetMapping
     public String editSales(@RequestParam("id") Integer id, Model model, HttpSession session)

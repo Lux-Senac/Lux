@@ -19,7 +19,11 @@ import java.util.List;
 public class AllSalesController
 {
     @Autowired
-    private SalesService saleService;
+    private final SalesService saleService;
+
+    public AllSalesController(SalesService saleService) {
+        this.saleService = saleService;
+    }
 
     @GetMapping
     public String allSales(Model model, HttpSession session)

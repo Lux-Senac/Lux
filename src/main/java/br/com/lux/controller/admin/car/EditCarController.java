@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 public class EditCarController
 {
     @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public EditCarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @RequestMapping
     @GetMapping()
