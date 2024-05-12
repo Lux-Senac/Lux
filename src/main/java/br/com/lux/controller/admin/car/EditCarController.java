@@ -23,6 +23,11 @@ public class EditCarController
     @GetMapping()
     public String editarCarGet(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
+        if (id == null)
+        {
+            return "redirect:/admin/all-cars";
+        }
+
         Car car = carService.findCarById(id);
 
         if(car == null)
