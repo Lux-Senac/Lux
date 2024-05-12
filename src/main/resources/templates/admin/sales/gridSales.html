@@ -201,7 +201,7 @@
                                     <td th:text="${sale.cliente.nome}"></td>
                                     <td th:text="${sale.usuario.username}"></td>
                                     <td>
-                                        <a th:href="@{/admin/edit-sales(id=${sale.id})/admin/edit-sales}">Editar</a> /
+                                        <a th:href="@{/admin/edit-sales(id=${sale.id})}">Editar</a> /
                                         <a th:href="@{${sale.id}}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
