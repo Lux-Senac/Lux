@@ -24,9 +24,7 @@ public class AllReservationController
     @GetMapping
     public String allReservation(Model model, HttpSession session)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("reservations", reservationService.findAllReservations());
 
         return "admin/reservation/gridreservation";
