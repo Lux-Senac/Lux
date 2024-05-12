@@ -158,7 +158,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Cadastrar Venda</h1>
 
-                <form class="user" th:action="@{/admin/register-sales}" th:object="${sale}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/register-sales}" th:object="${sales}" method="post" enctype="multipart/form-data">
 
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -186,10 +186,34 @@
                         <span class="text-danger" th:if="${#fields.hasErrors('usuario.id')}" th:errors="*{usuario.id}"></span>
                     </div>
 
+                    <div class="form-group col-auto my-1">
+                        <label class="mr-sm-2" for="id_car">Carro:</label>
+                        <select class="custom-select mr-sm-2" id="id_car" required th:field="*{carro.id}">
+                            <option value="">Selecione um Carro</option>
+                            <option th:each="car : ${cars}"
+                                    th:value="${car.id}"
+                                    th:text="${car.name}"></option>
+                        </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('carro.id')}" th:errors="*{carro.id}"></span>
+                    </div>
+
+                    <div class="form-group col-auto my-1">
+                        <label class="mr-sm-2" for="id_client">Cliente:</label>
+                        <select class="custom-select mr-sm-2" id="id_client" required th:field="*{cliente.id}">
+                            <option value="">Selecione um Cliente</option>
+                            <option th:each="clientt : ${clients}"
+                                    th:value="${clientt.id}"
+                                    th:text="${clientt.nome}"></option>
+                        </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('cliente.id')}" th:errors="*{cliente.id}"></span>
+                    </div>
+
+
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary" type="submit">Registrar</button>
                     </div>
                 </form>
+
             </div>
             <!-- /.container-fluid -->
 
