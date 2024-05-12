@@ -198,36 +198,36 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Data Venda</th>
-                                    <th>Preco Venda</th>
-                                    <th>Carro Vendido</th>
-                                    <th>Cliente</th>
-                                    <th>Funcionário</th>
+                                    <th>Data Da Reserva</th>
+                                    <th>Nome Do Cliente</th>
+                                    <th>Nome Do Carro</th>
+                                    <th>Tipo da Reserva</th>
+                                    <th>Status da Reserva</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Data Venda</th>
-                                    <th>Preco Venda</th>
-                                    <th>Carro Vendido</th>
-                                    <th>Cliente</th>
-                                    <th>Funcionário</th>
+                                    <th>Data Da Reserva</th>
+                                    <th>Nome Do Cliente</th>
+                                    <th>Nome Do Carro</th>
+                                    <th>Tipo da Reserva</th>
+                                    <th>Status da Reserva</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="sale : ${sales}">
-                                    <td th:text="${sale.id}"></td>
-                                    <td th:text="${sale.datavenda}"></td>
-                                    <td th:text="${sale.precovenda}"></td>
-                                    <td th:text="${sale.carro.name}"></td>
-                                    <td th:text="${sale.cliente.nome}"></td>
-                                    <td th:text="${sale.usuario.username}"></td>
+                                <tr th:each="reservation : ${reservations}">
+                                    <td th:text="${reservation.id}"></td>
+                                    <td th:text="${reservation.datareserva}"></td>
+                                    <td th:text="${reservation.client.nome + ' ' + reservation.client.sobrenome}"></td>
+                                    <td th:text="${reservation.car.name}"></td>
+                                    <td th:text="${reservation.tiporeserva.toString()}"></td>
+                                    <td th:text="${reservation.statusreserva.toString()}"></td>
                                     <td>
-                                        <a th:href="@{/admin/edit-sales(id=${sale.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-sales(id=${sale.id})}" onclick="event.preventDefault();
+                                        <a th:href="@{${reservation.id}}">Editar</a> /
+                                        <a th:href="@{${reservation.id}}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>
