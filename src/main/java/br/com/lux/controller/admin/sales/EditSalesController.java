@@ -49,9 +49,7 @@ public class EditSalesController
             return "redirect:/admin/all-sales";
         }
 
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("sales", sales);
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.findAllClients());
@@ -62,9 +60,7 @@ public class EditSalesController
     @PostMapping
     public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.findAllClients());
 

@@ -45,9 +45,7 @@ public class RegisterSalesController
     @GetMapping
     public String registerSales(Model model, HttpSession session)
     {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("sales", new Sales());
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("cars", carService.findCarAll());

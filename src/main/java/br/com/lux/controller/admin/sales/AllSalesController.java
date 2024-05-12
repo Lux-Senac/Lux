@@ -30,9 +30,7 @@ public class AllSalesController
     {
         List<Sales> sales = saleService.findSaleAll();
         model.addAttribute("sales", sales);
-
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/sales/gridSales";
     }
