@@ -2,6 +2,7 @@
 package br.com.lux.reservation;
 
 import br.com.lux.domain.car.Car;
+import br.com.lux.domain.car.CarPageType;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.repository.car.CarRepository;
@@ -25,6 +26,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 public class TestDriveReservationIntegrationTest {
 
     @LocalServerPort
@@ -43,13 +45,25 @@ public class TestDriveReservationIntegrationTest {
     private ReservationRepository reservationRepository;
 
     @Test
+
     public void testCompleteReservationFlow() {
         // Arrange (Preparar)
         // Criar um carro no banco de dados
         Car car = new Car();
         car.setName("Test Car");
         car.setMotor("V8");
+        car.setCil("2 cl");
+        car.setAcel("100km");
+        car.setHp("90");
+        car.setTorque("50kg");
+        car.setVelmax("999km/ph");
+        car.setDoors(4);
+        car.setSeats(5);
+        car.setVal("4vls");
         car.setPrice(BigDecimal.valueOf(100000));
+        car.setImage("0_0");
+        car.setTitle("Carro teste");
+        car.setPage(CarPageType.Bmw);
         // ... Colocar porfavor @devMorco outros campos obrigatórios ...
         carRepository.save(car);
 
@@ -57,6 +71,10 @@ public class TestDriveReservationIntegrationTest {
         Client client = new Client();
         client.setNome("Test");
         client.setSobrenome("Client");
+        client.setContato(118765432);
+        client.setEmail("nengue@gmail");
+        client.setCep(0);
+        client.setPais("Rua da minha casa");
         // ... Colocar porfavor @devMorco outros campos obrigatórios ...
         clientRepository.save(client);
 
@@ -94,4 +112,4 @@ public class TestDriveReservationIntegrationTest {
         return "http://localhost:" + port + uri;
     }
 }
- */
+*/
