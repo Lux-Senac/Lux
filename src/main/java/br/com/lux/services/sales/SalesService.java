@@ -14,4 +14,6 @@ public interface SalesService
     List<Object[]> findTotalSalesPerCarModel();
 
     void registerSale(Sales sales);
+
+    Sales findSalesById(Integer id);
 }
