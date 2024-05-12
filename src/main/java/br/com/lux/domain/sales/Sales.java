@@ -49,6 +49,6 @@ public class Sales
     private Date datavenda;
 
     @NotNull(message = "Preço de venda é obrigatório.")
-    @Column(precision = 10, scale = 2)
+    @Column(precision = 100, scale = 2)
     private BigDecimal precovenda;
 }
