@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -40,9 +42,11 @@ public class Sales
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private User usuario;
 
+
     @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datavenda;
 
     @NotNull(message = "Preço de venda é obrigatório.")
