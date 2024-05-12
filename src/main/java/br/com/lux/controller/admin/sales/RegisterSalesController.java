@@ -1,7 +1,5 @@
 package br.com.lux.controller.admin.sales;
 
-import br.com.lux.domain.car.Car;
-import br.com.lux.domain.client.Client;
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
@@ -20,9 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/register-sales")
