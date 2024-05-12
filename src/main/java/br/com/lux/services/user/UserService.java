@@ -3,6 +3,7 @@ package br.com.lux.services.user;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService
@@ -12,4 +13,6 @@ public interface UserService
     Optional<User> createUser(User user);
 
     void changeClientId(Integer id, Client client);
+
+    List<User> findAllUsers();
 }

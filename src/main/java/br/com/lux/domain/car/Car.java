@@ -1,6 +1,9 @@
 package br.com.lux.domain.car;
 
 
+import br.com.lux.domain.rating.Rating;
+import br.com.lux.domain.reservation.Reservation;
+import br.com.lux.domain.sales.Sales;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +15,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Car")
 @Table(name = "Car")
@@ -23,7 +28,7 @@ public class Car implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "O nome do carro é obrigatório.")
     @Column(nullable = false)
@@ -84,4 +89,13 @@ public class Car implements Serializable
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CarPageType page;
+
+    @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rating> avaliacoes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sales> sales = new ArrayList<>();
 }

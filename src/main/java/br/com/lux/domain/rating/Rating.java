@@ -20,7 +20,7 @@ public class Rating implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")

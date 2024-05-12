@@ -38,7 +38,7 @@ public class CarController
     {
         Car car = carRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Carro não encontrado"));
         model.addAttribute("car", car);
-        String page = "cars/" + car.getPage();
-        return page;
+
+        return "cars/" + car.getPage();
     }
 }

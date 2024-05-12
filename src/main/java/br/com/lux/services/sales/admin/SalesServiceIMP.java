@@ -2,6 +2,7 @@ package br.com.lux.services.sales.admin;
 
 
 import br.com.lux.domain.car.CarPageType;
+import br.com.lux.domain.sales.Sales;
 import br.com.lux.repository.sales.SalesRepository;
 import br.com.lux.services.sales.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,25 @@ public class SalesServiceIMP implements SalesService {
         }
 
         return salesData;
+    }
+
+    public List<Sales> findSaleAll()
+    {
+        return salesRepository.findAll();
+    }
+
+    public void registerSale(Sales sales)
+    {
+        salesRepository.save(sales);
+    }
+
+    public Sales findSalesById(Integer id)
+    {
+        return salesRepository.findById(id).orElse(null);
+    }
+
+    public void deleteSales(Integer id)
+    {
+        salesRepository.deleteById(id);
     }
 }

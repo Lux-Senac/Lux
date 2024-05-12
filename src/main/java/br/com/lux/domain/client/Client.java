@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "O campo Nome é obrigatório.")
     @Column(nullable = false)

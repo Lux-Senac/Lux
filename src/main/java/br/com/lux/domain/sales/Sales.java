@@ -2,6 +2,7 @@ package br.com.lux.domain.sales;
 
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
+import br.com.lux.domain.user.User;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -22,7 +25,7 @@ public class Sales
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull(message = "iD do carro é obrigatório.")
     @ManyToOne
@@ -34,12 +37,18 @@ public class Sales
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client cliente;
 
+    @NotNull(message = "iD do Usuario é obrigatório.")
+    @ManyToOne
+    @JoinColumn(name = "id_user", referencedColumnName = "id")
+    private User usuario;
+
     @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date data_venda;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date datavenda;
 
     @NotNull(message = "Preço de venda é obrigatório.")
     @Column(precision = 10, scale = 2)
-    private BigDecimal preco_venda;
+    private BigDecimal precovenda;
 }

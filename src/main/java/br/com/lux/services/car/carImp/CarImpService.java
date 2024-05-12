@@ -11,6 +11,7 @@ import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -29,6 +30,12 @@ public class CarImpService implements CarService
     }
 
     @Override
+    public List<Car> findCarAll()
+    {
+        return carRepository.findAll();
+    }
+
+    @Override
     public void registerCar(Car car)
     {
         Set<ConstraintViolation<Car>> violations = validator.validate(car);
@@ -43,5 +50,11 @@ public class CarImpService implements CarService
     public Car findCarById(Integer id)
     {
         return carRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteCar(Integer id)
+    {
+        carRepository.deleteById(id);
     }
 }
