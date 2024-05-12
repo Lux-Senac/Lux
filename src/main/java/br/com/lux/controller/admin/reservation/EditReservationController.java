@@ -1,17 +1,17 @@
 package br.com.lux.controller.admin.reservation;
 
+import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.reservation.ReservationService;
 
 import jakarta.servlet.http.HttpSession;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/edit-reservation")
@@ -32,18 +32,31 @@ public class EditReservationController
             return "redirect:/admin/all-reservation";
         }
 
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        Reservation reservation = reservationService.findReservationById(id);
 
+        if(reservation == null)
+        {
+            return "redirect:/admin/all-reservation";
+        }
 
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("user", session.getAttribute("user"));
 
-        return "admin/reservation/registerrervation";
+        return "admin/reservation/updatereservation";
     }
 
     @PostMapping
-    public String editReservationPost()
+    public String editReservationPost(@Valid @ModelAttribute Reservation reservation, Model model,
+                                      HttpSession session, BindingResult bindingResult)
     {
+        if (bindingResult.hasErrors())
+        {
+            model.addAttribute("user", session.getAttribute("user"));
 
+            return "admin/reservation/updatereservation";
+        }
+
+        reservationService.registerReservation(reservation);
 
         return "redirect:/admin/all-reservation";
     }
