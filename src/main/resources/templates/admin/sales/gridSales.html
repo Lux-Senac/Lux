@@ -85,7 +85,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Vendas:</h6>
                     <a class="collapse-item" th:href="@{/admin/all-sales}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
+                    <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
                 </div>
             </div>
         </li>
@@ -195,8 +195,8 @@
                                 <tbody>
                                 <tr th:each="sale : ${sales}">
                                     <td th:text="${sale.id}"></td>
-                                    <td th:text="${sale.data_venda}"></td>
-                                    <td th:text="${sale.preco_venda}"></td>
+                                    <td th:text="${sale.datavenda}"></td>
+                                    <td th:text="${sale.precovenda}"></td>
                                     <td th:text="${sale.carro.name}"></td>
                                     <td th:text="${sale.cliente.nome}"></td>
                                     <td th:text="${sale.usuario.username}"></td>
