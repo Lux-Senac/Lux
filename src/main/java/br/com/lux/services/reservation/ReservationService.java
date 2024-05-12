@@ -12,5 +12,7 @@ public interface ReservationService
 {
     void registerReservation(Client client, Car car, ReservationType testDrive);
 
+    void registerReservation(Reservation reservation);
+
     List<Reservation> findAllReservations();
 }
