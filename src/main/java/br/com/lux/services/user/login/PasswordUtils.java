@@ -1,6 +1,6 @@
 package br.com.lux.services.user.login;
 
-import org.mindrot.jbcrypt.BCrypt;
+import org.mindrot.jbcrypt.*;
 
 public class PasswordUtils {
 

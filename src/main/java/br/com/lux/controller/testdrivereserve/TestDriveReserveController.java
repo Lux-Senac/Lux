@@ -88,7 +88,7 @@ public class TestDriveReserveController
 
         reservationService.registerReservation(client, car, ReservationType.TEST_DRIVE);
 
-        return "redirect:/agendar-test-drive/" + car.getId();
+        return "testdrivereserve/agendetestdrive" ;
     }
 
     @GetMapping("/reservar-carro")
