@@ -213,14 +213,19 @@
                             <label class="mr-sm-2" for="id_client">Tipo da Reserva:</label>
                             <select class="custom-select mr-sm-2" id="tiporeserva" required th:field="*{tiporeserva}">
                                 <option value="">Selecione o tipo de reserva</option>
-                                <option value=""></option>
-                                <option value=""></option>
+                                <option th:each="type : ${T(br.com.lux.domain.reservation.ReservationType).values()}"
+                                        th:value="${type}" th:text="${type}"></option>
                             </select>
                             <span class="text-danger" th:if="${#fields.hasErrors('tiporeserva')}" th:errors="*{tiporeserva}"></span>
                         </div>
-
                         <div class="col-sm-6 mb-3 mb-sm-0">
-
+                            <label class="mr-sm-2" for="id_client">Status da Reserva:</label>
+                            <select class="custom-select mr-sm-2" id="statusreserva" required th:field="*{statusreserva}">
+                                <option value="">Selecione o status da reserva</option>
+                                <option th:each="status : ${T(br.com.lux.domain.reservation.ReservationStatus).values()}"
+                                        th:value="${status}" th:text="${status}"></option>
+                            </select>
+                            <span class="text-danger" th:if="${#fields.hasErrors('statusreserva')}" th:errors="*{statusreserva}"></span>
                         </div>
                     </div>
 
