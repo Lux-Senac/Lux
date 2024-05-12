@@ -49,6 +49,12 @@ public class ReservationServiceImp implements ReservationService
     }
 
     @Override
+    public void registerReservation(Reservation reservation)
+    {
+        reservationRepository.save(reservation);
+    }
+
+    @Override
     public List<Reservation> findAllReservations()
     {
         return reservationRepository.findAll();
