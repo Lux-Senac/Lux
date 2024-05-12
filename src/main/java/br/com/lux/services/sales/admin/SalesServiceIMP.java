@@ -55,4 +55,9 @@ public class SalesServiceIMP implements SalesService {
     {
         salesRepository.save(sales);
     }
+
+    public Sales findSalesById(Integer id)
+    {
+        return salesRepository.findById(id).orElse(null);
+    }
 }
