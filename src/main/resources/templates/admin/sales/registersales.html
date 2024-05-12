@@ -82,7 +82,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Vendas:</h6>
                     <a class="collapse-item" th:href="@{/admin/all-sales}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
+                    <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
                 </div>
             </div>
         </li>
@@ -181,7 +181,7 @@
                             <option value="">Selecione um Usuário</option>
                             <option th:each="user : ${users}"
                                     th:value="${user.id}"
-                                    th:text="${user.username}"></option>
+                                    th:text="${'Username: ' +  user.username + ' Tipo: ' + user.tipo}"></option>
                         </select>
                         <span class="text-danger" th:if="${#fields.hasErrors('usuario.id')}" th:errors="*{usuario.id}"></span>
                     </div>
@@ -192,7 +192,7 @@
                             <option value="">Selecione um Carro</option>
                             <option th:each="car : ${cars}"
                                     th:value="${car.id}"
-                                    th:text="${car.name}"></option>
+                                    th:text="${'Carro: ' + car.name + ' Preço: ' + car.price}"></option>
                         </select>
                         <span class="text-danger" th:if="${#fields.hasErrors('carro.id')}" th:errors="*{carro.id}"></span>
                     </div>
@@ -203,11 +203,10 @@
                             <option value="">Selecione um Cliente</option>
                             <option th:each="clientt : ${clients}"
                                     th:value="${clientt.id}"
-                                    th:text="${clientt.nome}"></option>
+                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
                         </select>
                         <span class="text-danger" th:if="${#fields.hasErrors('cliente.id')}" th:errors="*{cliente.id}"></span>
                     </div>
-
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary" type="submit">Registrar</button>
