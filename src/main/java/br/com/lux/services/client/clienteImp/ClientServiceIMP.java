@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -36,6 +37,12 @@ public class ClientServiceIMP implements ClientService
         }
 
         return clientRepository.save(client);
+    }
+
+    @Override
+    public List<Client> findAllClients()
+    {
+        return clientRepository.findAll();
     }
 
     @Override
