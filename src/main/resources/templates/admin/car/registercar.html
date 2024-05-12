@@ -97,7 +97,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Reservas:</h6>
                     <a class="collapse-item" th:href="@{/admin/all-reservation}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
+                    <a class="collapse-item" th:href="@{/admin/create-reservation}">Cadastrar Venda</a>
                 </div>
             </div>
         </li>
@@ -277,12 +277,8 @@
                     <div class="form-group col-auto my-1">
                         <label class="mr-sm-2" for="page">Pagina do Carro:</label>
                         <select class="custom-select mr-sm-2" id="page" required th:field="*{page}">
-                            <option value="Bmw" selected>Bmw</option>
-                            <option value="BYDTan" selected>BYDTan</option>
-                            <option value="BYDYuan" selected>BYDYuan</option>
-                            <option value="Porsche" selected>Porsche</option>
-                            <option value="TeslaModelS" selected>TeslaModelS</option>
-                            <option value="TeslaModelX" selected>TeslaModelX</option>
+                            <option th:each="type : ${T(br.com.lux.domain.car.CarPageType).values()}"
+                                    th:value="${type}" th:text="${type}" selected></option>
                         </select>
                         <span class="text-danger" th:if="${#fields.hasErrors('page')}" th:errors="*{page}"></span>
                     </div>

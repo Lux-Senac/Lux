@@ -100,7 +100,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Reservas:</h6>
                     <a class="collapse-item" th:href="@{/admin/all-reservation}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
+                    <a class="collapse-item" th:href="@{/admin/create-reservation}">Cadastrar Venda</a>
                 </div>
             </div>
         </li>
@@ -226,8 +226,8 @@
                                     <td th:text="${reservation.tiporeserva.toString()}"></td>
                                     <td th:text="${reservation.statusreserva.toString()}"></td>
                                     <td>
-                                        <a th:href="@{${reservation.id}}">Editar</a> /
-                                        <a th:href="@{${reservation.id}}" onclick="event.preventDefault();
+                                        <a th:href="@{/admin/edit-reservation(id=${reservation.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-reservation(id=${reservation.id})}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>
