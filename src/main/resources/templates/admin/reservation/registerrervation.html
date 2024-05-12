@@ -181,41 +181,58 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Cadastrar Venda</h1>
+                <h1 class="h3 mb-2 text-gray-800">Cadastrar Reserva</h1>
 
                 <form class="user" th:action="@{/admin/create-reservation}" th:object="${reservation}" method="post" enctype="multipart/form-data">
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="mr-sm-2" for="id_car">Carro:</label>
+                            <select class="custom-select mr-sm-2" id="id_car" required th:field="*{car.id}">
+                                <option value="">Selecione um Carro</option>
+                                <option th:each="car : ${cars}"
+                                        th:value="${car.id}"
+                                        th:text="${'Carro: ' + car.name + ' Preço: ' + car.price}"></option>
+                            </select>
+                            <span class="text-danger" th:if="${#fields.hasErrors('car.id')}" th:errors="*{car.id}"></span>
+                        </div>
 
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="mr-sm-2" for="id_client">Cliente:</label>
+                            <select class="custom-select mr-sm-2" id="id_client" required th:field="*{client.id}">
+                                <option value="">Selecione um Cliente</option>
+                                <option th:each="clientt : ${clients}"
+                                        th:value="${clientt.id}"
+                                        th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
+                            </select>
+                            <span class="text-danger" th:if="${#fields.hasErrors('client.id')}" th:errors="*{client.id}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row col-auto my-1">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="mr-sm-2" for="id_client">Tipo da Reserva:</label>
+                            <select class="custom-select mr-sm-2" id="tiporeserva" required th:field="*{tiporeserva}">
+                                <option value="">Selecione o tipo de reserva</option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
+                            <span class="text-danger" th:if="${#fields.hasErrors('tiporeserva')}" th:errors="*{tiporeserva}"></span>
+                        </div>
+
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 mb-5 mb-sm-0">
                         <label for="datareserva">Data da Reserva:</label>
                         <input type="date" class="form-control form-text" id="datareserva"
                                placeholder="Digite o a data da reversa" required th:field="*{datareserva}">
                         <span class="text-danger" th:if="${#fields.hasErrors('datareserva')}" th:errors="*{datareserva}"></span>
                     </div>
 
-                    <div class="form-group col-auto my-1">
-                        <label class="mr-sm-2" for="id_car">Carro:</label>
-                        <select class="custom-select mr-sm-2" id="id_car" required th:field="*{carro.id}">
-                            <option value="">Selecione um Carro</option>
-                            <option th:each="car : ${cars}"
-                                    th:value="${car.id}"
-                                    th:text="${'Carro: ' + car.name + ' Preço: ' + car.price}"></option>
-                        </select>
-                        <span class="text-danger" th:if="${#fields.hasErrors('carro.id')}" th:errors="*{carro.id}"></span>
-                    </div>
-
-                    <div class="form-group col-auto my-1">
-                        <label class="mr-sm-2" for="id_client">Cliente:</label>
-                        <select class="custom-select mr-sm-2" id="id_client" required th:field="*{cliente.id}">
-                            <option value="">Selecione um Cliente</option>
-                            <option th:each="clientt : ${clients}"
-                                    th:value="${clientt.id}"
-                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
-                        </select>
-                        <span class="text-danger" th:if="${#fields.hasErrors('cliente.id')}" th:errors="*{cliente.id}"></span>
-                    </div>
-
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary" type="submit">Registrar</button>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
                     </div>
                 </form>
 
