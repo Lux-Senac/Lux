@@ -212,7 +212,7 @@ img{
 .link1 {
     margin-right: 20px;
     font-size: 17px;
-    color: #fff;
+    color: #000;
     text-decoration: none;
     transition: 1s text;
 }
@@ -476,6 +476,7 @@ button {
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
 }
 
 button:hover {

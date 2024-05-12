@@ -21,7 +21,7 @@ nav {
     margin-top: 20px;
     align-items: center;
     color: #202020;
-    position: absolute;
+
     width: 100%;
     justify-content: space-around;
     font-weight: 500;
@@ -117,9 +117,7 @@ nav {
     cursor: pointer;
 }
 
-input{
-    display: none;
-}
+
 
 .slides{
     object-fit: cover;
@@ -233,7 +231,7 @@ img{
 .redes-sociais {
     color: white;
     font-size: 30px;
-    align-items: flex;
+    align-items: flex-end;
     margin-top: 20px;
 }
 
@@ -486,4 +484,80 @@ button:hover {
     pointer-events: none;
 
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-right: 50px;
+    margin-top: 40px;
+    margin-left: 40px;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #404040;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.info {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.image-container {
+    width: 70%;
+    height: 50%;
+
+}
+
+.image-container img {
+
+    height: auto;
+    border-radius: 10px;
+
+}
+
+input{
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #c6c7c6;
+}
+
 
