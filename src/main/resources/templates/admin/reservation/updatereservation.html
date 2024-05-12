@@ -186,14 +186,18 @@
                 <form class="user" th:action="@{/admin/edit-reservation(id=${reservation.id})}" th:object="${reservation}" method="post" enctype="multipart/form-data">
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label class="mr-sm-2" for="car">Carro:</label>
-                            <input type="text" class="form-control form-text" id="car"
+                            <label class="mr-sm-2" for="id_car">Carro:</label>
+                            <input type="hidden" class="form-control form-text" id="id_car"
+                                   placeholder="" readonly th:field="*{car.id}">
+                            <input type="text" class="form-control form-text" id="name"
                                    placeholder="" readonly th:field="*{car.name}">
                             <span class="text-danger" th:if="${#fields.hasErrors('car.id')}" th:errors="*{car.id}"></span>
                         </div>
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="client">Cliente:</label>
+                            <input type="hidden" class="form-control form-text" id="id_client"
+                                   placeholder="" readonly th:field="*{client.id}">
                             <input type="text" class="form-control form-text" id="client"
                                    placeholder="" readonly th:field="*{client.nome}">
                             <span class="text-danger" th:if="${#fields.hasErrors('client.id')}" th:errors="*{client.id}"></span>
