@@ -15,4 +15,6 @@ public interface ReservationService
     void registerReservation(Reservation reservation);
 
     List<Reservation> findAllReservations();
+
+    void deleteReservation(Integer id);
 }
