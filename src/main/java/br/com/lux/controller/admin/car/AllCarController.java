@@ -19,7 +19,11 @@ import java.util.List;
 public class AllCarController
 {
     @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    public AllCarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping
     public String allCars(Model model, HttpSession session)
