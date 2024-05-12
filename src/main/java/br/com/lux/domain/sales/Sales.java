@@ -42,7 +42,6 @@ public class Sales
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private User usuario;
 
-
     @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
