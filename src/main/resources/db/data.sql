@@ -45,4 +45,4 @@ INSERT INTO Avaliacoes (id_cliente, id_carro, avaliacao, feedback) VALUES (1, 1,
 
 -- Inserts for Reserva table
 INSERT INTO Reserva (id_car, id_client, tipoReserva, statusReserva, dataReserva)
-VALUES (1, 1, 'TEST_DRIVE', 'ESPERA', '2024-05-05');
+VALUES (1, 1, 'TESTDRIVE', 'ESPERA', '2024-05-05');

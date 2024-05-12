@@ -42,7 +42,7 @@ public class ReservationServiceTest {
         car.setId(2);
 
         // Act
-        reservationService.registerReservation(client, car, ReservationType.TEST_DRIVE);
+        reservationService.registerReservation(client, car, ReservationType.TESTDRIVE);
 
         // Assert
         ArgumentCaptor<Reservation> reservationCaptor = ArgumentCaptor.forClass(Reservation.class);
@@ -50,7 +50,7 @@ public class ReservationServiceTest {
         Reservation savedReservation = reservationCaptor.getValue();
         assertEquals(client, savedReservation.getClient());
         assertEquals(car, savedReservation.getCar());
-        assertEquals(ReservationType.TEST_DRIVE, savedReservation.getTiporeserva());
+        assertEquals(ReservationType.TESTDRIVE, savedReservation.getTiporeserva());
         assertEquals(ReservationStatus.ESPERA, savedReservation.getStatusreserva());
         assertNotNull(savedReservation.getDatareserva());
     }
