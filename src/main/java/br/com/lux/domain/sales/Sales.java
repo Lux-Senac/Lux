@@ -23,7 +23,7 @@ public class Sales
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull(message = "iD do carro é obrigatório.")
     @ManyToOne
