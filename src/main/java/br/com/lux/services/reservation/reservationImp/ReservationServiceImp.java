@@ -49,8 +49,26 @@ public class ReservationServiceImp implements ReservationService
     }
 
     @Override
+    public void registerReservation(Reservation reservation)
+    {
+        reservationRepository.save(reservation);
+    }
+
+    @Override
     public List<Reservation> findAllReservations()
     {
         return reservationRepository.findAll();
+    }
+
+    @Override
+    public void deleteReservation(Integer id)
+    {
+        reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Reservation findReservationById(Integer id)
+    {
+        return reservationRepository.findById(id).orElse(null);
     }
 }
