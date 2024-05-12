@@ -233,6 +233,7 @@
                         <span class="text-danger" th:if="${#fields.hasErrors('cliente.id')}" th:errors="*{cliente.id}"></span>
                     </div>
 
+                    <input type="hidden" id="id" th:field="*{id}">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary" type="submit">Registrar</button>
                     </div>
