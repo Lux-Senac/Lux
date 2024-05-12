@@ -60,4 +60,9 @@ public class SalesServiceIMP implements SalesService {
     {
         return salesRepository.findById(id).orElse(null);
     }
+
+    public void deleteSales(Integer id)
+    {
+        salesRepository.deleteById(id);
+    }
 }
