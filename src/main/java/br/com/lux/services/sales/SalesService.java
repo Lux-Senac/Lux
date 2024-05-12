@@ -16,4 +16,6 @@ public interface SalesService
     void registerSale(Sales sales);
 
     Sales findSalesById(Integer id);
+
+    void deleteSales(Integer id);
 }
