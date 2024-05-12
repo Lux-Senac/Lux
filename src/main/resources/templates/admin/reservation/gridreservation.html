@@ -226,8 +226,8 @@
                                     <td th:text="${reservation.tiporeserva.toString()}"></td>
                                     <td th:text="${reservation.statusreserva.toString()}"></td>
                                     <td>
-                                        <a th:href="@{${reservation.id}}">Editar</a> /
-                                        <a th:href="@{${reservation.id}}" onclick="event.preventDefault();
+                                        <a th:href="@{/admin/edit-reservation(id=${reservation.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-reservation(id=${reservation.id})}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>
