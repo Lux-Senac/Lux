@@ -29,8 +29,7 @@ public class AdminController
         List<Object[]> salesMap = salesService.findTotalSalesPerCarModel();
         model.addAttribute("sales", salesMap);
 
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
+        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/adminHome";
     }
