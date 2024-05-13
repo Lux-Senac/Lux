@@ -40,6 +40,12 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    public void deleteClient(Integer id)
+    {
+        clientRepository.deleteById(id);
+    }
+
+    @Override
     public List<Client> findAllClients()
     {
         return clientRepository.findAll();
