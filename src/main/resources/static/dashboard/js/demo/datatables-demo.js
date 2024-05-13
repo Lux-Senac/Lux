@@ -51,7 +51,7 @@ $(document).ready(function() {
       } else if(pais === 'VENEZUELA') {
         $('td:eq(4)', row).css('color', 'brown');
       }
-      
+
     }
   });
 });
