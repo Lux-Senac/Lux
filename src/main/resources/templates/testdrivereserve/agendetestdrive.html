@@ -36,7 +36,7 @@
             <div class="form-container">
                 <h1 class="namecar" ><span th:text="${car.name}"></span></h1>
 
-                <form th:action="@{/agendar-test-drive/{id}(id=${car.id})}" th:object="${client}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/agendar-test-drive(id=${car.id})}" th:object="${client}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" id="nome" name="nome" required placeholder="Nome">
                         <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
@@ -78,14 +78,11 @@
                     </div>
 
                     <button type="submit" >ENVIAR</button>
-
                 </form>
-
-
             </div>
 
             <div class="image-container">
-                <img src="https://www.byd.com/content/dam/byd-site/br/product/byd-seal/pc/section01.jpg" alt="BYD Dolphin Plus EV">
+                <img th:src="${car.image}" alt="">
             </div>
         </div>
 
