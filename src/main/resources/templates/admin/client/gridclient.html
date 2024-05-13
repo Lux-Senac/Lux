@@ -223,8 +223,8 @@
                                     <td th:text="${client.preferenciacontato}"></td>
                                     <td th:text="${client.pais}"></td>
                                     <td>
-                                        <a th:href="@{/admin/edit-reservation(id=${client.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-reservation(id=${client.id})}" onclick="event.preventDefault();
+                                        <a th:href="@{/admin/edit-client(id=${client.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-client(id=${client.id})}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>

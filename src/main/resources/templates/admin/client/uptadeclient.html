@@ -210,14 +210,30 @@
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label class="mr-sm-2" for="id">Contato:</label>
                         <input type="text" class="form-control form-text" id="contato"
-                               placeholder="Digite o contato" required th:field="*{contato}">
+                               placeholder="Digite o contato" readonly th:field="*{contato}">
                         <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Sobrenome:</label>
-                        <input type="text" class="form-control form-text" id="sobrenome"
-                               placeholder="Digite o sobrenome" required th:field="*{sobrenome}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                        <label class="mr-sm-2" for="id">Email:</label>
+                        <input type="text" class="form-control form-text" id="email"
+                               placeholder="Digite o email" readonly th:field="*{email}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">CEP:</label>
+                        <input type="text" class="form-control form-text" id="cep"
+                               placeholder="Digite o cep" readonly th:field="*{cep}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="pais">Tipo da Reserva:</label>
+                        <input type="text" class="form-control form-text" id="pais"
+                               placeholder="" readonly th:field="*{pais}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" type="submit">Salvar</button>
                     </div>
                 </form>
             </div>

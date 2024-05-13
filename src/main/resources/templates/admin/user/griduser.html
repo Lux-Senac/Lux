@@ -198,18 +198,33 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>UserName</th>
+                                    <th>Email</th>
+                                    <th>Urlavatar</th>
+                                    <th>Tipo</th>
+                                    <th>Cliente</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
+                                    <th>UserName</th>
+                                    <th>Email</th>
+                                    <th>Urlavatar</th>
+                                    <th>Tipo</th>
+                                    <th>Cliente</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
                                 <tr th:each="use : ${users}">
                                     <td th:text="${use.id}"></td>
+                                    <td th:text="${use.username}"></td>
+                                    <td th:text="${use.email}"></td>
+                                    <td><img th:src="${use.urlavatar}" width="100px" HEIGHT="100PX"></td>
+                                    <td th:text="${use.type}"></td>
+                                    <td th:text="${use.cliente.id}"></td>
                                     <td>
                                         <a th:href="@{${use.id}}">Editar</a> /
                                         <a th:href="@{${use.id}}" onclick="event.preventDefault();
