@@ -198,21 +198,33 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Preferencia de Contato</th>
+                                    <th>Pais</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Preferencia de Contato</th>
+                                    <th>Pais</th>
                                     <th>Editar / Excluir</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="reservation : ${reservations}">
-                                    <td th:text="${reservation.id}"></td>
+                                <tr th:each="client : ${clients}">
+                                    <td th:text="${client.id}"></td>
+                                    <td th:text="${client.nome + ' ' + client.sobrenome}"></td>
+                                    <td th:text="${client.email}"></td>
+                                    <td th:text="${client.preferenciacontato}"></td>
+                                    <td th:text="${client.pais}"></td>
                                     <td>
-                                        <a th:href="@{/admin/edit-reservation(id=${reservation.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-reservation(id=${reservation.id})}" onclick="event.preventDefault();
+                                        <a th:href="@{/admin/edit-reservation(id=${client.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-reservation(id=${client.id})}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>
