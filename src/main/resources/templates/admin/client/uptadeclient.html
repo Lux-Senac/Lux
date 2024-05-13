@@ -181,12 +181,45 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Editar Reserva</h1>
+                <h1 class="h3 mb-2 text-gray-800">Editar Cliente</h1>
 
-                <form class="user" th:action="@{/admin/edit-reservation(id=${reservation.id})}" th:object="${reservation}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-client(id=${clients.id})}" th:object="${clients}" method="post" enctype="multipart/form-data">
 
+                    <input type="hidden" class="form-control form-text" id="id" placeholder="Digite o nome" readonly th:field="*{id}">
+
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">Nome:</label>
+                        <input type="text" class="form-control form-text" id="name"
+                               placeholder="" readonly th:field="*{nome}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">Sobrenome:</label>
+                        <input type="text" class="form-control form-text" id="sobrenome"
+                               placeholder="" readonly th:field="*{sobrenome}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">Preferência contato:</label>
+                        <select class="custom-select mr-sm-2" id="preferenciacontato" required th:field="*{preferenciacontato}">
+                            <option th:each="contactPreference : ${T(br.com.lux.domain.client.ContactPreference).values()}"
+                                    th:value="${contactPreference}" th:text="${contactPreference}"></option>
+                        </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('preferenciacontato')}" th:errors="*{preferenciacontato}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">Contato:</label>
+                        <input type="text" class="form-control form-text" id="contato"
+                               placeholder="Digite o contato" required th:field="*{contato}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id">Sobrenome:</label>
+                        <input type="text" class="form-control form-text" id="sobrenome"
+                               placeholder="Digite o sobrenome" required th:field="*{sobrenome}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                    </div>
                 </form>
-
             </div>
             <!-- /.container-fluid -->
 
