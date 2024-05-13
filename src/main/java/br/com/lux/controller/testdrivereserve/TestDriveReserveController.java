@@ -39,7 +39,7 @@ public class TestDriveReserveController
     }
 
     @GetMapping()
-    public String agendarTestDrive(@RequestParam("id") Integer id, Model model, HttpSession session)
+    public String agendarTestDrive(@RequestParam("carId") Integer id, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
 
@@ -64,7 +64,7 @@ public class TestDriveReserveController
     }
 
     @PostMapping()
-    public String agendarTestDrive(@RequestParam("id") Integer id, @Valid @ModelAttribute Client client,
+    public String agendarTestDrive(@RequestParam("carId") Integer id, @Valid @ModelAttribute Client client,
                                    BindingResult bindingResult, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
