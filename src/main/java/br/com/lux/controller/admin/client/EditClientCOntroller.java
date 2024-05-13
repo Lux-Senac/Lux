@@ -25,7 +25,7 @@ public class EditClientController
     public String editClient(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
         model.addAttribute("user", session.getAttribute("user"));
-        model.addAttribute("clients", new Client());
+        model.addAttribute("clients", clientService.findClientById(id));
 
         return "admin/client/uptadeclient";
     }
