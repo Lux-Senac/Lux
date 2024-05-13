@@ -17,7 +17,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Client implements Serializable {
+public class Client implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,18 +31,19 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String sobrenome;
 
-    @NotNull(message = "O campo CPF é obrigatório.")
-    @Column(nullable = false)
+    @NotNull(message = "O campo Contado é obrigatório.")
+    @Column
     private int contato;
 
-    @Column()
+    @NotNull(message = "O campo Email é obrigatório.")
+    @Column
     private String email;
 
     @NotNull(message = "O campo CEP é obrigatório.")
     @Column(nullable = false)
     private int cep;
 
-    @NotBlank(message = "O campo Endereço é obrigatório.")
+    @NotBlank(message = "O campo Pais é obrigatório.")
     @Column(nullable = false)
     private String pais;
 
