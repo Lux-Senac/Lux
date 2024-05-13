@@ -31,20 +31,23 @@ public class Client implements Serializable
     @Column(nullable = false)
     private String sobrenome;
 
-    @NotNull(message = "O campo Contado é obrigatório.")
-    @Column
-    private int contato;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ContactPreference preferenciacontato;
 
-    @NotNull(message = "O campo Email é obrigatório.")
+    @NotBlank(message = "O campo Contado é obrigatório.")
+    @Column
+    private String contato;
+
+    @NotBlank(message = "O campo Email é obrigatório.")
     @Column
     private String email;
 
-    @NotNull(message = "O campo CEP é obrigatório.")
+    @NotBlank(message = "O campo CEP é obrigatório.")
     @Column(nullable = false)
-    private int cep;
+    private String cep;
 
-    @NotBlank(message = "O campo Pais é obrigatório.")
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String pais;
-
+    private Countries pais;
 }
