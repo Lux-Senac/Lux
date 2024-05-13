@@ -79,4 +79,16 @@ public class LoginService implements UserService
             userRepository.save(user);
         }
     }
+
+    @Override
+    public void deleteById(Integer id)
+    {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public User findById(Integer id)
+    {
+        return userRepository.findById(id).orElse(null);
+    }
 }
