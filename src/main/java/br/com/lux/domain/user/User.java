@@ -43,6 +43,6 @@ public class User implements Serializable
     private UserType tipo;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id", unique = true)
     private Client cliente;
 }

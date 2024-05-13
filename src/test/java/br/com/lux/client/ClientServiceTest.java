@@ -1,6 +1,8 @@
 package br.com.lux.client;
 
 import br.com.lux.domain.client.Client;
+import br.com.lux.domain.client.ContactPreference;
+import br.com.lux.domain.client.Countries;
 import br.com.lux.repository.client.ClientRepository;
 import br.com.lux.services.client.ClientService;
 import br.com.lux.services.client.clienteImp.ClientServiceIMP;
@@ -45,10 +47,11 @@ public class ClientServiceTest {
         Client client = new Client();
         client.setNome("John");
         client.setSobrenome("");
-        client.setPais("USA");
-        client.setCep(12345678);
+        client.setPais(Countries.BRASIL);
+        client.setCep("12345678");
         client.setEmail("");
-        client.setContato(0);
+        client.setContato("0");
+        client.setPreferenciacontato(ContactPreference.EMAIL);
 
         when(validator.validate(client)).thenReturn(Collections.emptySet());
 

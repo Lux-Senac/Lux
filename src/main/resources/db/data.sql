@@ -1,15 +1,15 @@
 -- Inserts for Clientes table
-INSERT INTO Clientes (nome, sobrenome, contato, email, cep, pais) VALUES
-('Nome1', 'Sobrenome1', 1234567890, 'email1@email.com', 12345, 'Brasil'),
-('Nome2', 'Sobrenome2', 1234567891, 'email2@email.com', 12346, 'Brasil'),
-('Nome3', 'Sobrenome3', 1234567892, 'email3@email.com', 12347, 'Brasil'),
-('Nome4', 'Sobrenome4', 1234567893, 'email4@email.com', 12348, 'Brasil'),
-('Nome5', 'Sobrenome5', 1234567894, 'email5@email.com', 12349, 'Brasil'),
-('Nome6', 'Sobrenome6', 1234567895, 'email6@email.com', 12350, 'Brasil'),
-('Nome7', 'Sobrenome7', 1234567896, 'email7@email.com', 12351, 'Brasil'),
-('Nome8', 'Sobrenome8', 1234567897, 'email8@email.com', 12352, 'Brasil'),
-('Nome9', 'Sobrenome9', 1234567898, 'email9@email.com', 12353, 'Brasil'),
-('Nome10', 'Sobrenome10', 1234567899, 'email10@email.com', 12354, 'Brasil');
+INSERT INTO Clientes (nome, sobrenome, contato, email, cep, pais, preferenciacontato) VALUES
+('Nome1', 'Sobrenome1', '1234567890', 'email1@email.com', '12345', 'BRASIL', 'EMAIL'),
+('Nome2', 'Sobrenome2', '1234567891', 'email2@email.com', '12346', 'BRASIL', 'TELEFONE'),
+('Nome3', 'Sobrenome3', '1234567892', 'email3@email.com', '12347', 'BRASIL', 'WHATSAPP'),
+('Nome4', 'Sobrenome4', '1234567893', 'email4@email.com', '12348', 'BRASIL', 'EMAIL'),
+('Nome5', 'Sobrenome5', '1234567894', 'email5@email.com', '12349', 'BRASIL', 'WHATSAPP'),
+('Nome6', 'Sobrenome6', '1234567895', 'email6@email.com', '12350', 'BRASIL', 'TELEFONE'),
+('Nome7', 'Sobrenome7', '1234567896', 'email7@email.com', '12351', 'BRASIL', 'WHATSAPP'),
+('Nome8', 'Sobrenome8', '1234567897', 'email8@email.com', '12352', 'BRASIL', 'EMAIL'),
+('Nome9', 'Sobrenome9', '1234567898', 'email9@email.com', '12353', 'BRASIL', 'TELEFONE'),
+('Nome10', 'Sobrenome10', '1234567899', 'email10@email.com', '12354', 'BRASIL', 'WHATSAPP');
 
 -- Inserts for Car table
 INSERT INTO Car (name, motor, cil, acel, hp, torque, velmax, doors, seats, val, price, image, title, page)

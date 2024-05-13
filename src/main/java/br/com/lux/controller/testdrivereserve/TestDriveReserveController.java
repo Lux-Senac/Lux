@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/agendar-test-drive")
 public class TestDriveReserveController
 {
     private final CarService carService;
@@ -37,8 +38,8 @@ public class TestDriveReserveController
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/agendar-test-drive/{id}")
-    public String agendarTestDrive(@PathVariable Integer id, Model model, HttpSession session)
+    @GetMapping("/test-drive")
+    public String agendarTestDrive(@RequestParam("carId") Integer id, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
 
@@ -62,8 +63,8 @@ public class TestDriveReserveController
         return "testdrivereserve/agendetestdrive";
     }
 
-    @PostMapping("/agendar-test-drive/{id}")
-    public String agendarTestDrive(@PathVariable Integer id, @Valid @ModelAttribute Client client,
+    @PostMapping("/test-drive")
+    public String agendarTestDrive(@RequestParam("carId") Integer id, @Valid @ModelAttribute Client client,
                                    BindingResult bindingResult, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
@@ -88,12 +89,59 @@ public class TestDriveReserveController
 
         reservationService.registerReservation(client, car, ReservationType.TESTDRIVE);
 
-        return "testdrivereserve/agendetestdrive" ;
+        return "redirect:/home";
     }
 
     @GetMapping("/reservar-carro")
-    public String reservarCarro(@RequestParam("id") Integer id,Model model)
+    public String reservarCarro(@RequestParam("carId") Integer id,Model model, HttpSession session)
     {
+        Car car = carService.findCarById(id);
+
+        if (car == null)
+            return "redirect:/home";
+
+        User user = (User) session.getAttribute("user");
+
+        if (user != null && user.getCliente() != null)
+        {
+            Client client = clientService.findClientById(user.getCliente().getId());
+
+            if (client != null)
+                model.addAttribute("client", client);
+        }
+        else
+            model.addAttribute("client", new Client());
+
+        model.addAttribute("car", car);
         return "testdrivereserve/reserve";
+    }
+
+    @PostMapping("/reservar-carro")
+    public String reservarCarro(@RequestParam("carId") Integer id, @Valid @ModelAttribute Client client,
+                                BindingResult bindingResult, Model model, HttpSession session)
+    {
+        Car car = carService.findCarById(id);
+
+        if (car == null)
+            return "redirect:/home";
+
+        model.addAttribute("car", car);
+
+        if (bindingResult.hasErrors())
+            return "testdrivereserve/reserve";
+
+        User user = (User) session.getAttribute("user");
+
+        if (user != null && user.getCliente() == null)
+        {
+            client = clientService.registerClient(client);
+            userService.changeClientId(user.getId(), client);
+        }
+        else
+            client = clientService.registerClient(client);
+
+        reservationService.registerReservation(client, car, ReservationType.RESERVA);
+
+        return "redirect:/home";
     }
 }
