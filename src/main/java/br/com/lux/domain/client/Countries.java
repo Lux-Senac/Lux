@@ -1,18 +1,7 @@
 package br.com.lux.domain.client;
 
 public enum Countries {
-    ARGENTINA,
-    BOLIVIA,
-    BRASIL,
-    CHILE,
-    COLOMBIA,
-    EQUADOR,
-    GUIANA,
-    PARAGUAI,
-    PERU,
-    SURINAME,
-    URUGUAI,
-    VENEZUELA;
+    BRASIL;
 
     @Override
     public String toString() {
