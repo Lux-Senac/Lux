@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/agendar-test-drive")
 public class TestDriveReserveController
 {
     private final CarService carService;
@@ -37,8 +38,8 @@ public class TestDriveReserveController
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/agendar-test-drive/{id}")
-    public String agendarTestDrive(@PathVariable Integer id, Model model, HttpSession session)
+    @GetMapping()
+    public String agendarTestDrive(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
 
@@ -62,8 +63,8 @@ public class TestDriveReserveController
         return "testdrivereserve/agendetestdrive";
     }
 
-    @PostMapping("/agendar-test-drive/{id}")
-    public String agendarTestDrive(@PathVariable Integer id, @Valid @ModelAttribute Client client,
+    @PostMapping()
+    public String agendarTestDrive(@RequestParam("id") Integer id, @Valid @ModelAttribute Client client,
                                    BindingResult bindingResult, Model model, HttpSession session)
     {
         Car car = carService.findCarById(id);
@@ -88,7 +89,7 @@ public class TestDriveReserveController
 
         reservationService.registerReservation(client, car, ReservationType.TESTDRIVE);
 
-        return "testdrivereserve/agendetestdrive" ;
+        return "redirect:/home";
     }
 
     @GetMapping("/reservar-carro")
