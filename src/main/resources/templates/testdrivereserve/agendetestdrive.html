@@ -78,6 +78,8 @@
                         <input class="form-control" required type="email" name="email" id="email" placeholder="Email" th:field="*{email}">
                         <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                     </div>
+
+                    <input type="hidden" id="id" th:field="*{id}">
                     <button type="submit" >ENVIAR</button>
                 </form>
             </div>
