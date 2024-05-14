@@ -100,7 +100,9 @@ public class LoginService implements UserService
         if(user.getTipo() == null)
             user.setTipo(UserType.CLIENTE);
 
-        user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
+        if(user.getId() == 1)
+            user.setTipo(UserType.ADMIN);
+
 
         userRepository.save(user);
     }
