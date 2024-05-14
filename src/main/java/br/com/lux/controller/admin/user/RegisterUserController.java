@@ -52,7 +52,7 @@ public class RegisterUserController
             return "admin/user/registeruser";
         }
 
-        userService.createUser(users);
+        userService.createUserAdmin(users);
 
         return "redirect:/admin/all-users";
     }
