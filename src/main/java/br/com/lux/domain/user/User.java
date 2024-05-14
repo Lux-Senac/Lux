@@ -1,7 +1,9 @@
 package br.com.lux.domain.user;
 
 import br.com.lux.domain.client.Client;
+
 import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
