@@ -51,8 +51,6 @@ public class Client implements Serializable
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Countries pais;
+    private String pais;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<User> users;
 }

@@ -1,6 +1,7 @@
 package br.com.lux.domain.client;
 
 public enum Countries {
+
     BRASIL;
 
     @Override

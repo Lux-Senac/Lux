@@ -14,6 +14,15 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController
 {
+
+    private final SalesService salesService;
+
+    @Autowired
+    public AdminController(SalesService salesService)
+    {
+        this.salesService = salesService;
+    }
+
     @RequestMapping
     public String adminHome(Model model, HttpSession session)
     {
