@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/cars/car.css"/>
+    <link rel="stylesheet" href="\cars\car.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -14,132 +14,125 @@
 </head>
 
 <body>
-<nav>
-    <p class="logo">LUX</p>
-    <div class="links">
-        <ul class="nav-itens">
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/sobre}">Sobre</a></li>
-            <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
-        </ul>
-    </div>
-    <div class="right-icons">
-        <div class="btn">
-            <a th:href="@{/login}" class="field profile">
-                <i class='bx bx-user-circle profile-icon'></i>
-            </a>
+    <nav>
+        <p class="logo">LUX</p>
+        <div class="links">
+            <ul class="nav-itens">
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
+            </ul>
         </div>
-    </div>
-</nav>
-<div class="wrapper">
-    <div class="model">
-        <div class="content">
-            <div class="slides">
-                <input type="radio" name="slide" id="slide1" checked>
-                <input type="radio" name="slide" id="slide2">
-                <input type="radio" name="slide" id="slide3">
-                <input type="radio" name="slide" id="slide4">
-                <input type="radio" name="slide" id="slide5">
-
-                <div class="slide s1">
-                    <img src="https://images.unsplash.com/photo-1556800572-5bc634842e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1992&q=80"
-                         alt="Traseira Bmw i8">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                         alt="Lateral Bmw i8">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1564834401194-3ab42d8aa25f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                         alt="Interior Bmw i8">
-                </div>
-                <div class="slide">
-                    <img src="https://c4.wallpaperflare.com/wallpaper/1009/967/760/bmw-i8-bmw-car-interior-vehicle-wallpaper-preview.jpg"
-                         alt="Interior Bmw i8">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1655903414934-360ad38e7c30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                         alt="Bmw i8">
-                </div>
-
-                <div class="navigation">
-                    <label class="bar" for="slide1"></label>
-                    <label class="bar" for="slide2"></label>
-                    <label class="bar" for="slide3"></label>
-                    <label class="bar" for="slide4"></label>
-                    <label class="bar" for="slide5"></label>
-                </div>
+        <div class="right-icons">
+            <div class="btn">
+                <a th:href="@{/login}" class="field profile">
+                    <i class='bx bx-user-circle profile-icon'></i>
+                </a>
             </div>
         </div>
-    </div>
-    <div class="my-div">
-        <h2>Informacoes do Carro</h2>
-        <div class="car">
-            <h3>Motor: <span th:text="${car.motor}"></span></h3>
-            <h3>Potencia: <span th:text="${car.hp}"></span></h3>
-            <h3>Portas: <span th:text="${car.doors}"></span></h3>
-            <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
-            <h3>Torque: <span th:text="${car.torque}"></span></h3>
-            <h3>Lugares: <span th:text="${car.seats}"></span></h3>
-            <h3>Aceleracao: <span th:text="${car.acel}"></span></h3>
-            <h3>Velocidade Maxima: <span th:text="${car.velmax}"></span></h3>
-            <h3>Tracao: <span th:text="${car.val}"></span></h3>
+    </nav>
+    <div class="wrapper">
+        <div class="model">
+            <div class="content">
+                <div class="slides">
+                    <input type="radio" name="slide" id="slide1" checked>
+                    <input type="radio" name="slide" id="slide2">
+                    <input type="radio" name="slide" id="slide3">
+                    <input type="radio" name="slide" id="slide4">
+                    <input type="radio" name="slide" id="slide5">
 
-            <div class="car-img">
-                <img th:src= "${car.image}" alt="BMW i8">
-            </div>
-        </div>
-        <div class="toast">
-            <div class="toast-content">
-                <i class="fas fa-solid fa-check check"></i>
+                    <div class="slide s1">
+                        <img src="https://images.unsplash.com/photo-1556800572-5bc634842e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1992&q=80"
+                            alt="Traseira Bmw i8">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Lateral Bmw i8">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1564834401194-3ab42d8aa25f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Interior Bmw i8">
+                    </div>
+                    <div class="slide">
+                        <img src="https://c4.wallpaperflare.com/wallpaper/1009/967/760/bmw-i8-bmw-car-interior-vehicle-wallpaper-preview.jpg"
+                            alt="Interior Bmw i8">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1655903414934-360ad38e7c30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                            alt="Bmw i8">
+                    </div>
 
-                <div class="message">
-                    <span class="text text-1">Parabens!!</span>
-                    <span class="text text-2">Carro Comprado com sucesso, entraremos em contato via e-mail dentro dos
-                            proximos dias.</span>
+                    <div class="navigation">
+                        <label class="bar" for="slide1"></label>
+                        <label class="bar" for="slide2"></label>
+                        <label class="bar" for="slide3"></label>
+                        <label class="bar" for="slide4"></label>
+                        <label class="bar" for="slide5"></label>
+                    </div>
                 </div>
             </div>
-            <i class="fa-solid fa-xmark close"></i>
-            <div class="progress active"></div>
         </div>
-        <button><a class="link1" th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar teste drive</a></button>
-        <button><a class="link1" th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o seu</a></button>
+        <div class="my-div">
+            <h2>Informacoes do Carro</h2>
+            <div class="car">
+                <h3>Motor: <span th:text="${car.motor}"></span></h3>
+                <h3>Potencia: <span th:text="${car.hp}"></span></h3>
+                <h3>Portas: <span th:text="${car.doors}"></span></h3>
+                <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
+                <h3>Torque: <span th:text="${car.torque}"></span></h3>
+                <h3>Lugares: <span th:text="${car.seats}"></span></h3>
+                <h3>Aceleracao: <span th:text="${car.acel}"></span></h3>
+                <h3>Velocidade Maxima: <span th:text="${car.velmax}"></span></h3>
+                <h3>Tracao: <span th:text="${car.val}"></span></h3>
+
+                <div class="car-img">
+                    <img th:src="${car.image}" alt="BMW i8">
+                </div>
+            </div>
+
+            <ul class="links">
+                <button class="btn1"><a class="link1" th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar Teste
+                        Drive</a></button>
+                <button class="btn2"><a class="link2" th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o
+                        seu</a></button>
+            </ul>
+        </div>
     </div>
-</div>
-<footer>
-    <div class="secoes">
-        <section class="informacoes">
-            <div class="info1">
-                <li><a class="link1" th:href="@{/}">Home</a></li>
-            </div>
-            <div class="info2">
-                <li><a class="link1" th:href="@{/find-all-cars}">Veiculos</a></li>
-            </div>
-            <div class="info3">
-                <li><a class="link1" th:href="@{/Historia/historia}">Sobre</a></li>
-            </div>
-        </section>
-        <hr class="divisao">
-        <section class="contato">
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-instagram'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-github'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-facebook'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-twitter'></i></a>
-            </ul>
-        </section>
-        <section class="creditos">
-            <p>© LUX</p>
-        </section>
+    <footer>
+        <div class="secoes">
+            <section class="informacoes">
+                <div class="info1">
+                    <li><a class="link3" th:href="@{/}">Home</a></li>
+                </div>
+                <div class="info2">
+                    <li><a class="link3" th:href="@{/find-all-cars}">Veiculos</a></li>
+                </div>
+                <div class="info3">
+                    <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
+                </div>
+            </section>
+            <hr class="divisao">
+            <section class="contato">
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                </ul>
+            </section>
+            <section class="creditos">
+                <p>© LUX</p>
+            </section>
+        </div>
+    </footer>
     </div>
-</footer>
-</div>
-<script src="/cars/car.js"></script>
+    <script src="/cars/car.js"></script>
 </body>
+
 </html>
