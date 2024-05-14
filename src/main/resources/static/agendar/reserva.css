@@ -6,31 +6,88 @@
     font-family: "Poppins", sans-serif;
 }
 
-.container {
+body {
+    background-color: #9d97a4;
+    max-width: 100vw; 
+    max-height: 100vh;
+    overflow-x: hidden;
+}
+
+nav {
+    display: inline-flex;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    align-items: center;
+    color: #202020;
+
+    width: 100%;
+    justify-content: space-around;
+    font-weight: 500;
+}
+
+.logo {
+    font-size: 40px;
+}
+
+.right-icons {
     display: flex;
+    justify-content: flex-end;
+}
+
+.nav-itens {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.nav-itens>li>a {
+    padding-left: 20px;
+    color:  #202020;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon {
+    color: #222;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding-right: 5px;
+}
+
+
+.container {
+   display: flex;
     justify-content: space-between;
     align-items: flex-start;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 0;
     padding: 20px;
 }
 
-.car-info {
-    background-color: #fff;
+.image-container {
+    background-color: #9d97a4;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1;
-    margin-right: 20px;
 }
 
-.car-info img {
-    max-width: 100%;
-    height: auto;
+.image-container img {
+    max-width: 75vw;
+    height: 75vh;
+    border-radius: 10px;
     margin-bottom: 20px;
+    
 }
 
-.car-info h1 {
+.image-container h1 {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -71,11 +128,13 @@
 }
 
 .form-container {
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.22);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
+    flex: 0;
+    margin-left: 2%;
+    margin-top: 6.5%;
 }
 
 .form-container h2 {
@@ -126,4 +185,84 @@
     background-size: 16px 16px;
 }
 
+.contato {
+    display: flex;
+    justify-content: space-around;
+    margin-top: -10px;
+}
 
+.links {
+    display: flex;
+}
+
+.links>li {
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+}
+
+.link1 {
+    margin-right: 20px;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    transition: 1s text;
+}
+
+.link1:hover,
+.link2:hover,
+.link3:hover {
+    color: rgb(188, 188, 188);
+    transition: 1s;
+}
+
+.creditos {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    padding-left: 350px;
+}
+
+.redes-sociais {
+    color: white;
+    font-size: 30px;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #9d97a4;
+    margin-top: 2rem;
+}
+
+.secoes {
+    max-width: 975px;
+    margin: auto;
+}
+
+.informacoes {
+    display: flex;
+    margin-left: 100px;
+    list-style: none;
+    font-weight: 400;
+}
+
+.info1,
+.info2,
+.info3 {
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(228, 225, 225);
+    margin-left: 50px;
+}
+
+.info1>h1,
+.info2>h1,
+.info3>h1 {
+    color: rgb(255, 255, 255);
+}
+
+.redes-sociais>a {
+    color: #FFF;
+}
