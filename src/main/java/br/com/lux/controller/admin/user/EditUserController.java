@@ -29,22 +29,27 @@ public class EditUserController
     }
 
     @GetMapping
-    public String editUser(@RequestParam("id") Integer id, Model model, HttpSession session)
+    public String editUser(@RequestParam("userid") Integer id, Model model, HttpSession session)
     {
         if (id == null)
         {
             return "redirect:/admin/all-users";
         }
 
-        model.addAttribute("users", userService.findById(id));
+        User user = userService.findById(id);
 
-        if (model.getAttribute("users") == null)
+        if (user == null)
         {
             return "redirect:/admin/all-users";
         }
 
+        if (user.getCliente() == null)
+        {
+            model.addAttribute("clients", clientService.findByUsersIsNull());
+        }
+
+        model.addAttribute("users", user);
         model.addAttribute("user", session.getAttribute("user"));
-        model.addAttribute("clients", clientService.findByUsersIsNull());
 
         return "admin/user/updateuser";
     }
