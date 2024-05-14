@@ -64,19 +64,6 @@ nav {
     padding-right: 5px;
 }
 
-.content {
-    height: 75%;
-    width: 90vw;
-    border-radius: 5px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 0;
-    background-color:#353533;
-}
-
 .navigation {
     position: absolute;
     margin-top: 100%;
@@ -84,55 +71,6 @@ nav {
     left: 50%;
     transform: translate(-50%);
     display: flex;
-}
-
-.bar {
-    height: 15px;
-    width: 15px;
-    border: 2px solid #fff;
-    margin: 10px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-
-
-.slides{
-    object-fit: cover;
-    display: flex;
-    width: 500%;
-    height: 100%;
-}
-
-.slide {
-    width: 20%;
-    transition: 2s;
-}
-
-#slide1:checked ~ .s1{
-    margin-left: 0;
-
-}
-
-#slide2:checked ~ .s1{
-    margin-left: -20%;
-}
-
-#slide3:checked ~ .s1{
-    margin-left: -40%;
-}
-
-#slide4:checked ~ .s1{
-    margin-left: -60%;
-}
-
-#slide5:checked ~ .s1{
-    margin-left: -80%;
-}
-
-.bar:hover{
-    background-color: white;
-    transition: 1s;
 }
 
 img{
@@ -151,22 +89,6 @@ img{
     height: 100%;
     width: 100%;
     background-color: #353533;
-}
-
-.carro {
-    position: absolute;
-    bottom: 0;
-    font-size: 25px;
-    font-weight: 400;
-    text-align: center;
-}
-
-.empresa {
-    margin-top: 40px;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    padding-left: 50px;
-    font-size: 30px;
 }
 
 .contato {
@@ -249,98 +171,6 @@ footer {
 
 .redes-sociais>a {
     color: #FFF;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: center;
-    align-items: center;
-}
-
-.my-div {
-    background-color: #797380;
-    color: #e6e6e6;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 90vh;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    max-width: 90vw;
-}
-
-.my-div>h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-}
-
-.my-div h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.car {
-    display: grid;
-    grid-template-areas:
-      "h3 h3 h3"
-      "h3 h3 h3"
-      "h3 h3 h3"
-      "img img img";
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(3, auto);
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    background-color: #8b8592;
-    width: 100%;
-    height: 100%;
-    color: #e6e6e6;
-    border-radius: 5px;
-    max-width: 90vw;
-}
-
-.car>h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 10px;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
-}
-
-.car-img {
-    grid-area: img;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.car-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 3px;
-}
-
-.my-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.btn2>a {
-    text-decoration: none;
-    color: black;
-}
-
-.btn2:hover {
-    background-color: #fff;
-    color: #333;
-    transition: 1s;
 }
 
 .button:hover {
