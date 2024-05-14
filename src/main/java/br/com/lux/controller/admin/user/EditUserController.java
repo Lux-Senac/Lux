@@ -40,7 +40,7 @@ public class EditUserController
 
         model.addAttribute("user", session.getAttribute("user"));
 
-        return "admin/user/edituser";
+        return "admin/user/updateuser";
     }
 
     @PostMapping
@@ -51,10 +51,10 @@ public class EditUserController
         {
             model.addAttribute("user", session.getAttribute("user"));
 
-            return "admin/user/edituser";
+            return "admin/user/updateuser";
         }
 
-        userService.createUser(users);
+        userService.createUserAdmin(users);
 
         return "redirect:/admin/all-users";
     }
