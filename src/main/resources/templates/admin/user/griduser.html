@@ -105,6 +105,35 @@
             </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+               aria-expanded="true" aria-controls="collapseTwo3">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Cliente</span>
+            </a>
+            <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Clientes:</h6>
+                    <a class="collapse-item" th:href="@{/admin/all-clients}">Tabela</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+               aria-expanded="true" aria-controls="collapseTwo5">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Usuário</span>
+            </a>
+            <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Usuários:</h6>
+                    <a class="collapse-item" th:href="@{/admin/all-users}">Tabela</a>
+                    <a class="collapse-item" th:href="@{/admin/register-user}">Cadastrar Usuário</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -133,6 +162,16 @@
             <a class="nav-link" th:href="@{/admin/all-reservation}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tabela De Reservas</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/all-users}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables de Vendas</span></a>
         </li>
 
         <!-- Divider -->
@@ -222,12 +261,12 @@
                                     <td th:text="${use.id}"></td>
                                     <td th:text="${use.username}"></td>
                                     <td th:text="${use.email}"></td>
-                                    <td><img th:src="${use.urlavatar}" width="100px" HEIGHT="100PX"></td>
-                                    <td th:text="${use.type}"></td>
-                                    <td th:text="${use.cliente.id}"></td>
+                                    <td><img th:src="${use.urlavatar}" width="50px" height="50px"></td>
+                                    <td th:text="${use.tipo}"></td>
+                                    <td th:text="${use.cliente != null ? use.cliente : 'Null'}"></td>
                                     <td>
-                                        <a th:href="@{${use.id}}">Editar</a> /
-                                        <a th:href="@{${use.id}}" onclick="event.preventDefault();
+                                        <a th:href="@{/admin/edit-user(id=${use.id})}">Editar</a> /
+                                        <a th:href="@{/admin/delete-user(id=${use.id})}" onclick="event.preventDefault();
                                         deleteCar(this)">Excluir</a>
                                     </td>
                                 </tr>
