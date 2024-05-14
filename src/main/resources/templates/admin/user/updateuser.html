@@ -220,9 +220,12 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Editar Venda</h1>
+                <h1 class="h3 mb-2 text-gray-800">Editar Usuário</h1>
 
-                <form class="user" th:action="@{/admin/edit-user(id=${users.id})}" th:object="${users}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-user(userid=*{id})}" th:object="${users}" method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" id="id" th:field="*{id}" readonly>
+                    <input type="hidden" id="password" th:field="*{password}" readonly>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label class="mr-sm-2" for="username">Username:</label>
@@ -254,16 +257,18 @@
                         <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
                     </div>
 
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div th:if="${clients != null}" class="col-sm-6 mb-3 mb-sm-0">
                         <label class="mr-sm-2" for="id_client">Cliente (opcional):</label>
-                        <select class="custom-select mr-sm-2" id="id_client" name="clientId">  <option value="">Selecione um Cliente</option>
+                        <select class="custom-select mr-sm-2" id="id_client" name="clientId" th:field="*{cliente}">
+                            <option value="">Selecione um Cliente</option>
                             <option th:each="clientt : ${clients}"
                                     th:value="${clientt.id}"
-                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
+                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}">
+                            </option>
                         </select>
                     </div>
 
-                    <input type="hidden" id="id" th:field="*{id}">
+                    <input th:if="${clients == null}" type="hidden" id="cliente" th:field="*{cliente}" readonly>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary" type="submit">Registrar</button>
                     </div>
