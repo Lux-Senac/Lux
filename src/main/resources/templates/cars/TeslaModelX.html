@@ -73,50 +73,42 @@
         </div>
     </div>
     <div class="my-div">
-        <h2>Informacoes do Carro</h2>
+        <h2>Informações do Carro</h2>
         <div class="car">
             <h3>Motor: <span th:text="${car.motor}"></span></h3>
-            <h3>Potencia: <span th:text="${car.hp}"></span></h3>
+            <h3>Potência: <span th:text="${car.hp}"></span></h3>
             <h3>Portas: <span th:text="${car.doors}"></span></h3>
             <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
             <h3>Torque: <span th:text="${car.torque}"></span></h3>
             <h3>Lugares: <span th:text="${car.seats}"></span></h3>
-            <h3>Aceleracao: <span th:text="${car.acel}"></span></h3>
-            <h3>Velocidade Maxima: <span th:text="${car.velmax}"></span></h3>
-            <h3>Tracao: <span th:text="${car.val}"></span></h3>
+            <h3>Aceleração: <span th:text="${car.acel}"></span></h3>
+            <h3>Velocidade Máxima: <span th:text="${car.velmax}"></span></h3>
+            <h3>Tração: <span th:text="${car.val}"></span></h3>
 
             <div class="car-img">
                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Performance_Desktop-LHD.jpg"
                      alt="Tesla Model X">
             </div>
         </div>
-        <div class="toast">
-            <div class="toast-content">
-                <i class="fas fa-solid fa-check check"></i>
-
-                <div class="message">
-                    <span class="text text-1">Parabens!!</span>
-                    <span class="text text-2">Carro Comprado com sucesso, entraremos em contato via e-mail dentro dos
-                            proximos dias.</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-xmark close"></i>
-            <div class="progress active"></div>
-        </div>
-        <button onclick="showToast()">Comprar por R$<span th:text="${car.price}"></span></button>
+        <ul class="links">
+            <button class="btn1"><a class="link1" th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar Teste
+                    Drive</a></button>
+            <button class="btn2"><a class="link2" th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o
+                    seu</a></button>
+        </ul>
     </div>
 </div>
 <footer>
     <div class="secoes">
         <section class="informacoes">
             <div class="info1">
-                <li><a class="link1" th:href="@{/}">Home</a></li>
+                <li><a class="link3" th:href="@{/}">Home</a></li>
             </div>
             <div class="info2">
-                <li><a class="link1" th:href="@{/find-all-cars}">Veiculos</a></li>
+                <li><a class="link3" th:href="@{/find-all-cars}">Veiculos</a></li>
             </div>
             <div class="info3">
-                <li><a class="link1" th:href="@{/Historia/historia}">Sobre</a></li>
+                <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
             </div>
         </section>
         <hr class="divisao">
