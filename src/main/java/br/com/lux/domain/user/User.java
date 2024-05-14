@@ -34,7 +34,6 @@ public class User implements Serializable
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotNull(message = "O campo urlavatar é obrigatório!")
     @Column(nullable = false)
     private String urlavatar;
 
