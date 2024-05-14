@@ -2,6 +2,7 @@ package br.com.lux.controller.admin.user;
 
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
+import br.com.lux.services.client.ClientService;
 import br.com.lux.services.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -21,9 +22,13 @@ public class RegisterUserController
     @Autowired
     private final UserService userService;
 
-    public RegisterUserController(UserService userService)
+    @Autowired
+    private final ClientService clientService;
+
+    public RegisterUserController(UserService userService, ClientService clientService)
     {
         this.userService = userService;
+        this.clientService = clientService;
     }
 
     @GetMapping
@@ -31,6 +36,7 @@ public class RegisterUserController
     {
         model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("users", new User());
+        model.addAttribute("clients", clientService.findByUsersIsNull());
 
         return "admin/user/registeruser";
     }
@@ -41,6 +47,7 @@ public class RegisterUserController
         if (bindingResult.hasErrors())
         {
             model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("clients", clientService.findByUsersIsNull());
 
             return "admin/user/registeruser";
         }
