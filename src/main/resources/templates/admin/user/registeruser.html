@@ -185,20 +185,56 @@
 
         <form class="user" th:action="@{/admin/register-user}" th:object="${users}" method="post" enctype="multipart/form-data">
 
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                         placeholder="Nome" th:field="*{name}">
-                </div>
-                <div class="col-sm-6">
-                <input type="text" class="form-control form-control-user" id="exampleLastName"
-                         placeholder="Sobrenome" th:field="*{lastname}">
-                </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="username">Username:</label>
+              <input type="text" class="form-control form-control-user" id="username"
+                     placeholder="Digite o username" th:field="*{username}">
+              <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
             </div>
 
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" type="submit">Registrar</button>
-          </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="email">Username:</label>
+              <input type="text" class="form-control form-control-user" id="email"
+                     placeholder="Digite o email" th:field="*{email}">
+              <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="urlavatar">Username:</label>
+              <input type="text" class="form-control form-control-user" id="urlavatar"
+                     placeholder="Digite a Urlavatar" th:field="*{email}">
+              <span class="text-danger" th:if="${#fields.hasErrors('urlavatar')}" th:errors="*{urlavatar}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="password">Password:</label>
+              <input type="password" class="form-control form-control-user" id="password"
+                     placeholder="Digite a senha" th:field="*{password}">
+              <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="password">Tipo de Usuário:</label>
+              <select class="custom-select mr-sm-2" id="statusreserva" required th:field="*{tipo}">
+                <option th:each="status : ${T(br.com.lux.domain.user.UserType).values()}"
+                        th:value="${status}" th:text="${status}"></option>
+              </select>
+              <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="id_client">Cliente (opcional):</label>
+              <select class="custom-select mr-sm-2" id="id_client" th:field="*{client.id}">
+                <option value="">Selecione um Cliente</option>
+                <option th:each="clientt : ${clients}"
+                        th:value="${clientt.id}"
+                        th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="submit">Registrar</button>
+            </div>
         </form>
 
       </div>
