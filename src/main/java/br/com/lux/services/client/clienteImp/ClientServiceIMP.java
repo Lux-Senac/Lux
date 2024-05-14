@@ -56,4 +56,10 @@ public class ClientServiceIMP implements ClientService
     {
         return clientRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public List<Client> findByUsersIsNull()
+    {
+        return clientRepository.findByUsersIsNull();
+    }
 }
