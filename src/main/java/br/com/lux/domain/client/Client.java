@@ -1,5 +1,6 @@
 package br.com.lux.domain.client;
 
+import br.com.lux.domain.user.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity(name = "Clientes")
 @Table(name = "Clientes")
@@ -50,4 +52,7 @@ public class Client implements Serializable
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Countries pais;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<User> users;
 }
