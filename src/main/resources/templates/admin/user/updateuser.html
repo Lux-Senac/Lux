@@ -183,9 +183,9 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Editar Venda</h1>
 
-                <form class="user" th:action="@{/admin/edit-user(id=${sales.id})}" th:object="${sales}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-user(id=${users.id})}" th:object="${users}" method="post" enctype="multipart/form-data">
 
-
+                    
 
                     <input type="hidden" id="id" th:field="*{id}">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
