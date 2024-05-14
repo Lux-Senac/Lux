@@ -19,4 +19,6 @@ public interface UserService
     void deleteById(Integer id);
 
     User findById(Integer id);
+
+    void createUserAdmin(User user);
 }
