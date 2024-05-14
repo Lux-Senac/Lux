@@ -254,10 +254,9 @@
                         <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
                     </div>
 
-                    <div class="form-group col-auto my-1">
-                        <label class="mr-sm-2" for="id_client">Cliente:</label>
-                        <select class="custom-select mr-sm-2" id="id_client"  th:field="*{cliente.id}">
-                            <option value="">Selecione um Cliente</option>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id_client">Cliente (opcional):</label>
+                        <select class="custom-select mr-sm-2" id="id_client" name="clientId">  <option value="">Selecione um Cliente</option>
                             <option th:each="clientt : ${clients}"
                                     th:value="${clientt.id}"
                                     th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
