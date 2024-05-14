@@ -56,7 +56,6 @@ public class LoginService implements UserService
         else
         {
             String urlAvatar = gravatarService.getGravatarUrl(user.getEmail().toLowerCase());
-
             user.setUrlavatar(urlAvatar);
             user.setTipo(UserType.CLIENTE);
             user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
@@ -90,5 +89,19 @@ public class LoginService implements UserService
     public User findById(Integer id)
     {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void createUserAdmin(User user)
+    {
+        if(user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
+            user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
+
+        if(user.getTipo() == null)
+            user.setTipo(UserType.CLIENTE);
+
+        user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
+
+        userRepository.save(user);
     }
 }
