@@ -156,7 +156,7 @@
 <script>
     function deleteCar(link) {
         const carId = link.getAttribute('href').split('=')[1];
-        fetch('/admin/delete-car?id=' + carId, {
+        fetch('/admin/delete-user?id=' + carId, {
             method: 'DELETE'
         })
             .then(response => {
