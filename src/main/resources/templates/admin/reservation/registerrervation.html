@@ -28,117 +28,8 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <img class="img-profile rounded-circle" th:src="${user.urlavatar}" width="50px">
-            </div>
-            <div class="sidebar-brand-text mx-3">Lux Admin</div>
-        </a>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Admin</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            GERAL
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Carros</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Carros:</h6>
-                    <a class="collapse-item" th:href="@{/admin/all-cars}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
-               aria-expanded="true" aria-controls="collapseTwo1">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Vendas</span>
-            </a>
-            <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Vendas:</h6>
-                    <a class="collapse-item" th:href="@{/admin/all-sales}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
-               aria-expanded="true" aria-controls="collapseTwo2">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Reserva</span>
-            </a>
-            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Reservas:</h6>
-                    <a class="collapse-item" th:href="@{/admin/all-reservation}">Tabela</a>
-                    <a class="collapse-item" th:href="@{/admin/create-reservation}">Cadastrar Venda</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/all-cars}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tabela De Carros</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/all-sales}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables de Vendas</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/all-reservation}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tabela De Reservas</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        th:include="/admin/geral/sidebar.html">
     </ul>
     <!-- End of Sidebar -->
 
@@ -149,32 +40,8 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" th:text="${user.username}"></span>
-                            <img class="img-profile rounded-circle"
-                                 th:src="${user.urlavatar}">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Sair
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+                 th:include="/admin/geral/topbar.html">
             </nav>
             <!-- End of Topbar -->
 
@@ -270,22 +137,7 @@
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" th:href="@{/logout}">Sair</a>
-            </div>
-        </div>
-    </div>
+     aria-hidden="true" th:include="/admin/geral/logoutmodal.html" >
 </div>
 
 <!-- Bootstrap core JavaScript-->
@@ -297,6 +149,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
+<script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 
 </body>
 

@@ -48,61 +48,60 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Editar Cliente</h1>
+                <h1 class="h3 mb-2 text-gray-800">Editar Usuário</h1>
 
-                <form class="user" th:action="@{/admin/edit-client(id=${clients.id})}" th:object="${clients}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-user(userid=*{id})}" th:object="${users}" method="post" enctype="multipart/form-data">
 
-                    <input type="hidden" class="form-control form-text" id="id" placeholder="Digite o nome" readonly th:field="*{id}">
+                    <input type="hidden" id="id" th:field="*{id}" readonly>
+                    <input type="hidden" id="password" th:field="*{password}" readonly>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Nome:</label>
-                        <input type="text" class="form-control form-text" id="name"
-                               placeholder="" readonly th:field="*{nome}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                        <label class="mr-sm-2" for="username">Username:</label>
+                        <input type="text" class="form-control form-control-user" required id="username"
+                               placeholder="Digite o username" th:field="*{username}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                     </div>
+
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Sobrenome:</label>
-                        <input type="text" class="form-control form-text" id="sobrenome"
-                               placeholder="" readonly th:field="*{sobrenome}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Preferência contato:</label>
-                        <select class="custom-select mr-sm-2" id="preferenciacontato" required th:field="*{preferenciacontato}">
-                            <option th:each="contactPreference : ${T(br.com.lux.domain.client.ContactPreference).values()}"
-                                    th:value="${contactPreference}" th:text="${contactPreference}"></option>
-                        </select>
-                        <span class="text-danger" th:if="${#fields.hasErrors('preferenciacontato')}" th:errors="*{preferenciacontato}"></span>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Contato:</label>
-                        <input type="text" class="form-control form-text" id="contato"
-                               placeholder="Digite o contato" readonly th:field="*{contato}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">Email:</label>
-                        <input type="text" class="form-control form-text" id="email"
-                               placeholder="Digite o email" readonly th:field="*{email}">
+                        <label class="mr-sm-2" for="email">Email:</label>
+                        <input type="text" class="form-control form-control-user" id="email"
+                               placeholder="Digite o email" required th:field="*{email}">
                         <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                     </div>
+
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="id">CEP:</label>
-                        <input type="text" class="form-control form-text" id="cep"
-                               placeholder="Digite o cep" readonly th:field="*{cep}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label class="mr-sm-2" for="pais">Tipo da Reserva:</label>
-                        <input type="text" class="form-control form-text" id="pais"
-                               placeholder="" readonly th:field="*{pais}">
-                        <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                        <label class="mr-sm-2" for="urlavatar">URL Avatar (opcional):</label>
+                        <input type="text" class="form-control form-control-user" id="urlavatar"
+                               placeholder="Digite a Urlavatar" th:field="*{urlavatar}">
+                        <span class="text-danger" th:if="${#fields.hasErrors('urlavatar')}" th:errors="*{urlavatar}"></span>
                     </div>
 
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="tipo">Tipo de Usuário:</label>
+                        <select class="custom-select mr-sm-2" id="tipo" required th:field="*{tipo}">
+                            <option th:each="status : ${T(br.com.lux.domain.user.UserType).values()}"
+                                    th:value="${status}" th:text="${status}"></option>
+                        </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+                    </div>
+
+                    <div th:if="${clients != null}" class="col-sm-6 mb-3 mb-sm-0">
+                        <label class="mr-sm-2" for="id_client">Cliente (opcional):</label>
+                        <select class="custom-select mr-sm-2" id="id_client" name="clientId" th:field="*{cliente}">
+                            <option value="">Selecione um Cliente</option>
+                            <option th:each="clientt : ${clients}"
+                                    th:value="${clientt.id}"
+                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <input th:if="${clients == null}" type="hidden" id="cliente" th:field="*{cliente}" readonly>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button class="btn btn-primary" type="submit">Registrar</button>
                     </div>
                 </form>
+
             </div>
             <!-- /.container-fluid -->
 

@@ -11,4 +11,8 @@ public interface ClientService
     Client findClientById(Integer id);
 
     List<Client> findAllClients();
+
+    void deleteClient(Integer id);
+
+    List<Client> findByUsersIsNull();
 }

@@ -30,7 +30,7 @@ public class CadastrarController
     @PostMapping
     public String cadastrarPost(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult)
     {
-        if(!bindingResult.hasErrors())
+        if(bindingResult.hasErrors())
         {
             model.addAttribute("message", "Erro ao cadastrar usuário!");
             return "/login/cadastrar";

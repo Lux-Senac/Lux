@@ -40,6 +40,12 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    public void deleteClient(Integer id)
+    {
+        clientRepository.deleteById(id);
+    }
+
+    @Override
     public List<Client> findAllClients()
     {
         return clientRepository.findAll();
@@ -49,5 +55,11 @@ public class ClientServiceIMP implements ClientService
     public Client findClientById(Integer id)
     {
         return clientRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Client> findByUsersIsNull()
+    {
+        return clientRepository.findByUsersIsNull();
     }
 }
