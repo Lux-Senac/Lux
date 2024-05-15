@@ -1,0 +1,141 @@
+<!-- Sidebar -->
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <img class="img-profile rounded-circle" th:src="${user.urlavatar}" width="50px">
+        </div>
+        <div class="sidebar-brand-text mx-3">Lux Admin</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Admin</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        GERAL
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fa-solid fa-car"></i>
+            <span>Carros</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Carros:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-cars}">Tabela</a>
+                <a class="collapse-item" th:href="@{/admin/cadastrar-carro}">Cadastrar carro</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+           aria-expanded="true" aria-controls="collapseTwo1">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Vendas</span>
+        </a>
+        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Vendas:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-sales}">Tabela</a>
+                <a class="collapse-item" th:href="@{/admin/register-sales}">Cadastrar Venda</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+           aria-expanded="true" aria-controls="collapseTwo2">
+            <i class="fa-solid fa-hotel"></i>
+            <span>Reserva</span>
+        </a>
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Reservas:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-reservation}">Tabela</a>
+                <a class="collapse-item" th:href="@{/admin/create-reservation}">Cadastrar Venda</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+           aria-expanded="true" aria-controls="collapseTwo3">
+            <i class="fa-solid fa-child"></i>
+            <span>Cliente</span>
+        </a>
+        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Clientes:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-clients}">Tabela</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+           aria-expanded="true" aria-controls="collapseTwo5">
+            <i class="fa-solid fa-user"></i>
+            <span>Usuário</span>
+        </a>
+        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Usuários:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-users}">Tabela</a>
+                <a class="collapse-item" th:href="@{/admin/register-user}">Cadastrar Usuário</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Tabelas
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo6"
+           aria-expanded="true" aria-controls="collapseTwo6">
+            <i class="fa-solid fa-table-list"></i>
+            <span>Tabelas</span>
+        </a>
+        <div id="collapseTwo6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Tabelas:</h6>
+                <a class="collapse-item" th:href="@{/admin/all-cars}">Carros</a>
+                <a class="collapse-item" th:href="@{/admin/all-sales}">Vendas</a>
+                <a class="collapse-item" th:href="@{/admin/all-reservation}">Reservas</a>
+                <a class="collapse-item" th:href="@{/admin/all-users}">Usuários</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/admin}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Admin</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+<!-- End of Sidebar -->

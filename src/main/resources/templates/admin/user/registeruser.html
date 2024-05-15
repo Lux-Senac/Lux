@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Lux | Admin</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href=/dashboard/css/sb-admin-2.min.css rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+      th:include="/admin/geral/sidebar.html">
+  </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+           th:include="/admin/geral/topbar.html">
+      </nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Cadastrar Venda</h1>
+
+        <form class="user" th:action="@{/admin/register-user}" th:object="${users}" method="post" enctype="multipart/form-data">
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="username">Username:</label>
+              <input type="text" class="form-control form-control-user" id="username"
+                     placeholder="Digite o username" th:field="*{username}" required>
+              <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="email">Email:</label>
+              <input type="text" class="form-control form-control-user" id="email"
+                     placeholder="Digite o email" th:field="*{email}" required>
+              <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="urlavatar">URl Avatar (opcional):</label>
+              <input type="text" class="form-control form-control-user" id="urlavatar"
+                     placeholder="Digite a Urlavatar" th:field="*{urlavatar}">
+              <span class="text-danger" th:if="${#fields.hasErrors('urlavatar')}" th:errors="*{urlavatar}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="password">Password:</label>
+              <input type="password" class="form-control form-control-user" id="password"
+                     placeholder="Digite a senha" th:field="*{password}" required>
+              <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="tipo">Tipo de Usuário:</label>
+              <select class="custom-select mr-sm-2" id="tipo" required th:field="*{tipo}">
+                <option th:each="status : ${T(br.com.lux.domain.user.UserType).values()}"
+                        th:value="${status}" th:text="${status}"></option>
+              </select>
+              <span class="text-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <label class="mr-sm-2" for="id_client">Cliente (opcional):</label>
+              <select class="custom-select mr-sm-2" id="id_client" name="clientId">  <option value="">Selecione um Cliente</option>
+                <option th:each="clientt : ${clients}"
+                        th:value="${clientt.id}"
+                        th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-primary" type="submit">Registrar</button>
+            </div>
+        </form>
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Lux 2024</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" th:include="/admin/geral/logoutmodal.html" >
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/dashboard/vendor/jquery/jquery.min.js"></script>
+<script src="/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/dashboard/js/sb-admin-2.min.js"></script>
+<script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

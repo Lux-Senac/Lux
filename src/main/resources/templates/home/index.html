@@ -12,6 +12,40 @@
           rel="stylesheet">
     <link rel="stylesheet" href="home/indexStyle.css">
     <title>LUX Home Page</title>
+    <style>
+        /* Estilo para o menu dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Estilo para os itens do menu */
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -23,11 +57,15 @@
             <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
         </ul>
     </div>
-    <div class="right-icons">
+    <div class="dropdown">
         <div class="btn">
-            <a th:href="@{/login}" class="field profile">
-                <i class='bx bx-user-circle profile-icon'></i>
-            </a>
+            <i class='bx bx-user-circle profile-icon'></i>
+        </div>
+        <div class="dropdown-content">
+
+            <a th:href="@{/login}">Login</a>
+            <a href="/logout">Sair</a>
+
         </div>
     </div>
 </nav>

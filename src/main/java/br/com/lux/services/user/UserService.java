@@ -15,4 +15,10 @@ public interface UserService
     void changeClientId(Integer id, Client client);
 
     List<User> findAllUsers();
+
+    void deleteById(Integer id);
+
+    User findById(Integer id);
+
+    void createUserAdmin(User user);
 }

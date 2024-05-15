@@ -54,6 +54,8 @@ public class TestDriveReserveController
 
             if (client != null)
                 model.addAttribute("client", client);
+            else
+                model.addAttribute("client", new Client());
         }
         else
             model.addAttribute("client", new Client());

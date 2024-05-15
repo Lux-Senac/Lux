@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController
 {
+
     private final SalesService salesService;
 
     @Autowired
@@ -25,9 +26,6 @@ public class AdminController
     @RequestMapping
     public String adminHome(Model model, HttpSession session)
     {
-        List<Object[]> salesMap = salesService.findTotalSalesPerCarModel();
-        model.addAttribute("sales", salesMap);
-
         model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/adminHome";
