@@ -14,7 +14,7 @@
     <div class="form login">
         <div class="form-content">
             <header>Login</header>
-            <form action="/login" method="post">
+            <form action="/login" method="post" onsubmit="return validarFormulario();">
                 <h5 th:text="${message}"></h5>
                 <div class="field input-field">
                     <input type="email" class="input" name="email" placeholder="Email" required>
@@ -36,6 +36,6 @@
         </div>
     </div>
 </section>
-<script src="\static\login\validation.js"></script>
+<script src="/login/validation.js"></script>
 </body>
 </html>
