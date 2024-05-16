@@ -77,7 +77,6 @@ img {
     object-position: center;
 }
 
-
 .carro1 {
     max-width: 100%;
     width: 100%;
@@ -159,14 +158,6 @@ footer {
     outline: none;
 }
 
-.empresa {
-    margin-top: 40px;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    padding-left: 50px;
-    font-size: 30px;
-}
-
 .contato {
     display: flex;
     justify-content: space-around;
@@ -175,15 +166,26 @@ footer {
 
 .links {
     display: flex;
+    align-items: center; 
+    justify-content: flex-start;
 }
 
-.links>li {
+.links > li {
     list-style: none;
     font-family: 'Poppins', sans-serif;
     margin-top: 40px;
+    display: inline-block;
 }
 
 .link1 {
+    margin-right: 20px;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    transition: 1s text;
+}
+
+.link2 {
     margin-right: 20px;
     font-size: 17px;
     color: #fff;

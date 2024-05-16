@@ -127,33 +127,25 @@
                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2800,c_fit,f_auto,q_auto:best/Model-S-Performance-Hero-Desktop-LHD" alt="Tesla Model S">
             </div>
         </div>
-        <div class="toast">
-            <div class="toast-content">
-                <i class="fas fa-solid fa-check check"></i>
-
-                <div class="message">
-                    <span class="text text-1">Parabens!!</span>
-                    <span class="text text-2">Carro Comprado com sucesso, entraremos em contato via e-mail dentro dos
-                            proximos dias.</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-xmark close"></i>
-            <div class="progress active"></div>
-        </div>
-        <button onclick="showToast()">Comprar por R$<span th:text="${car.price}"></span></button>
+        <ul class="links">
+            <button class="btn1"><a class="link1" th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar Teste
+                    Drive</a></button>
+            <button class="btn2"><a class="link2" th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o
+                    seu</a></button>
+            </ul>
     </div>
 </div>
 <footer>
     <div class="secoes">
         <section class="informacoes">
             <div class="info1">
-                <li><a class="link1" th:href="@{/}">Home</a></li>
+                <li><a class="link3" th:href="@{/}">Home</a></li>
             </div>
             <div class="info2">
-                <li><a class="link1" th:href="@{/find-all-cars}">Veiculos</a></li>
+                <li><a class="link3" th:href="@{/find-all-cars}">Veiculos</a></li>
             </div>
             <div class="info3">
-                <li><a class="link1" th:href="@{/Historia/historia}">Sobre</a></li>
+                <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
             </div>
         </section>
         <hr class="divisao">

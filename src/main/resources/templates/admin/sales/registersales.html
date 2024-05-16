@@ -50,7 +50,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Cadastrar Venda</h1>
 
-                <form class="user" th:action="@{/admin/register-sales}" th:object="${sales}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/register-sales}" th:object="${sales}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -148,7 +148,7 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
-
+<script src="/login/validation.js"></script>
 </body>
 
 </html>
