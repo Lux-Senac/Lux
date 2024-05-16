@@ -50,7 +50,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Editar Usuário</h1>
 
-                <form class="user" th:action="@{/admin/edit-user(userid=*{id})}" th:object="${users}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-user(userid=*{id})}" th:object="${users}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
                     <input type="hidden" id="id" th:field="*{id}" readonly>
                     <input type="hidden" id="password" th:field="*{password}" readonly>
@@ -144,7 +144,7 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
-
+<script src="/login/validation.js"></script>
 </body>
 
 </html>
