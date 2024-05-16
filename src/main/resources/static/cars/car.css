@@ -2,13 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
 }
 
 p {
     font-weight: 800;
     font-size: 25px;
     margin-left: 100px;
+}
+
+a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
