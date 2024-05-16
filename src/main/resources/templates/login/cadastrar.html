@@ -13,7 +13,7 @@
     <div class="form signup">
         <div class="form-content">
             <header>Cadastro</header>
-            <form th:action="@{/cadastro}" th:object="${user}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/cadastro}" th:object="${user}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
                 <h5 th:text="${message}"></h5>
                 <div class="field input-field">
@@ -43,6 +43,6 @@
         </div>
     </div>
 </section>
-<script src="\static\login\validation.js"></script>
+<script src="/login/validation.js"></script>
 </body>
 </html>
