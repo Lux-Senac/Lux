@@ -50,7 +50,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Editar Cliente</h1>
 
-                <form class="user" th:action="@{/admin/edit-client(id=${clients.id})}" th:object="${clients}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-client(id=${clients.id})}" th:object="${clients}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
                     <input type="hidden" class="form-control form-text" id="id" placeholder="Digite o nome" readonly th:field="*{id}">
 
