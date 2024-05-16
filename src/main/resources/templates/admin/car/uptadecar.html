@@ -50,7 +50,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Editar Carro</h1>
 
-                <form class="user" th:action="@{/admin/edit-car(id=${car.id})}" th:object="${car}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/edit-car(id=${car.id})}" th:object="${car}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
                     <div class="form-group col-auto my-1">
                         <label for="name">Nome Do Carro:</label>
                         <input type="text" class="form-control form-text" id="name"
@@ -224,7 +224,7 @@
         imageElement.src = inputField.value;
     }
 </script>
-
+<script src="/login/validation.js"></script>
 </body>
 
 </html>
