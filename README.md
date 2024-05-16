@@ -1,4 +1,4 @@
-## Lux: Sistema de Gerenciamento de Concessionária de Veículos
+## Sistema de Gerenciamento de Concessionária de Veículos em Java
 
 ### Descrição
 
