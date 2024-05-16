@@ -50,7 +50,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Cadastrar Reserva</h1>
 
-                <form class="user" th:action="@{/admin/create-reservation}" th:object="${reservation}" method="post" enctype="multipart/form-data">
+                <form class="user" th:action="@{/admin/create-reservation}" th:object="${reservation}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_car">Carro:</label>
