@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/cars/car.css"/>
+    <link rel="stylesheet" href="/cars/car.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
@@ -13,7 +13,6 @@
     <title>Tesla Model X</title>
 
     <style>
-        /* Estilo para o menu dropdown */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -34,7 +33,6 @@
             display: block;
         }
 
-        /* Estilo para os itens do menu */
         .dropdown-content a {
             display: block;
             padding: 10px;
@@ -50,126 +48,128 @@
 </head>
 
 <body>
-<nav>
-    <p class="logo">LUX</p>
-    <div class="links">
-        <ul class="nav-itens">
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/sobre}">Sobre</a></li>
-            <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
-        </ul>
-    </div>
-    <div class="dropdown">
-        <div class="btn">
-            <i class='bx bx-user-circle profile-icon'></i>
+    <nav>
+        <p class="logo">LUX</p>
+        <div class="links">
+            <ul class="nav-itens">
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/carros/find-all}">Veículos</a></li>
+            </ul>
         </div>
-        <div class="dropdown-content">
-            <a th:href="@{/login}">Login</a>
-            <a href="/logout">Sair</a>
+        <div class="dropdown">
+            <div class="btn">
+                <i class='bx bx-user-circle profile-icon'></i>
+            </div>
+            <div class="dropdown-content">
+                <a th:href="@{/login}">Login</a>
+                <a href="/logout">Sair</a>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="wrapper">
-    <div class="model">
-        <div class="content">
-            <div class="slides">
-                <input type="radio" name="slide" id="slide1" checked>
-                <input type="radio" name="slide" id="slide2">
-                <input type="radio" name="slide" id="slide3">
-                <input type="radio" name="slide" id="slide4">
-                <input type="radio" name="slide" id="slide5">
+    </nav>
+    <div class="wrapper">
+        <div class="model">
+            <div class="content">
+                <div class="slides">
+                    <input type="radio" name="slide" id="slide1" checked>
+                    <input type="radio" name="slide" id="slide2">
+                    <input type="radio" name="slide" id="slide3">
+                    <input type="radio" name="slide" id="slide4">
+                    <input type="radio" name="slide" id="slide5">
 
-                <div class="slide s1">
-                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Interior-Hero-Desktop-LHD"
-                         alt="Interior Tesla Model X">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1683743407083-90b217fad319?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                         alt="Interior Tesla Model X">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1633371575203-7278bfed3f52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                         alt="Tesla Model X">
-                </div>
-                <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1645582380413-0af38269d408?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-                         alt="Tesla Model X">
-                </div>
-                <div class="slide">
-                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Utility-Hero-Desktop-LHD"
-                         alt="Tesla Model X">
-                </div>
+                    <div class="slide s1">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Interior-Hero-Desktop-LHD"
+                            alt="Interior Tesla Model X">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1683743407083-90b217fad319?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                            alt="Interior Tesla Model X">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1633371575203-7278bfed3f52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            alt="Tesla Model X">
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1645582380413-0af38269d408?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
+                            alt="Tesla Model X">
+                    </div>
+                    <div class="slide">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Utility-Hero-Desktop-LHD"
+                            alt="Tesla Model X">
+                    </div>
 
-                <div class="navigation">
-                    <label class="bar" for="slide1"></label>
-                    <label class="bar" for="slide2"></label>
-                    <label class="bar" for="slide3"></label>
-                    <label class="bar" for="slide4"></label>
-                    <label class="bar" for="slide5"></label>
+                    <div class="navigation">
+                        <label class="bar" for="slide1"></label>
+                        <label class="bar" for="slide2"></label>
+                        <label class="bar" for="slide3"></label>
+                        <label class="bar" for="slide4"></label>
+                        <label class="bar" for="slide5"></label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="my-div">
-        <h2>Informações do Carro</h2>
-        <div class="car">
-            <h3>Motor: <span th:text="${car.motor}"></span></h3>
-            <h3>Potência: <span th:text="${car.hp}"></span></h3>
-            <h3>Portas: <span th:text="${car.doors}"></span></h3>
-            <h3>Autonomia: <span th:text="${car.cil}"></span></h3>
-            <h3>Torque: <span th:text="${car.torque}"></span></h3>
-            <h3>Lugares: <span th:text="${car.seats}"></span></h3>
-            <h3>Aceleração: <span th:text="${car.acel}"></span></h3>
-            <h3>Velocidade Máxima: <span th:text="${car.velmax}"></span></h3>
-            <h3>Tração: <span th:text="${car.val}"></span></h3>
+        <div class="my-div">
+            <h2>Informações do Carro</h2>
+            <div class="car">
+                <h3>Motor: <span th:text="${car.motor}"></span></h3>
+                <h3>Potência: <span th:text="${car.hp}"></span></h3>
+                <h3>Portas: <span th:text="${car.doors}"></span></h3>
+                <h3>Autonômia: <span th:text="${car.cil}"></span></h3>
+                <h3>Torque: <span th:text="${car.torque}"></span></h3>
+                <h3>Lugares: <span th:text="${car.seats}"></span></h3>
+                <h3>Aceleração: <span th:text="${car.acel}"></span></h3>
+                <h3>Velocidade Máxima: <span th:text="${car.velmax}"></span></h3>
+                <h3>Tração: <span th:text="${car.val}"></span></h3>
 
-            <div class="car-img">
-                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Performance_Desktop-LHD.jpg"
-                     alt="Tesla Model X">
+                <div class="car-img">
+                    <img th:src="${car.image}" alt="${car.name}">
+                </div>
             </div>
+            <ul class="links">
+                <button class="btn1"><a class="link1"
+                        th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar Teste
+                        Drive</a></button>
+                <button class="btn2"><a class="link2"
+                        th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o
+                        seu</a></button>
+            </ul>
         </div>
-        <ul class="links">
-            <button class="btn1"><a class="link1" th:href="@{/agendar-test-drive/test-drive(carId=${car.id})}">Agendar Teste
-                    Drive</a></button>
-            <button class="btn2"><a class="link2" th:href="@{/agendar-test-drive/reservar-carro(carId=${car.id})}">Reserve o
-                    seu</a></button>
-        </ul>
     </div>
-</div>
-<footer>
-    <div class="secoes">
-        <section class="informacoes">
-            <div class="info1">
-                <li><a class="link3" th:href="@{/}">Home</a></li>
-            </div>
-            <div class="info2">
-                <li><a class="link3" th:href="@{/find-all-cars}">Veiculos</a></li>
-            </div>
-            <div class="info3">
-                <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
-            </div>
-        </section>
-        <hr class="divisao">
-        <section class="contato">
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-instagram'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-github'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-facebook'></i></a>
-            </ul>
-            <ul class="redes-sociais">
-                <a href="#"><i class='bx bxl-twitter'></i></a>
-            </ul>
-        </section>
-        <section class="creditos">
-            <p>© LUX</p>
-        </section>
+    <footer>
+        <div class="secoes">
+            <section class="informacoes">
+                <div class="info1">
+                    <li><a class="link3" th:href="@{/}">Home</a></li>
+                </div>
+                <div class="info2">
+                    <li><a class="link3" th:href="@{/find-all-cars}">Veículos</a></li>
+                </div>
+                <div class="info3">
+                    <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
+                </div>
+            </section>
+            <hr class="divisao">
+            <section class="contato">
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                </ul>
+                <ul class="redes-sociais">
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                </ul>
+            </section>
+            <section class="creditos">
+                <p>© LUX</p>
+            </section>
+        </div>
+    </footer>
     </div>
-</footer>
-</div>
-<script src="/cars/car.js"></script>
+    <script src="/cars/car.js"></script>
 </body>
+
 </html>
