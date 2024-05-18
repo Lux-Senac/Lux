@@ -8,6 +8,8 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -46,18 +48,21 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findAllClients()
     {
         return clientRepository.findAll();
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Client findClientById(Integer id)
     {
         return clientRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findByUsersIsNull()
     {
         return clientRepository.findByUsersIsNull();
