@@ -266,3 +266,14 @@ footer {
 .redes-sociais>a {
     color: #FFF;
 }
+
+button {
+    background-color: #404040;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}

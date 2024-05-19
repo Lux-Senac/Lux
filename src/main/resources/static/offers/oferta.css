@@ -4,12 +4,10 @@
     box-sizing: border-box;
 }
 
-#teste
-{
+#teste {
     font-size: 100px;
     color: white;
 }
-
 
 body {
     background-color: #9d97a4;
@@ -86,7 +84,6 @@ img {
     background-repeat: none;
     image-rendering: optimizeSpeed;
 }
-
 
 @media screen and (max-width: 768px) {
     nav {

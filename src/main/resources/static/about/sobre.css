@@ -228,7 +228,7 @@ a {
     overflow: hidden;
 }
 
-.navigation{
+.navigation {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -236,7 +236,7 @@ a {
     padding-top: 95vh;
 }
 
-.bar{
+.bar {
     height: 15px;
     width: 15px;
     border: 2px solid #fff;
@@ -245,7 +245,7 @@ a {
     cursor: pointer;
 }
 
-input{
+input {
     display: none;
 }
 
@@ -261,28 +261,27 @@ input{
     transition: 2s;
 }
 
-#slide1:checked ~ .s1{
+#slide1:checked ~ .s1 {
     margin-left: 0;
-
 }
 
-#slide2:checked ~ .s1{
+#slide2:checked ~ .s1 {
     margin-left: -20%;
 }
 
-#slide3:checked ~ .s1{
+#slide3:checked ~ .s1 {
     margin-left: -40%;
 }
 
-#slide4:checked ~ .s1{
+#slide4:checked ~ .s1 {
     margin-left: -60%;
 }
 
-#slide5:checked ~ .s1{
+#slide5:checked ~ .s1 {
     margin-left: -80%;
 }
 
-.bar:hover{
+.bar:hover {
     background-color: white;
     transition: 1s;
 }
