@@ -1,8 +1,10 @@
 package br.com.lux.services.client.clienteImp;
 
 import br.com.lux.domain.client.Client;
+import br.com.lux.domain.user.User;
 import br.com.lux.repository.client.ClientRepository;
 import br.com.lux.services.client.ClientService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
@@ -42,9 +44,18 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    @Transactional
     public void deleteClient(Integer id)
     {
-        clientRepository.deleteById(id);
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado com ID: " + id));
+
+
+        for (User user : client.getUsers()) {
+            user.setCliente(null);
+        }
+
+        clientRepository.delete(client);
     }
 
     @Override
@@ -66,5 +77,12 @@ public class ClientServiceIMP implements ClientService
     public List<Client> findByUsersIsNull()
     {
         return clientRepository.findByUsersIsNull();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countClients()
+    {
+        return clientRepository.count();
     }
 }

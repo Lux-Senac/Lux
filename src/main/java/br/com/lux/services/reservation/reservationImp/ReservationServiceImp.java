@@ -46,7 +46,7 @@ public class ReservationServiceImp implements ReservationService
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("Erro ao registrar reserva: " + e.getMessage());
         }
     }
 
@@ -74,5 +74,12 @@ public class ReservationServiceImp implements ReservationService
     public Reservation findReservationById(Integer id)
     {
         return reservationRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countByStatusreserva(ReservationStatus statusreserva)
+    {
+        return reservationRepository.countByStatusreserva(statusreserva);
     }
 }

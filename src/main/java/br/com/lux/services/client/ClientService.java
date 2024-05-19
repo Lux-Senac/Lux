@@ -15,4 +15,6 @@ public interface ClientService
     void deleteClient(Integer id);
 
     List<Client> findByUsersIsNull();
+
+    long countClients();
 }
