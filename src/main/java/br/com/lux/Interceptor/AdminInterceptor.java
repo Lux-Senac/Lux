@@ -5,6 +5,7 @@ import br.com.lux.domain.user.UserType;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +20,7 @@ public class AdminInterceptor implements HandlerInterceptor
             return true;
         }
 
-        response.sendRedirect("/login");
+        response.sendRedirect("/");
         return false;
     }
 

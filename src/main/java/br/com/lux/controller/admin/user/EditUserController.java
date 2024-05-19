@@ -4,8 +4,10 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.client.ClientService;
 import br.com.lux.services.user.UserService;
+
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
