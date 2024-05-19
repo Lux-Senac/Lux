@@ -41,8 +41,7 @@ public class Reservation implements Serializable
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationStatus statusreserva;
-
-    @NotNull(message = "Data da reserva é obrigatória.")
+    
     @Column(nullable = false)
     private LocalDate datareserva;
 }
