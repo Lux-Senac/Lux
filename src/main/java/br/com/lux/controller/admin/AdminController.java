@@ -1,7 +1,9 @@
 package br.com.lux.controller.admin;
 
+import br.com.lux.domain.reservation.ReservationStatus;
 import br.com.lux.services.car.CarService;
 import br.com.lux.services.client.ClientService;
+import br.com.lux.services.reservation.ReservationService;
 import br.com.lux.services.sales.SalesService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,11 +27,15 @@ public class AdminController
     private final ClientService clientService;
 
     @Autowired
-    public AdminController(SalesService salesService, CarService carService, ClientService clientService)
+    private final ReservationService reservationService;
+
+    @Autowired
+    public AdminController(SalesService salesService, CarService carService, ClientService clientService, ReservationService reservationService)
     {
         this.salesService = salesService;
         this.carService = carService;
         this.clientService = clientService;
+        this.reservationService = reservationService;
     }
 
     @RequestMapping
@@ -42,6 +48,8 @@ public class AdminController
         model.addAttribute("totalDeClientes", clientService.countClients());
 
         model.addAttribute("totalDeVendasPorMes", salesService.monthlyEarnings());
+
+        model.addAttribute("totalDeReservas", reservationService.countByStatusreserva(ReservationStatus.ESPERA));
 
         return "admin/adminHome";
     }
