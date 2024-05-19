@@ -238,7 +238,7 @@ button {
 }
 
 .image-container img {
-    height: auto;
+    height: 90vh;
     border-radius: 10px;
 }
 
