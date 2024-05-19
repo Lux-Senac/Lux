@@ -35,49 +35,28 @@
 
     <div class="container">
         <div class="image-container">
-            <h1 class="namecar"><span th:text="${car.name}"></span></h1>
             <img th:src="${car.image}" th:alt="${car.name}">
         </div>
         <div class="form-container">
-            <h2 class="namecar"><span th:text="${car.name}"></span></h2>
             <div class="options">
                 <div class="form-row">
-                    <div class="option">
-                        <span class="label" th:text="${car.motor}"></span>
+                    <div class="car-form">
+                        <h1 th:text="${car.name}">Características dos Carros</h1>
+                        <label for="carName" id="carName" th:text="${car.Motor}"></label>
+                        <label for="carName" id="carName" th:text="${car.cil}"></label>
+                        <label for="carName" th:text="${car.acel}"></label>
+                        <label for="carName" th:text="${car.hp}"></label>
+                        <label for="carName" th:text="${car.torque}"></label>
+                        <label for="carName" th:text="${car.velmax}"></label>
+                        <label for="carName" th:text="${car.doors}"></label>
+                        <label for="carName" th:text="${car.seats}"></label>
+                        <label for="carName" th:text="${car.val}"></label>
+                        <button type="submit">Reservar</button>
                     </div>
                 </div>
-                <div class="option">
-                    <span class="label" th:text="${car.hp}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.doors}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.cil}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.torque}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.seats}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.acel}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.velmax}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.val}"></span>
-                </div>
-                <div class="option">
-                    <span class="label" th:text="${car.price}"></span>
-                </div>
             </div>
-            <button type="submit">Reservar</button>
         </div>
     </div>
-
 
     <footer>
         <div class="secoes">
@@ -116,5 +95,4 @@
         </div>
     </footer>
 </body>
-
 </html>
