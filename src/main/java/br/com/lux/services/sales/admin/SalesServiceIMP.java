@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -90,5 +91,27 @@ public class SalesServiceIMP implements SalesService {
         Date data = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         return salesRepository.ganhosMensais(data);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Map<String, BigDecimal> getMonthlyEarningsForYear()
+    {
+        int currentYear = LocalDate.now().getYear();
+
+        List<Sales> salesForYear = salesRepository.findByDatavendaBetween(
+                Date.from(LocalDate.of(currentYear, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                Date.from(LocalDate.of(currentYear, 12, 31).atStartOfDay(ZoneId.systemDefault()).toInstant())
+        );
+
+        Map<String, BigDecimal> monthlyEarningsMap = new HashMap<>();
+        for (Sales sale : salesForYear) {
+            String month = new SimpleDateFormat("MMMM").format(sale.getDatavenda());
+            BigDecimal earnings = sale.getPrecovenda();
+
+            monthlyEarningsMap.put(month, monthlyEarningsMap.getOrDefault(month, BigDecimal.ZERO).add(earnings));
+        }
+
+        return monthlyEarningsMap;
     }
 }
