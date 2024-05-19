@@ -1,6 +1,7 @@
 package br.com.lux.services.car.carImp;
 
 import br.com.lux.domain.car.Car;
+import br.com.lux.domain.car.CarPageType;
 import br.com.lux.repository.car.CarRepository;
 import br.com.lux.services.car.CarService;
 
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -67,5 +70,17 @@ public class CarImpService implements CarService
     public long countCars()
     {
         return carRepository.count();
+    }
+
+    public Map<CarPageType, Long> getCarTypeCounts()
+    {
+        Map<CarPageType, Long> carTypeCounts = new HashMap<>();
+
+        for (CarPageType type : CarPageType.values())
+        {
+            carTypeCounts.put(type, carRepository.countByPage(type));
+        }
+
+        return carTypeCounts;
     }
 }
