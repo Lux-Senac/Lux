@@ -61,4 +61,11 @@ public class CarImpService implements CarService
     {
         carRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countCars()
+    {
+        return carRepository.count();
+    }
 }

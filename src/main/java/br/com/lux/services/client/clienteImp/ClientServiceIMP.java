@@ -67,4 +67,11 @@ public class ClientServiceIMP implements ClientService
     {
         return clientRepository.findByUsersIsNull();
     }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countClients()
+    {
+        return clientRepository.count();
+    }
 }

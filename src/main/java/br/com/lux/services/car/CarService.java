@@ -13,4 +13,6 @@ public interface CarService
     Car findCarById(Integer id);
 
     void deleteCar(Integer id);
+
+    long countCars();
 }

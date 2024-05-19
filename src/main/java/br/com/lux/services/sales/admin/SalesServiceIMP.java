@@ -5,12 +5,18 @@ import br.com.lux.domain.car.CarPageType;
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.repository.sales.SalesRepository;
 import br.com.lux.services.sales.SalesService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
+
 
 
 @Service
@@ -72,9 +78,17 @@ public class SalesServiceIMP implements SalesService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void deleteSales(Integer id)
     {
         salesRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public BigDecimal monthlyEarnings()
+    {
+        Date data = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        return salesRepository.ganhosMensais(data);
     }
 }
