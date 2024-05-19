@@ -40,9 +40,6 @@ INSERT INTO Vendas (id_carro, id_cliente, id_user, datavenda, precovenda) VALUES
 (3, 4, 1, '2024-05-09', 150000.00),
 (4, 5, 1, '2024-05-10', 140000.00);
 
--- Inserts for Avaliacoes table
-INSERT INTO Avaliacoes (id_cliente, id_carro, avaliacao, feedback) VALUES (1, 1, 5, 'Great car!');
-
 -- Inserts for Reserva table
 INSERT INTO Reserva (id_car, id_client, tipoReserva, statusReserva, dataReserva) VALUES
 (1, 1, 'TESTDRIVE', 'ESPERA', '2024-05-10'),
