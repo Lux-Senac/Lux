@@ -24,4 +24,6 @@ public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
     @Query("SELECT SUM(s.precovenda) FROM Vendas s WHERE FUNCTION('MONTH', s.datavenda) = FUNCTION('MONTH', :data) AND FUNCTION('YEAR', s.datavenda) = FUNCTION('YEAR', :data)")
     BigDecimal ganhosMensais(Date data);
+
+    List<Sales> findByDatavendaBetween(Date dataInicio, Date dataFim);
 }
