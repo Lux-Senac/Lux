@@ -6,9 +6,10 @@ import br.com.lux.services.car.CarService;
 import br.com.lux.services.client.ClientService;
 import br.com.lux.services.sales.SalesService;
 import br.com.lux.services.user.UserService;
-import jakarta.servlet.http.HttpSession;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;

@@ -10,6 +10,8 @@ import jakarta.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -30,6 +32,7 @@ public class CarImpService implements CarService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Car> findCarAll()
     {
         return carRepository.findAll();
@@ -47,6 +50,7 @@ public class CarImpService implements CarService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Car findCarById(Integer id)
     {
         return carRepository.findById(id).orElse(null);

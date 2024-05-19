@@ -7,6 +7,8 @@ import br.com.lux.repository.sales.SalesRepository;
 import br.com.lux.services.sales.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -15,12 +17,14 @@ import java.util.*;
 public class SalesServiceIMP implements SalesService {
 
     @Autowired
-    private SalesRepository salesRepository;
+    private final SalesRepository salesRepository;
 
     public SalesServiceIMP(SalesRepository salesRepository) {
         this.salesRepository = salesRepository;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public SequencedCollection<Object[]> findSalesByName(String carNameFilter) {
         List<Object[]> salesData = salesRepository.findCarSalesDetails();
         List<Object[]> filteredSales = new ArrayList<>();
@@ -33,6 +37,8 @@ public class SalesServiceIMP implements SalesService {
         return filteredSales;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Object[]> findTotalSalesPerCarModel()
     {
         List<Object[]> salesData = salesRepository.findTotalSalesPerCarModel();
@@ -46,6 +52,8 @@ public class SalesServiceIMP implements SalesService {
         return salesData;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Sales> findSaleAll()
     {
         return salesRepository.findAll();
@@ -56,11 +64,15 @@ public class SalesServiceIMP implements SalesService {
         salesRepository.save(sales);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Sales findSalesById(Integer id)
     {
         return salesRepository.findById(id).orElse(null);
     }
 
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void deleteSales(Integer id)
     {
         salesRepository.deleteById(id);

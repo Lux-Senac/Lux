@@ -1,13 +1,13 @@
 package br.com.lux.domain.car;
 
-
-import br.com.lux.domain.rating.Rating;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.sales.Sales;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -89,9 +89,6 @@ public class Car implements Serializable
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CarPageType page;
-
-    @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Rating> avaliacoes = new ArrayList<>();
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();

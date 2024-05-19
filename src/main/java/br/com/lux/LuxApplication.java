@@ -6,8 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-public class LuxApplication {
-	public static void main(String[] args) {
+public class LuxApplication
+{
+	public static void main(String[] args)
+	{
 		SpringApplication.run(LuxApplication.class, args);
 	}
 }

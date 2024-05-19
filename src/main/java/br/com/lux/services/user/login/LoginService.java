@@ -9,6 +9,8 @@ import br.com.lux.domain.user.UserType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +36,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Optional<User> authenticate(String email, String password)
     {
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -86,6 +89,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public User findById(Integer id)
     {
         return userRepository.findById(id).orElse(null);
