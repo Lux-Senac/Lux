@@ -41,7 +41,7 @@ public class Reservation implements Serializable
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationStatus statusreserva;
-    
+
     @Column(nullable = false)
     private LocalDate datareserva;
 }
