@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+
+    <link rel="stylesheet" href="/login/loginCadastrar.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+</head>
+<body>
+
+<section class="container forms">
+    <div class="form login">
+        <div th:if="${trocarSenha == 0}" class="form-content">
+            <header>Redefinir Senha</header>
+            <form action="/redefine-password" method="post" onsubmit="return validarFormulario();">
+                <h5 th:text="${message}"></h5>
+                <div class="field input-field">
+                    <input type="email" class="input" name="email" placeholder="Email" required>
+                </div>
+                <div class="field button-field">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+            <div class="form-link">
+                <span>Possui uma conta ?<a th:href="@{/cadastro}" class="link signup-link"> Crie uma conta</a></span>
+            </div>
+        </div>
+
+        <div th:if="${trocarSenha == 1}" class="form-content">
+            <header>Coloque o Codigo do email</header>
+            <form action="/redefine-password" method="post" onsubmit="return validarFormulario();">
+                <h5 th:text="${message}"></h5>
+                <input type="hidden" name="email" th:value="${email}">
+                <div class="field input-field">
+                    <input type="text" class="input" name="codigo" placeholder="Codigo" required>
+                </div>
+                <div class="field button-field">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${trocarSenha == 2}" class="form-content">
+            <header>Coloque sua senha Nova</header>
+            <form action="/redefine-password" method="post" onsubmit="return validarFormulario();">
+                <h5 th:text="${message}"></h5>
+                <div class="field input-field">
+                    <input type="password" class="input" name="password" placeholder="Senha Nova" required>
+                </div>
+                <div class="field input-field">
+                    <input type="password" class="input" name="password2" placeholder="Repita a Senha Nova" required>
+                </div>
+                <div class="field button-field">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="/login/validation.js"></script>
+</body>
+</html>
