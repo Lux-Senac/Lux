@@ -2,6 +2,7 @@ package br.com.lux.services.user;
 
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +22,12 @@ public interface UserService
     User findById(Integer id);
 
     void createUserAdmin(User user);
+
+    String validarEmail(String email);
+
+    void enviarCodigoVerificacao(String email, HttpSession session);
+
+    boolean validarCodigoVerificacao(String email, String codigo, HttpSession session);
+
+    void redefinirSenha(String email, String novaSenha);
 }

@@ -9,15 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class EmailService
 {
-    @Getter
-    private static EmailService instance;
-
     @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-    public EmailService(JavaMailSender mailSender) {
+    public EmailService(JavaMailSender mailSender)
+    {
         this.mailSender = mailSender;
-        instance = this;
     }
 
     public void sendEmail(Email email)

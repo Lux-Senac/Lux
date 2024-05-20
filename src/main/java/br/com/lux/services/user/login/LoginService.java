@@ -3,10 +3,14 @@ package br.com.lux.services.user.login;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
+import br.com.lux.services.email.Email;
+import br.com.lux.services.email.EmailService;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
 import br.com.lux.domain.user.UserType;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,9 +28,13 @@ public class LoginService implements UserService
     @Autowired
     private final GravatarService gravatarService;
 
-    public LoginService(UserRepository userRepository, GravatarService gravatarService) {
+    @Autowired
+    private final EmailService emailService;
+
+    public LoginService(UserRepository userRepository, GravatarService gravatarService, EmailService emailService) {
         this.userRepository = userRepository;
         this.gravatarService = gravatarService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -107,6 +115,67 @@ public class LoginService implements UserService
         if(user.getId() == 1)
             user.setTipo(UserType.ADMIN);
 
+
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public String validarEmail(String email)
+    {
+        if(email == null || email.isBlank())
+            return "Email inválido!";
+
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+
+        if(optionalUser.isEmpty())
+            return "Email não cadastrado!";
+
+        return "null";
+    }
+
+    @Override
+    public void enviarCodigoVerificacao(String email, HttpSession session)
+    {
+        try
+        {
+            String codigo = PasswordUtils.generateRandomCode();
+
+            session.setAttribute(email + "_verification_code_", codigo);
+
+            Email emailM = new Email(email, "Código de Verificação", "Seu código de verificação é: " + codigo);
+
+            System.out.println("Código de verificação: " + codigo);
+
+            emailService.sendEmail(emailM);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean validarCodigoVerificacao(String email, String codigo, HttpSession session)
+    {
+        String codigoSalvo = (String) session.getAttribute(email + "_verification_code_");
+
+        if (codigo.equals(codigoSalvo))
+        {
+            session.removeAttribute(email + "_verification_code_");
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void redefinirSenha(String email, String novaSenha)
+    {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o email: " + email));
+
+        user.setPassword(PasswordUtils.encryptPassword(novaSenha));
 
         userRepository.save(user);
     }
