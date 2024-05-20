@@ -10,6 +10,8 @@ import br.com.lux.services.reservation.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,7 +46,7 @@ public class ReservationServiceImp implements ReservationService
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("Erro ao registrar reserva: " + e.getMessage());
         }
     }
 
@@ -55,6 +57,7 @@ public class ReservationServiceImp implements ReservationService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Reservation> findAllReservations()
     {
         return reservationRepository.findAll();
@@ -67,8 +70,16 @@ public class ReservationServiceImp implements ReservationService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Reservation findReservationById(Integer id)
     {
         return reservationRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countByStatusreserva(ReservationStatus statusreserva)
+    {
+        return reservationRepository.countByStatusreserva(statusreserva);
     }
 }

@@ -34,6 +34,6 @@ public class AllErrorController implements ErrorController
                 return "error/500";
             }
         }
-        return "error";
+        return "error/500";
     }
 }

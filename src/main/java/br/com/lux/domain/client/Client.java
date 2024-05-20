@@ -1,5 +1,7 @@
 package br.com.lux.domain.client;
 
+import br.com.lux.domain.reservation.Reservation;
+import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -53,6 +55,12 @@ public class Client implements Serializable
     @Column(nullable = false)
     private Countries pais;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.DETACH)
     private List<User> users;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
+    private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+    private List<Sales> sales;
 }

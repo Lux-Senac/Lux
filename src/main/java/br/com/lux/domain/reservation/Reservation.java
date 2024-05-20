@@ -4,6 +4,7 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,11 +37,11 @@ public class Reservation implements Serializable
     @Column(nullable = false)
     private ReservationType tiporeserva;
 
+    @NotNull(message = "Data de início da reserva é obrigatória.")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationStatus statusreserva;
 
-    @NotBlank(message = "O campo Data da Reserva é obrigatório.")
     @Column(nullable = false)
     private LocalDate datareserva;
 }

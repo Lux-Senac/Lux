@@ -2,8 +2,10 @@ package br.com.lux.controller.admin.client;
 
 import br.com.lux.domain.client.Client;
 import br.com.lux.services.client.ClientService;
+
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

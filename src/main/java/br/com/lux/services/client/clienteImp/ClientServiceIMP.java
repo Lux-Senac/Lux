@@ -1,13 +1,17 @@
 package br.com.lux.services.client.clienteImp;
 
 import br.com.lux.domain.client.Client;
+import br.com.lux.domain.user.User;
 import br.com.lux.repository.client.ClientRepository;
 import br.com.lux.services.client.ClientService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -40,26 +44,45 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    @Transactional
     public void deleteClient(Integer id)
     {
-        clientRepository.deleteById(id);
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado com ID: " + id));
+
+
+        for (User user : client.getUsers()) {
+            user.setCliente(null);
+        }
+
+        clientRepository.delete(client);
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findAllClients()
     {
         return clientRepository.findAll();
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Client findClientById(Integer id)
     {
         return clientRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findByUsersIsNull()
     {
         return clientRepository.findByUsersIsNull();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public long countClients()
+    {
+        return clientRepository.count();
     }
 }

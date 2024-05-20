@@ -2,6 +2,7 @@ package br.com.lux.user;
 
 import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
+import br.com.lux.services.email.EmailService;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.login.LoginService;
 
@@ -29,12 +30,15 @@ public class LoginServiceTest {
     @Mock
     private GravatarService gravatarService;
 
+    @Mock
+    private EmailService emailService;
+
     @InjectMocks
     private LoginService loginService;
 
     @Before
     public void setUp() {
-        loginService = new LoginService(userRepository, gravatarService);
+        loginService = new LoginService(userRepository, gravatarService, emailService);
     }
 
     @Test

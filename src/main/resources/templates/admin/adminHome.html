@@ -57,7 +57,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             GANHOS (MENSAL)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Teste</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${'R$ ' + totalDeVendasPorMes}">Teste</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -74,7 +74,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Total de Carros</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Teste</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalDeCarros}"></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fa-solid fa-calculator fa-2x text-gray-300"></i>
@@ -91,7 +91,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                             Total da lista de Espera</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Teste</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalDeReservas}"></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -108,7 +108,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Total de Clientes</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Teste</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalDeClientes}">e</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fa-solid fa-calculator fa-2x text-gray-300"></i>
@@ -129,6 +129,20 @@
                                 <div class="chart-area">
                                     <canvas id="myAreaChart"></canvas>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Total de tipo de cada carro</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-pie pt-4">
+                                    <canvas id="myPieChart"></canvas>
+                                </div>
+                                <hr>
                             </div>
                         </div>
                     </div>
@@ -176,8 +190,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/dashboard/js/demo/chart-area-demo.js"></script>
 <script src="/dashboard/js/demo/chart-pie-demo.js"></script>
-
-
 
 </body>
 
