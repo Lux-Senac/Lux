@@ -192,7 +192,7 @@ nav {
     transition: 1s;
 }
 
-.creditos p {
+.creditos {
     font-family: 'Poppins', sans-serif;
     color: #fff;
     text-align: center;
@@ -275,3 +275,8 @@ input {
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
 }
+
+.logo {
+    font-size: 40px;
+}
+
