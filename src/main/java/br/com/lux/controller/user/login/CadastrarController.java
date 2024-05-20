@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class CadastrarController
     }
 
     @PostMapping
-    public String cadastrarPost(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult)
+    public String cadastrarPost(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult,  RedirectAttributes redirectAttributes)
     {
         if(bindingResult.hasErrors())
         {
@@ -42,8 +43,8 @@ public class CadastrarController
 
         if(optionalUser.isPresent())
         {
-            model.addAttribute("message", "Usuário cadastrado com sucesso!");
-            return "login/login";
+            redirectAttributes.addAttribute("message", "Usuário cadastrado com sucesso!");
+            return "redirect:/login";
         }
 
         model.addAttribute("message", "Usuário já cadastrado!");
