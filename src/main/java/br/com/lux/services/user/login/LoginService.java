@@ -5,7 +5,7 @@ import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.email.Email;
 import br.com.lux.services.email.EmailService;
-import br.com.lux.services.exception.loginservice.LoginServiceException;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
 import br.com.lux.domain.user.UserType;
@@ -114,9 +114,11 @@ public class LoginService implements UserService
     {
         try
         {
-            Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
-            if (existingUser.isPresent())
-                throw new LoginServiceException("Já existe um usuário com este email!");
+            if (userRepository.findByEmail(user.getEmail()).isPresent())
+                throw new ServiceException("Já existe um usuário com este email!");
+
+            if (userRepository.findByUsername(user.getUsername()).isPresent())
+                throw new ServiceException("Já existe um usuário com este username!");
 
             if (user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
                 user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
@@ -132,7 +134,7 @@ public class LoginService implements UserService
         }
         catch (DataIntegrityViolationException e)
         {
-            throw new LoginServiceException("Erro ao salvar usuário: " + e.getMessage());
+            throw new ServiceException("Erro ao criar usuário! + " + e.getMessage());
         }
     }
 

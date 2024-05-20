@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/carros")
 public class CarController
 {
+    @Autowired
     private final CarRepository carRepository;
 
     @Autowired

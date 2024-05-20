@@ -4,6 +4,7 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

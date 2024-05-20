@@ -1,3 +1,4 @@
+/*
 package br.com.lux.triggers;
 
 import org.h2.api.Trigger;
@@ -42,3 +43,4 @@ public class ReservationTrigger implements Trigger
        // System.out.println("Trigger removida");
     }
 }
+*/

@@ -66,6 +66,8 @@ public class SalesServiceIMP implements SalesService {
         return salesRepository.findAll();
     }
 
+    @Override
+    @Transactional
     public void registerSale(Sales sales)
     {
         salesRepository.save(sales);

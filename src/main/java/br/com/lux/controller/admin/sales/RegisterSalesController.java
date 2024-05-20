@@ -56,7 +56,7 @@ public class RegisterSalesController
     }
 
     @PostMapping
-    public String registerCarPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerSalesPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
     {
         if (bindingResult.hasErrors())
         {
