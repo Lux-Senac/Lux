@@ -131,29 +131,38 @@ public class LoginService implements UserService
         if(optionalUser.isEmpty())
             return "Email não cadastrado!";
 
-        return null;
+        return "null";
     }
 
     @Override
     public void enviarCodigoVerificacao(String email, HttpSession session)
     {
-        String codigo = PasswordUtils.generateRandomCode();
+        try
+        {
+            String codigo = PasswordUtils.generateRandomCode();
 
-        session.setAttribute(email + "_verification_code", codigo);
+            session.setAttribute(email + "_verification_code_", codigo);
 
-        Email emailM = new Email(email, "Código de Verificação", "Seu código de verificação é: " + codigo);
+            Email emailM = new Email(email, "Código de Verificação", "Seu código de verificação é: " + codigo);
 
-        emailService.sendEmail(emailM);
+            System.out.println("Código de verificação: " + codigo);
+
+            emailService.sendEmail(emailM);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean validarCodigoVerificacao(String email, String codigo, HttpSession session)
     {
-        String codigoSalvo = (String) session.getAttribute(email + "_verification_code");
+        String codigoSalvo = (String) session.getAttribute(email + "_verification_code_");
 
-        if (codigoSalvo != null && codigoSalvo.equals(codigo))
+        if (codigo.equals(codigoSalvo))
         {
-            session.removeAttribute(email + "_verification_code");
+            session.removeAttribute(email + "_verification_code_");
             return true;
         }
 

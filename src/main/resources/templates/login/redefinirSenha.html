@@ -46,6 +46,7 @@
             <header>Coloque sua senha Nova</header>
             <form action="/redefine-password" method="post" onsubmit="return validarFormulario();">
                 <h5 th:text="${message}"></h5>
+                <input type="hidden" name="email" th:value="${email}">
                 <div class="field input-field">
                     <input type="password" class="input" name="password" placeholder="Senha Nova" required>
                 </div>

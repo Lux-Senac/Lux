@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Objects;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/redefine-password")
 public class RedefinePasswordController
@@ -28,9 +25,12 @@ public class RedefinePasswordController
     }
 
     @GetMapping
-    public String redefinePassword(HttpSession session)
+    public String redefinePassword(Model model, HttpSession session)
     {
         session.setAttribute("trocarSenha", 0);
+        session.setAttribute("tentativasRedefinicao", 0);
+
+        model.addAttribute("trocarSenha", session.getAttribute("trocarSenha"));
 
         return "login/redefinirSenha";
     }
@@ -41,6 +41,8 @@ public class RedefinePasswordController
     {
         Integer trocarSenha = (Integer) session.getAttribute("trocarSenha");
 
+        model.addAttribute("email", email);
+
         try
         {
             if (trocarSenha == null)
@@ -50,9 +52,9 @@ public class RedefinePasswordController
             {
                 String emailValido = userService.validarEmail(email);
 
-                if(emailValido.equals("Email não encontrado!") || emailValido.equals("Email inválido!"))
+                if(emailValido.equals("Email não cadastrado!") || emailValido.equals("Email inválido!"))
                 {
-                    redirectAttributes.addFlashAttribute("message", "Email inválido!");
+                    redirectAttributes.addFlashAttribute("message", emailValido);
                     session.removeAttribute("trocarSenha");
 
                     return "redirect:/redefine-password";
@@ -61,6 +63,8 @@ public class RedefinePasswordController
                 {
                     userService.enviarCodigoVerificacao(email, session);
                     session.setAttribute("trocarSenha", 1);
+
+                    model.addAttribute("trocarSenha", session.getAttribute("trocarSenha"));
 
                     return "login/redefinirSenha";
                 }
@@ -72,6 +76,8 @@ public class RedefinePasswordController
                 if (userService.validarCodigoVerificacao(email, codigo, session))
                 {
                     session.setAttribute("trocarSenha", 2);
+
+                    model.addAttribute("trocarSenha", session.getAttribute("trocarSenha"));
 
                     return "login/redefinirSenha";
                 }
@@ -92,6 +98,7 @@ public class RedefinePasswordController
                         session.setAttribute("tentativasRedefinicao", cont);
                         model.addAttribute("message", "Código inválido. Tente novamente.");
 
+                        model.addAttribute("trocarSenha", session.getAttribute("trocarSenha"));
                         return "login/redefinirSenha";
                     }
                 }
@@ -101,6 +108,8 @@ public class RedefinePasswordController
                 if(password == null || password.isBlank())
                 {
                     model.addAttribute("message", "Senha inválida!");
+
+                    model.addAttribute("trocarSenha", session.getAttribute("trocarSenha"));
                     return "login/redefinirSenha";
                 }
 
