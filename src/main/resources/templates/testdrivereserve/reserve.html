@@ -35,28 +35,56 @@
 
     <div class="container">
         <div class="image-container">
+            <p th:text="${car.name}"></p>
             <img th:src="${car.image}" th:alt="${car.name}">
-        </div>
-        <div class="form-container">
-            <div class="options">
-                <div class="form-row">
-                    <div class="car-form">
-                        <h1 th:text="${car.name}">Características dos Carros</h1>
-                        <label for="carName" id="carName" th:text="${car.Motor}"></label>
-                        <label for="carName" id="carName" th:text="${car.cil}"></label>
-                        <label for="carName" th:text="${car.acel}"></label>
-                        <label for="carName" th:text="${car.hp}"></label>
-                        <label for="carName" th:text="${car.torque}"></label>
-                        <label for="carName" th:text="${car.velmax}"></label>
-                        <label for="carName" th:text="${car.doors}"></label>
-                        <label for="carName" th:text="${car.seats}"></label>
-                        <label for="carName" th:text="${car.val}"></label>
-                        <button type="submit">Reservar</button>
-                    </div>
+
+            <div class="car-details">
+                <div class="car-form">
+                    <label for="carName" id="carName" th:text="${car.Motor}"></label>
+                    <label for="carName" id="carName" th:text="${car.cil}"></label>
+                    <label for="carName" th:text="${car.acel}"></label>
+                    <label for="carName" th:text="${car.hp}"></label>
+                    <label for="carName" th:text="${car.torque}"></label>
+                    <label for="carName" th:text="${car.velmax}"></label>
+                    <label for="carName" th:text="${car.doors}"></label>
+                    <label for="carName" th:text="${car.seats}"></label>
+                    <label for="carName" th:text="${car.val}"></label>
                 </div>
             </div>
+
+        </div>
+        <div class="form-container">
+            <h2>Suas informações</h2>
+            <form th:action="@{/agendar-test-drive/test-drive(carId=${car.id})}" th:object="${client}" method="post"
+                enctype="multipart/form-data" onsubmit="return validarFormulario();">
+                <input type="text" id="nome" name="nome" required placeholder="Nome" th:field="*{nome}">
+                <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                <input type="text" id="sobrenome" name="sobrenome" required placeholder="Sobrenome"
+                    th:field="*{sobrenome}">
+                <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                <input class="form-control" required type="email" name="email" id="email" placeholder="Email"
+                    th:field="*{email}">
+                <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                <label for="preferencia">Preferência de contato</label>
+                <select name="preferencia" id="preferencia" required th:field="*{preferenciacontato}">
+                    <option th:each="contactPreference : ${T(br.com.lux.domain.client.ContactPreference).values()}"
+                        th:value="${contactPreference}" th:text="${contactPreference}"></option>
+                </select>
+                <input type="tel" id="telefone" name="telefone" required placeholder="Telefone" th:field="*{contato}">
+                <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
+                <label for="pais">País</label>
+                <select name="pais" id="pais" required th:field="*{pais}">
+                    <option th:each="countrie : ${T(br.com.lux.domain.client.Countries).values()}"
+                        th:value="${countrie}" th:text="${countrie}"></option>
+                </select>
+                <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                <input type="text" id="cep" name="cep" required placeholder="CEP" color="white" th:field="*{cep}">
+                <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
     </div>
+
 
     <footer>
         <div class="secoes">
@@ -95,4 +123,5 @@
         </div>
     </footer>
 </body>
+
 </html>
