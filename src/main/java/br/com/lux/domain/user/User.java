@@ -2,7 +2,7 @@ package br.com.lux.domain.user;
 
 import br.com.lux.domain.client.Client;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,15 +24,22 @@ public class User implements Serializable
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "O campo username é obrigatório!")
+    @NotBlank(message = "O campo username é obrigatório!")
+    @Size(min = 6, message = "O username deve ter no mínimo 6 caracteres!")
+    @Size(max = 20, message = "O username deve ter no máximo 20 caracteres!")
     @Column(unique = true, nullable = false)
     private String username;
 
-    @NotNull(message = "O campo password é obrigatório!")
+    @NotBlank(message = "O campo password é obrigatório!")
+    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres!")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}$",
+            message = "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial!")
     @Column(nullable = false)
     private String password;
 
-    @NotNull(message = "O campo email é obrigatório!")
+    @NotBlank(message = "O campo nome é obrigatório!")
+    @Email(message = "O campo email é inválido!")
+    @Size(max = 100, message = "O email deve ter no máximo 100 caracteres!")
     @Column(unique = true, nullable = false)
     private String email;
 
