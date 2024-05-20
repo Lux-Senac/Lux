@@ -5,13 +5,14 @@ import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.email.Email;
 import br.com.lux.services.email.EmailService;
+import br.com.lux.services.exception.loginservice.LoginServiceException;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
 import br.com.lux.domain.user.UserType;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<User> findAllUsers()
     {
         return userRepository.findAll();
@@ -56,6 +58,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional
     public Optional<User> createUser(User user)
     {
         Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
@@ -78,6 +81,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional
     public void changeClientId(Integer id, Client client)
     {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -91,6 +95,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional
     public void deleteById(Integer id)
     {
         userRepository.deleteById(id);
@@ -104,19 +109,31 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional
     public void createUserAdmin(User user)
     {
-        if(user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
-            user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
+        try
+        {
+            Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+            if (existingUser.isPresent())
+                throw new LoginServiceException("Já existe um usuário com este email!");
 
-        if(user.getTipo() == null)
-            user.setTipo(UserType.CLIENTE);
+            if (user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
+                user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
 
-        if(user.getId() == 1)
-            user.setTipo(UserType.ADMIN);
+            if (user.getTipo() == null)
+                user.setTipo(UserType.CLIENTE);
 
+            if (user.getId() != null)
+                if (user.getId() == 1)
+                    user.setTipo(UserType.ADMIN);
 
-        userRepository.save(user);
+            userRepository.save(user);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new LoginServiceException("Erro ao salvar usuário: " + e.getMessage());
+        }
     }
 
     @Override
@@ -135,6 +152,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void enviarCodigoVerificacao(String email, HttpSession session)
     {
         try
@@ -156,6 +174,7 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public boolean validarCodigoVerificacao(String email, String codigo, HttpSession session)
     {
         String codigoSalvo = (String) session.getAttribute(email + "_verification_code_");
@@ -170,10 +189,10 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional
     public void redefinirSenha(String email, String novaSenha)
     {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o email: " + email));
+        User user = userRepository.findByEmail(email).orElseThrow();
 
         user.setPassword(PasswordUtils.encryptPassword(novaSenha));
 
