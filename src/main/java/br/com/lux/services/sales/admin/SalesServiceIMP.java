@@ -2,10 +2,13 @@ package br.com.lux.services.sales.admin;
 
 import br.com.lux.domain.car.CarPageType;
 import br.com.lux.domain.sales.Sales;
+import br.com.lux.domain.user.User;
 import br.com.lux.repository.sales.SalesRepository;
+import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.sales.SalesService;
 
+import br.com.lux.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,8 +28,13 @@ public class SalesServiceIMP implements SalesService {
     @Autowired
     private final SalesRepository salesRepository;
 
-    public SalesServiceIMP(SalesRepository salesRepository) {
+    @Autowired
+    private final UserRepository userRepository;
+
+    public SalesServiceIMP(SalesRepository salesRepository, UserRepository userRepository)
+    {
         this.salesRepository = salesRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -105,7 +113,11 @@ public class SalesServiceIMP implements SalesService {
             if(sales.getUsuario().getId() == null)
                 throw new ServiceException("Selecionar um usuário é obrigatório!");
 
-            if(sales.getUsuario().getTipo().name() != "ADMIN")
+            User user = userRepository.findById(sales.getUsuario().getId()).orElse(null);
+            if(user == null)
+                throw new ServiceException("Usuário inválido!");
+
+            if(user.getTipo().name() != "ADMIN")
                 throw new ServiceException("Apenas usuários administradores podem registrar vendas!");
 
             salesRepository.save(sales);
