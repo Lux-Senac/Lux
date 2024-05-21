@@ -29,7 +29,6 @@ public class EditClientController
     {
         try
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("clients", clientService.findClientById(id));
 
             return "admin/client/uptadeclient";
