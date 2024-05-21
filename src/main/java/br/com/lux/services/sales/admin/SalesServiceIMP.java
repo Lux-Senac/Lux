@@ -1,6 +1,5 @@
 package br.com.lux.services.sales.admin;
 
-
 import br.com.lux.domain.car.CarPageType;
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.repository.sales.SalesRepository;
@@ -19,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
-
-
 
 @Service
 public class SalesServiceIMP implements SalesService {

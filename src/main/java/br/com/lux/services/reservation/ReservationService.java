@@ -1,14 +1,15 @@
 package br.com.lux.services.reservation;
 
-
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.reservation.ReservationStatus;
 import br.com.lux.domain.reservation.ReservationType;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ReservationService
 {
     void registerReservation(Client client, Car car, ReservationType testDrive);
