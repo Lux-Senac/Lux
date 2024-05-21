@@ -46,7 +46,7 @@ public class EditClientController
     }
 
     @PostMapping
-    public String editClientPost(@Valid @ModelAttribute Client client,
+    public String editClientPost(@Valid @ModelAttribute("clients") Client client,
                                  BindingResult bindingResult, HttpSession session, Model model)
     {
         model.addAttribute("user", session.getAttribute("user"));
