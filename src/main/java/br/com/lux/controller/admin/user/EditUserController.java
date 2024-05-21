@@ -75,11 +75,12 @@ public class EditUserController
     public String editUserPost(@Valid @ModelAttribute("users") User users,
                                BindingResult bindingResult, HttpSession session, Model model)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+
         try
         {
             if(bindingResult.hasErrors())
             {
-                model.addAttribute("user", session.getAttribute("user"));
                 model.addAttribute("clients", clientService.findByUsersIsNull());
 
                 return "admin/user/updateuser";
