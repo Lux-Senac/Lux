@@ -32,7 +32,6 @@ public class RegisterCarController
     public String registerCar(Model model, HttpSession session)
     {
         model.addAttribute("car", new Car());
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/registercar";
     }
@@ -42,8 +41,6 @@ public class RegisterCarController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-
             return "admin/car/registercar";
         }
 
