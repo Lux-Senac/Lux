@@ -31,12 +31,10 @@ public class AllSalesController
     @GetMapping
     public String allSales(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
-        try {
+        try
+        {
             List<Sales> sales = saleService.findSaleAll();
             model.addAttribute("sales", sales);
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/sales/gridSales";
         }
