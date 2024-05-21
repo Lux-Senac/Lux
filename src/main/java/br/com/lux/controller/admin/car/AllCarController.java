@@ -26,11 +26,10 @@ public class AllCarController {
     }
 
     @GetMapping
-    public String allCars(Model model, HttpSession session) {
+    public String allCars(Model model, HttpSession session)
+    {
         List<Car> cars = carService.findCarAll();
         model.addAttribute("cars", cars);
-        model.addAttribute("user", session.getAttribute("user"));
-
         return "admin/car/gridcar";
     }
 }
