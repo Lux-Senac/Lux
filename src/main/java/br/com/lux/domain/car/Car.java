@@ -65,16 +65,14 @@ public class Car implements Serializable
     private String velmax;
 
     @NotNull(message = "Numero de portas do carro é obrigatório.")
-    @DecimalMin(value = "1.9", message = "O numero de portas do carro não pode ser menor que 2")
-    @DecimalMax(value = "4.9", message = "O numero de portas do carro não pode ser " +
-            "maior que 5")
+    @Min(value = 2, message = "O numero de portas do carro não pode ser menor que 2")
+    @Max(value = 5, message = "O numero de portas do carro não pode ser maior que 5")
     @Column(nullable = false)
     private Integer doors;
 
     @NotNull(message = "Numero de assentos do carro é obrigatório.")
-    @DecimalMin(value = "1.9", message = "O numero de assentos do carro não pode ser menor que 2")
-    @DecimalMax(value = "6.9", message = "O número de assentos do carro não pode ser " +
-            "maior que 7")
+    @Min(value = 2, message = "O numero de assentos do carro não pode ser menor que 2")
+    @Max(value = 7, message = "O numero de assentos do carro não pode ser maior que 7")
     @Column(nullable = false)
     private Integer seats;
 
@@ -84,19 +82,14 @@ public class Car implements Serializable
     private String val;
 
     @NotNull(message = "O preço do carro é obrigatório.")
-    @DecimalMin(value = "0.1", message = "O preço do carro não pode ser menor que 0")
-    @DecimalMax(value = "19.999.999.99", message = "O preço do carro não pode ser maior" +
+    @DecimalMin(value = "0.01", message = "O preço do carro não pode ser menor que 0")
+    @DecimalMax(value = "19999999.99", message = "O preço do carro não pode ser maior" +
             " que " +
-            "999999.99")
+            "19999999.99")
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
     @NotBlank(message = "A URL da imagem do carro é obrigatória.")
-    @Pattern(regexp = "(?:(ftp|http[s]?:[//])?)?([w]{3}[.])?" +
-            "(.*[.](com|php|net|org|br|dk|at|us|tv|info|uk|co.uk|biz|se)?)?" +
-            "(.*[.](aspx|htm|html|HTM|HTML|jhtm|jhtml|JHTM|JHTML|xhtm|xhtml|XHTM|XHTML)" +
-            "?)?" +
-            "(\\w+(\\.(\\w|-)+)*(/(\\w|-)+)*/?)?", message = "A URL da imagem do carro é inválida.")
     @Column(nullable = false)
     private String image;
 
