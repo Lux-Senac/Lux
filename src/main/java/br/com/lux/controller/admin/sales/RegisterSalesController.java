@@ -49,7 +49,6 @@ public class RegisterSalesController
     {
         try
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("sales", new Sales());
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("cars", carService.findCarAll());
@@ -72,8 +71,6 @@ public class RegisterSalesController
     @PostMapping
     public String registerSalesPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("cars", carService.findCarAll());
         model.addAttribute("clients", clientService.findAllClients());
