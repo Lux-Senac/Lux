@@ -49,7 +49,7 @@ nav {
 
 .nav-itens>li>a {
     padding-left: 20px;
-    color: #202020;
+    color:  #202020;
     text-decoration: none;
     align-items: center;
     justify-content: center;
@@ -60,7 +60,6 @@ nav {
     font-size: 30px;
     border-radius: 50%;
     display: flex;
-    position: absolute;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -139,6 +138,7 @@ nav {
 .form-container input,
 .form-container select {
     padding: 10px;
+    width: 100%;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -259,6 +259,7 @@ button {
     cursor: pointer;
     display: flex;
     align-items: center;
+    width: 5vw;
 }
 
 .form-container label {
@@ -299,4 +300,25 @@ button {
 
 .dropdown-content a:hover {
     background-color: #ddd;
+}
+
+input {
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #c6c7c6;
+}
+
+.car-details {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    gap: 10px;
+    margin: 0 0;
+    max-width: 90vw;
+    font-weight: 500;
+}
+
+.form-container label {
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
 }
