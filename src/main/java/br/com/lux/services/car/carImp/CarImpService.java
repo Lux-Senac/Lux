@@ -57,7 +57,8 @@ public class CarImpService implements CarService
         try
         {
             Set<ConstraintViolation<Car>> violations = validator.validate(car);
-            if (!violations.isEmpty()) {
+            if(!violations.isEmpty())
+            {
                 throw new ConstraintViolationException(violations);
             }
 
@@ -66,6 +67,14 @@ public class CarImpService implements CarService
         catch (DataIntegrityViolationException e)
         {
             throw new ServiceException("Erro ao cadastrar o carro! " + e.getMessage());
+        }
+        catch (ConstraintViolationException e)
+        {
+            throw new ServiceException("Erro ao validar o carro! " + e.getMessage());
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro inesperado ao cadastrar o carro! " + e.getMessage());
         }
     }
 
