@@ -2,6 +2,7 @@ package br.com.lux.controller.user.login;
 
 import br.com.lux.domain.user.User;
 import br.com.lux.services.email.Email;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.user.UserService;
 
 import jakarta.validation.Valid;
@@ -25,9 +26,22 @@ public class CadastrarController
     @GetMapping
     public String cadastrar(Model model)
     {
-        model.addAttribute("user", new User());
+        try
+        {
+            model.addAttribute("user", new User());
 
-        return "login/cadastrar";
+            return "login/cadastrar";
+        }
+        catch (ServiceException e)
+        {
+            model.addAttribute("message", e.getMessage());
+            return "login/cadastrar";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("message", "Erro ao cadastrar usuário!");
+            return "login/cadastrar";
+        }
     }
 
     @PostMapping
