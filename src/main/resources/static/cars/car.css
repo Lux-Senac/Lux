@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 p {
@@ -17,6 +18,9 @@ a {
 
 body {
     background-color: #9d97a4;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-x: hidden;
 }
 
 nav {
@@ -51,7 +55,7 @@ nav {
 
 .nav-itens>li>a {
     padding-left: 20px;
-    color:  #202020;
+    color: #202020;
     text-decoration: none;
     align-items: center;
     justify-content: center;
@@ -238,7 +242,7 @@ img{
 .creditos {
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    padding-left: 350px;
+    text-align: center;
 }
 
 .redes-sociais {
@@ -383,4 +387,35 @@ button {
 
 button:hover {
     background-color: #9d97a4;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
 }

@@ -12,40 +12,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="\agendar\reserva.css">
     <title>LUX - Reserve seu carro</title>
-    <style>
-        /* Estilo para o menu dropdown */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 120px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Estilo para os itens do menu */
-        .dropdown-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-    </style>
 </head>
 
 <body>
@@ -58,41 +24,64 @@
                 <li><a th:href="@{/carros/find-all}">Veículos</a></li>
             </ul>
         </div>
-        <div class="dropdown">
+        <div class="right-icons">
             <div class="btn">
-                <i class='bx bx-user-circle profile-icon'></i>
-            </div>
-            <div class="dropdown-content">
-
-                <a th:href="@{/login}">Login</a>
-                <a href="/logout">Sair</a>
-
+                <a th:href="@{/login}" class="field profile">
+                    <i class='bx bx-user-circle profile-icon'></i>
+                </a>
             </div>
         </div>
     </nav>
 
     <div class="container">
         <div class="image-container">
+            <p th:text="${car.name}"></p>
             <img th:src="${car.image}" th:alt="${car.name}">
-        </div>
-        <div class="form-container">
-            <div class="options">
-                <div class="form-row">
-                    <div class="car-form">
-                        <h1 th:text="${car.name}">Características dos Carros</h1>
-                        <label for="carName" id="carName" th:text="${car.Motor}"></label>
-                        <label for="carName" id="carName" th:text="${car.cil}"></label>
-                        <label for="carName" th:text="${car.acel}"></label>
-                        <label for="carName" th:text="${car.hp}"></label>
-                        <label for="carName" th:text="${car.torque}"></label>
-                        <label for="carName" th:text="${car.velmax}"></label>
-                        <label for="carName" th:text="${car.doors}"></label>
-                        <label for="carName" th:text="${car.seats}"></label>
-                        <label for="carName" th:text="${car.val}"></label>
-                        <button type="submit">Reservar</button>
-                    </div>
+
+            <div class="car-details">
+                <div class="car-form">
+                    <label for="carName" id="carName" th:text="${car.Motor}"></label>
+                    <label for="carName" id="carName" th:text="${car.cil}"></label>
+                    <label for="carName" th:text="${car.acel}"></label>
+                    <label for="carName" th:text="${car.hp}"></label>
+                    <label for="carName" th:text="${car.torque}"></label>
+                    <label for="carName" th:text="${car.velmax}"></label>
+                    <label for="carName" th:text="${car.doors}"></label>
+                    <label for="carName" th:text="${car.seats}"></label>
+                    <label for="carName" th:text="${car.val}"></label>
                 </div>
             </div>
+
+        </div>
+        <div class="form-container">
+            <h2>Suas informações</h2>
+            <form th:action="@{/agendar-test-drive/test-drive(carId=${car.id})}" th:object="${client}" method="post"
+                enctype="multipart/form-data" onsubmit="return validarFormulario();">
+                <input type="text" id="nome" name="nome" required placeholder="Nome" th:field="*{nome}">
+                <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                <input type="text" id="sobrenome" name="sobrenome" required placeholder="Sobrenome"
+                    th:field="*{sobrenome}">
+                <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+                <input class="form-control" required type="email" name="email" id="email" placeholder="Email"
+                    th:field="*{email}">
+                <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                <label for="preferencia">Preferência de contato</label>
+                <select name="preferencia" id="preferencia" required th:field="*{preferenciacontato}">
+                    <option th:each="contactPreference : ${T(br.com.lux.domain.client.ContactPreference).values()}"
+                        th:value="${contactPreference}" th:text="${contactPreference}"></option>
+                </select>
+                <input type="tel" id="telefone" name="telefone" required placeholder="Telefone" th:field="*{contato}">
+                <span class="text-danger" th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}"></span>
+                <label for="pais">País</label>
+                <select name="pais" id="pais" required th:field="*{pais}">
+                    <option th:each="countrie : ${T(br.com.lux.domain.client.Countries).values()}"
+                        th:value="${countrie}" th:text="${countrie}"></option>
+                </select>
+                <span class="text-danger" th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></span>
+                <input type="text" id="cep" name="cep" required placeholder="CEP" color="white" th:field="*{cep}">
+                <span class="text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
     </div>
 
