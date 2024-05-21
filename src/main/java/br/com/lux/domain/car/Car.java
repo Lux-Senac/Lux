@@ -35,27 +35,33 @@ public class Car implements Serializable
     private String name;
 
     @NotBlank(message = "O motor do carro é obrigatório.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String motor;
 
     @NotBlank(message = "O Cilindro do carro é obrigatório.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String cil;
 
     @NotBlank(message = "A Aceleração do carro é obrigatória.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String acel;
 
     @NotBlank(message = "A Potência do carro é obrigatória.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String hp;
 
     @NotBlank(message = "O Torque do carro é obrigatório.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String torque;
 
     @NotBlank(message = "A Velocidade máxima do carro é obrigatória.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String velmax;
 
     @NotNull(message = "Numero de portas do carro é obrigatório.")
@@ -73,7 +79,8 @@ public class Car implements Serializable
     private Integer seats;
 
     @NotBlank(message = "Coloquei o valor da válvula do carro ou tipo da tração.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O torque do carro deve ter no máximo 50 caracteres.")
+    @Column(nullable = false, length = 50)
     private String val;
 
     @NotNull(message = "O preço do carro é obrigatório.")
