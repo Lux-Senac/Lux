@@ -162,10 +162,10 @@ public class LoginService implements UserService
     {
         try
         {
-            if (userRepository.findByEmail(user.getEmail()).isPresent())
+            if (userRepository.findByEmail(user.getEmail()).isPresent() && user.getId() == null)
                 throw new ServiceException("Já existe um usuário com este email!");
 
-            if (userRepository.findByUsername(user.getUsername()).isPresent())
+            if (userRepository.findByUsername(user.getUsername()).isPresent() && user.getId() == null)
                 throw new ServiceException("Já existe um usuário com este username!");
 
             if (user.getUrlavatar() == null || user.getUrlavatar().isEmpty())

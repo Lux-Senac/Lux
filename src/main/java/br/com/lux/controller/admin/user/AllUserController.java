@@ -1,5 +1,6 @@
 package br.com.lux.controller.admin.user;
 
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.user.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -32,9 +33,15 @@ public class AllUserController
 
             return "admin/user/griduser";
         }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+
+            return "admin/user/griduser";
+        }
         catch (Exception e)
         {
-            model.addAttribute("error", "Erro ao buscar usuários");
+            model.addAttribute("error", "Erro ao buscar usuários.");
 
             return "admin/user/griduser";
         }
