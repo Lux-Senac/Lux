@@ -36,7 +36,6 @@ public class RegisterUserController
     @GetMapping
     public String registerUser(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("users", new User());
         model.addAttribute("clients", clientService.findByUsersIsNull());
 
@@ -48,7 +47,6 @@ public class RegisterUserController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("clients", clientService.findByUsersIsNull());
 
             return "admin/user/registeruser";
