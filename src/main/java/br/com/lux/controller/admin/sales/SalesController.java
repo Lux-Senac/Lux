@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.sales;
 
 import br.com.lux.services.sales.SalesService;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,16 +31,40 @@ public class SalesController {
     @GetMapping
     public String findSalesByName(@PathVariable String carNameFilter, Model model)
     {
-       SequencedCollection<Object[]> sales = salesService.findSalesByName(carNameFilter);
-       model.addAttribute("sales", sales);
+       try
+       {
+           SequencedCollection<Object[]> sales = salesService.findSalesByName(carNameFilter);
+           model.addAttribute("sales", sales);
 
-       return "admin/adminHome";
+           return "admin/adminHome";
+       }
+       catch(ServiceException e)
+       {
+           model.addAttribute("error", e.getMessage());
+           return "admin/adminHome";
+       }
+       catch (Exception e)
+       {
+           model.addAttribute("error", "Erro ao buscar vendas!");
+           return "admin/adminHome";
+       }
     }
 
     @GetMapping("/monthlyEarnings")
     @ResponseBody
     public Map<String, BigDecimal> monthlyEarnings()
     {
-        return salesService.getMonthlyEarningsForYear();
+        try
+        {
+            return salesService.getMonthlyEarningsForYear();
+        }
+        catch(ServiceException e)
+        {
+            throw new ServiceException(e.getMessage());
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar vendas!");
+        }
     }
 }
