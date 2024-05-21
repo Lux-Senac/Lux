@@ -4,9 +4,7 @@ import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.sales.Sales;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +29,9 @@ public class Car implements Serializable
     private Integer id;
 
     @NotBlank(message = "O nome do carro é obrigatório.")
-    @Column(nullable = false)
+    @Size(max = 50, message = "O nome do carro deve ter no máximo 50 caracteres.")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "O nome do carro deve conter apenas letras.")
+    @Column(nullable = false, length = 50)
     private String name;
 
     @NotBlank(message = "O motor do carro é obrigatório.")
@@ -78,11 +78,13 @@ public class Car implements Serializable
     private BigDecimal price;
 
     @NotBlank(message = "A URL da imagem do carro é obrigatória.")
+    @Pattern(regexp = "^(http(s)?://)?([\\w-]+\\.)+[\\w-]+(/[\\w- ;,./?%&=]*)?$", message = "A URL da imagem do carro é inválida.")
     @Column(nullable = false)
     private String image;
 
     @NotBlank(message = "A descrição do carro é obrigatória.")
-    @Column(nullable = false)
+    @Size(max = 200, message = "A descrição do carro deve ter no máximo 200 caracteres.")
+    @Column(nullable = false, length = 200)
     private String title;
 
     @NotNull(message = "A pagina do carro é obrigatória.")

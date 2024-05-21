@@ -3,10 +3,7 @@ package br.com.lux.domain.sales;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,5 +51,6 @@ public class Sales
 
     @NotNull(message = "Preço de venda é obrigatório.")
     @Column(precision = 10, scale = 2)
+    @DecimalMin(value = "0.0", inclusive = false, message = "O preço de venda deve ser maior que zero.")
     private BigDecimal precovenda;
 }
