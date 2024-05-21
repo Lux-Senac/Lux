@@ -38,7 +38,6 @@ public class ReservationServiceImp implements ReservationService
         try
         {
             Reservation reservation = new Reservation();
-
             reservation.setClient(client);
             reservation.setCar(car);
             reservation.setDatareserva(LocalDate.from(LocalDateTime.now()));
