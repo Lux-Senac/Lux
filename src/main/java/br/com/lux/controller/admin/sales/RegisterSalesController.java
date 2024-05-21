@@ -72,12 +72,13 @@ public class RegisterSalesController
     @PostMapping
     public String registerSalesPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+
         if (bindingResult.hasErrors())
         {
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("cars", carService.findCarAll());
             model.addAttribute("clients", clientService.findAllClients());
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/sales/registersales";
         }
