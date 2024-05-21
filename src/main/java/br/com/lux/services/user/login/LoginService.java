@@ -96,7 +96,7 @@ public class LoginService implements UserService
                 return Optional.of(user);
             }
         }
-        catch (Exception e)
+        catch (DataIntegrityViolationException e)
         {
             throw new ServiceException("Erro ao criar usuário! " + e.getMessage());
         }
@@ -116,7 +116,7 @@ public class LoginService implements UserService
                 userRepository.save(user);
             }
         }
-        catch (Exception e)
+        catch (DataIntegrityViolationException e)
         {
             throw new ServiceException("Erro ao alterar id do cliente! " + e.getMessage());
         }
@@ -268,7 +268,7 @@ public class LoginService implements UserService
 
             userRepository.save(user);
         }
-        catch (Exception e)
+        catch (DataIntegrityViolationException e)
         {
             throw new ServiceException("Erro ao redefinir senha! " + e.getMessage());
         }

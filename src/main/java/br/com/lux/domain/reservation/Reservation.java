@@ -37,7 +37,6 @@ public class Reservation implements Serializable
     @Column(nullable = false)
     private ReservationType tiporeserva;
 
-    @NotNull(message = "Data de início da reserva é obrigatória.")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationStatus statusreserva;
