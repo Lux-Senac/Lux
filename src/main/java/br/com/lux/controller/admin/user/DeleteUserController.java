@@ -2,6 +2,7 @@ package br.com.lux.controller.admin.user;
 
 import br.com.lux.services.user.UserService;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +29,8 @@ public class DeleteUserController
         {
             if(id == null && id == 1)
             {
+                redirectAttributes.addAttribute("error", "Não é possível deletar o usuário administrador.");
+
                 return "redirect:/admin/all-users";
             }
 
@@ -35,9 +38,15 @@ public class DeleteUserController
 
             return "redirect:/admin/all-users";
         }
-        catch (Exception e)
+        catch (ServiceException e)
         {
             redirectAttributes.addAttribute("error", e.getMessage());
+
+            return "redirect:/admin/all-users";
+        }
+        catch (Exception e)
+        {
+            redirectAttributes.addAttribute("error", "Erro ao deletar usuário. Tente novamente.");
 
             return "redirect:/admin/all-users";
         }
