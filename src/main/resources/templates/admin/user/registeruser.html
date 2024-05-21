@@ -144,7 +144,7 @@
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 <script src="/login/validation.js"></script>
 
-<input th:if="${message != null}" type="hidden" id="error" th:value="${message}">
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

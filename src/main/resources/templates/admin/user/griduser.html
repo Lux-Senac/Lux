@@ -156,20 +156,36 @@
 <script>
     function deleteCar(link) {
         const carId = link.getAttribute('href').split('=')[1];
-        fetch('/admin/delete-user?id=' + carId, {
-            method: 'DELETE'
-        })
-            .then(response => {
-                if (response.status >= 200 || response.status <= 399) {
-                    location.reload();
-                } else {
-                    console.error('Erro ao excluir carro.');
-                }
+        let confirmDelete = confirm("Tem certeza de que deseja excluir?");
+        if (confirmDelete) {
+            fetch('/admin/delete-user?id=' + carId, {
+                method: 'DELETE'
             })
-            .catch(error => {
-                console.error('Erro na requisição DELETE:', error);
-            });
+                .then(response => {
+                    if (response.status >= 200 || response.status <= 399) {
+                        location.reload();
+                    } else {
+                        console.error('Erro ao excluir carro.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição DELETE:', error);
+                });
+        }
     }
+</script>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
 </script>
 
 </body>

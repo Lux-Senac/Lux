@@ -1,8 +1,9 @@
 package br.com.lux.controller.admin.user;
 
 import br.com.lux.domain.user.User;
-
 import br.com.lux.services.user.UserService;
+import br.com.lux.services.exception.ServiceException;
+
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -50,10 +51,9 @@ public class RegisterUserController
             try
             {
                 userService.createUserAdmin(users);
-
                 return "redirect:/admin/all-users";
             }
-            catch (SecurityException e)
+            catch (ServiceException e)
             {
                 model.addAttribute("error", e.getMessage());
                 return "admin/user/registeruser";
