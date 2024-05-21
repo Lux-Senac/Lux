@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.car;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -16,8 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/all-cars")
-public class AllCarController
-{
+public class AllCarController {
     @Autowired
     private final CarService carService;
 
@@ -30,7 +30,6 @@ public class AllCarController
     {
         List<Car> cars = carService.findCarAll();
         model.addAttribute("cars", cars);
-
         return "admin/car/gridcar";
     }
 }

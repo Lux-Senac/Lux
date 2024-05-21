@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.*;
 
 import java.security.SecureRandom;
 
+
 public class PasswordUtils {
 
     public static String encryptPassword(String password) {

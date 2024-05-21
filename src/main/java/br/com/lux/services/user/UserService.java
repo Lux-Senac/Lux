@@ -3,10 +3,12 @@ package br.com.lux.services.user;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface UserService
 {
     Optional<User> authenticate(String email, String password);

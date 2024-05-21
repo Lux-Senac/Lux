@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.car;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -37,15 +38,31 @@ public class RegisterCarController
     }
 
     @PostMapping
-    public String registerCarPost(@Valid @ModelAttribute Car car, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerCarPost(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult, HttpSession session, Model model)
     {
         if (bindingResult.hasErrors())
         {
             return "admin/car/registercar";
         }
+        else
+        {
+            try
+            {
+                carService.registerCar(car);
 
-        carService.registerCar(car);
+                return "redirect:/admin/all-cars";
+            }
+            catch (ServiceException e)
+            {
+                model.addAttribute("error", e.getMessage());
+                return "admin/car/registercar";
+            }
+            catch (Exception e)
+            {
+                model.addAttribute("error", "Erro inesperado. Tente novamente.");
 
-        return "redirect:/admin/all-cars";
+                return "admin/car/registercar";
+            }
+        }
     }
 }

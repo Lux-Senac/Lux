@@ -5,6 +5,7 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
 
+import br.com.lux.services.exception.ServiceException;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -25,25 +26,41 @@ public class EditCarController
         this.carService = carService;
     }
 
-    @RequestMapping
-    @GetMapping()
+    @GetMapping
     public String editarCarGet(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        if (id == null)
+        model.addAttribute("user", session.getAttribute("user"));
+
+        try
         {
+            if (id == null)
+            {
+                return "redirect:/admin/all-cars";
+            }
+
+            Car car = carService.findCarById(id);
+
+            if(car == null)
+            {
+                return "redirect:/admin/all-cars";
+            }
+
+            model.addAttribute("car", car);
+
+            return "admin/car/uptadecar";
+        }
+        catch(ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+
             return "redirect:/admin/all-cars";
         }
-
-        Car car = carService.findCarById(id);
-
-        if(car == null)
+        catch (Exception e)
         {
+            model.addAttribute("error", "Erro ao buscar carro");
+
             return "redirect:/admin/all-cars";
         }
-
-        model.addAttribute("car", car);
-
-        return "admin/car/uptadecar";
     }
 
     @PostMapping()
@@ -54,9 +71,27 @@ public class EditCarController
         {
             return "admin/car/uptadecar";
         }
+        else
+        {
+            try
+            {
+                carService.registerCar(car);
 
-        carService.registerCar(car);
+                return "redirect:/admin/all-cars";
+            }
+            catch (ServiceException e)
+            {
+                model.addAttribute("error", e.getMessage());
 
-        return "redirect:/admin/all-cars";
+                return "admin/car/uptadecar";
+            }
+            catch (Exception e)
+            {
+                model.addAttribute("error", "Erro inesperado. Tente novamente.");
+
+                return "admin/car/uptadecar";
+            }
+        }
+
     }
 }

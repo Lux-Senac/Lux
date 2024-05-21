@@ -1,9 +1,11 @@
 package br.com.lux.services.client;
 
 import br.com.lux.domain.client.Client;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ClientService
 {
     Client registerClient(Client client);

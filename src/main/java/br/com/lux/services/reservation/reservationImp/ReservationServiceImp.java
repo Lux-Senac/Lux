@@ -6,9 +6,11 @@ import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.reservation.ReservationStatus;
 import br.com.lux.domain.reservation.ReservationType;
 import br.com.lux.repository.reservation.ReservationRepository;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.reservation.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,12 +32,12 @@ public class ReservationServiceImp implements ReservationService
     }
 
     @Override
+    @Transactional
     public void registerReservation(Client client, Car car, ReservationType testDrive)
     {
         try
         {
             Reservation reservation = new Reservation();
-
             reservation.setClient(client);
             reservation.setCar(car);
             reservation.setDatareserva(LocalDate.from(LocalDateTime.now()));
@@ -44,42 +46,94 @@ public class ReservationServiceImp implements ReservationService
 
             reservationRepository.save(reservation);
         }
-        catch (Exception e)
+        catch(DataIntegrityViolationException e)
         {
-            System.out.println("Erro ao registrar reserva: " + e.getMessage());
+            throw new ServiceException("Erro ao registrar reserva! " + e.getMessage());
         }
     }
 
     @Override
+    @Transactional
     public void registerReservation(Reservation reservation)
     {
-        reservationRepository.save(reservation);
+        try
+        {
+            if(reservation.getDatareserva() == null)
+                reservation.setDatareserva(LocalDate.from(LocalDateTime.now()));
+
+            if(reservation.getStatusreserva() == null)
+                throw new ServiceException("Status da reserva é obrigatório!");
+
+            if(reservation.getTiporeserva() == null)
+                throw new ServiceException("Tipo de reserva é obrigatório!");
+
+            if(reservation.getClient() == null)
+                throw new ServiceException("Cliente é obrigatório!");
+
+            if(reservation.getCar() == null)
+                throw new ServiceException("Carro é obrigatório!");
+
+            reservationRepository.save(reservation);
+        }
+        catch(DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao registrar reserva! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Reservation> findAllReservations()
     {
-        return reservationRepository.findAll();
+        try
+        {
+            return reservationRepository.findAll();
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar todas as reservas! " + e.getMessage());
+        }
     }
 
     @Override
+    @Transactional
     public void deleteReservation(Integer id)
     {
-        reservationRepository.deleteById(id);
+        try
+        {
+            reservationRepository.deleteById(id);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao deletar reserva! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Reservation findReservationById(Integer id)
     {
-        return reservationRepository.findById(id).orElse(null);
+        try
+        {
+            return reservationRepository.findById(id).orElse(null);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar reserva por id! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public long countByStatusreserva(ReservationStatus statusreserva)
     {
-        return reservationRepository.countByStatusreserva(statusreserva);
+        try
+        {
+            return reservationRepository.countByStatusreserva(statusreserva);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao contar reservas por status! " + e.getMessage());
+        }
     }
 }

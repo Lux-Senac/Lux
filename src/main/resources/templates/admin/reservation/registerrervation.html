@@ -54,7 +54,7 @@
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_car">Carro:</label>
-                            <select class="custom-select mr-sm-2" id="id_car" required th:field="*{car.id}">
+                            <select class="custom-select mr-sm-2" id="id_car" th:field="*{car.id}">
                                 <option value="">Selecione um Carro</option>
                                 <option th:each="car : ${cars}"
                                         th:value="${car.id}"
@@ -65,7 +65,7 @@
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_client">Cliente:</label>
-                            <select class="custom-select mr-sm-2" id="id_client" required th:field="*{client.id}">
+                            <select class="custom-select mr-sm-2" id="id_client" th:field="*{client.id}">
                                 <option value="">Selecione um Cliente</option>
                                 <option th:each="clientt : ${clients}"
                                         th:value="${clientt.id}"
@@ -78,7 +78,7 @@
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_client">Tipo da Reserva:</label>
-                            <select class="custom-select mr-sm-2" id="tiporeserva" required th:field="*{tiporeserva}">
+                            <select class="custom-select mr-sm-2" id="tiporeserva" th:field="*{tiporeserva}">
                                 <option value="">Selecione o tipo de reserva</option>
                                 <option th:each="type : ${T(br.com.lux.domain.reservation.ReservationType).values()}"
                                         th:value="${type}" th:text="${type}"></option>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_client">Status da Reserva:</label>
-                            <select class="custom-select mr-sm-2" id="statusreserva" required th:field="*{statusreserva}">
+                            <select class="custom-select mr-sm-2" id="statusreserva" th:field="*{statusreserva}">
                                 <option value="">Selecione o status da reserva</option>
                                 <option th:each="status : ${T(br.com.lux.domain.reservation.ReservationStatus).values()}"
                                         th:value="${status}" th:text="${status}"></option>
@@ -99,7 +99,7 @@
                     <div class="col-sm-3 mb-5 mb-sm-0">
                         <label for="datareserva">Data da Reserva:</label>
                         <input type="date" class="form-control form-text" id="datareserva"
-                               placeholder="Digite o a data da reversa" required th:field="*{datareserva}">
+                               placeholder="Digite o a data da reversa" th:field="*{datareserva}">
                         <span class="text-danger" th:if="${#fields.hasErrors('datareserva')}" th:errors="*{datareserva}"></span>
                     </div>
 
@@ -150,6 +150,20 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
+</script>
 
 </body>
 

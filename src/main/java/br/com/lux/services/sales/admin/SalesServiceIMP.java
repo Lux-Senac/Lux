@@ -1,13 +1,17 @@
 package br.com.lux.services.sales.admin;
 
-
 import br.com.lux.domain.car.CarPageType;
 import br.com.lux.domain.sales.Sales;
+import br.com.lux.domain.user.User;
 import br.com.lux.repository.sales.SalesRepository;
+import br.com.lux.repository.user.UserRepository;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.sales.SalesService;
 
+import br.com.lux.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,100 +22,185 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-
-
 @Service
 public class SalesServiceIMP implements SalesService {
 
     @Autowired
     private final SalesRepository salesRepository;
 
-    public SalesServiceIMP(SalesRepository salesRepository) {
+    @Autowired
+    private final UserRepository userRepository;
+
+    public SalesServiceIMP(SalesRepository salesRepository, UserRepository userRepository)
+    {
         this.salesRepository = salesRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public SequencedCollection<Object[]> findSalesByName(String carNameFilter) {
-        List<Object[]> salesData = salesRepository.findCarSalesDetails();
-        List<Object[]> filteredSales = new ArrayList<>();
-        for (Object[] sale : salesData) {
-            CarPageType carPageType = (CarPageType) sale[0];
-            if (carPageType.name().contains(carNameFilter)) {
-                filteredSales.add(sale);
+    public SequencedCollection<Object[]> findSalesByName(String carNameFilter)
+    {
+        try
+        {
+            List<Object[]> salesData = salesRepository.findCarSalesDetails();
+            List<Object[]> filteredSales = new ArrayList<>();
+            for (Object[] sale : salesData) {
+                CarPageType carPageType = (CarPageType) sale[0];
+                if (carPageType.name().contains(carNameFilter)) {
+                    filteredSales.add(sale);
+                }
             }
+            return filteredSales;
         }
-        return filteredSales;
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar vendas por nome! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Object[]> findTotalSalesPerCarModel()
     {
-        List<Object[]> salesData = salesRepository.findTotalSalesPerCarModel();
+        try
+        {
+            List<Object[]> salesData = salesRepository.findTotalSalesPerCarModel();
 
-        Map<String, Integer> salesMap = new HashMap<>();
-        for (Object[] row : salesData) {
-            CarPageType carPageType = (CarPageType) row[0];
-            salesMap.put(carPageType.name(), ((Long) row[1]).intValue());
+            Map<String, Integer> salesMap = new HashMap<>();
+            for (Object[] row : salesData) {
+                CarPageType carPageType = (CarPageType) row[0];
+                salesMap.put(carPageType.name(), ((Long) row[1]).intValue());
+            }
+
+            return salesData;
         }
-
-        return salesData;
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar total de vendas por modelo de carro! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Sales> findSaleAll()
     {
-        return salesRepository.findAll();
+        try
+        {
+            return salesRepository.findAll();
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar todas as vendas! " + e.getMessage());
+        }
     }
 
+    @Override
+    @Transactional
     public void registerSale(Sales sales)
     {
-        salesRepository.save(sales);
+        try
+        {
+            if(sales == null)
+                throw new ServiceException("Venda inválida!");
+
+            if(sales.getCarro().getId() == null)
+                throw new ServiceException("Selecionar um carro é obrigatório!");
+
+            if(sales.getCliente().getId() == null)
+                throw new ServiceException("Selecionar um cliente é obrigatório!");
+
+            if(sales.getUsuario().getId() == null)
+                throw new ServiceException("Selecionar um usuário é obrigatório!");
+
+            User user = userRepository.findById(sales.getUsuario().getId()).orElse(null);
+            if(user == null)
+                throw new ServiceException("Usuário inválido!");
+
+            if(user.getTipo().name() != "ADMIN")
+                throw new ServiceException("Apenas usuários administradores podem registrar vendas!");
+
+            salesRepository.save(sales);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao registrar venda! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Sales findSalesById(Integer id)
     {
-        return salesRepository.findById(id).orElse(null);
+        try
+        {
+            return salesRepository.findById(id).orElse(null);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar venda por id! " + e.getMessage());
+        }
     }
 
     @Override
+    @Transactional
     public void deleteSales(Integer id)
     {
-        salesRepository.deleteById(id);
+        try
+        {
+            if (id == null)
+                throw new ServiceException("Id inválido!");
+
+            salesRepository.deleteById(id);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao deletar venda por id! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public BigDecimal monthlyEarnings()
     {
-        Date data = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        try
+        {
+            Date data = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        return salesRepository.ganhosMensais(data);
+            return salesRepository.ganhosMensais(data);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar ganhos mensais! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Map<String, BigDecimal> getMonthlyEarningsForYear()
     {
-        int currentYear = LocalDate.now().getYear();
+        try
+        {
+            int currentYear = LocalDate.now().getYear();
 
-        List<Sales> salesForYear = salesRepository.findByDatavendaBetween(
-                Date.from(LocalDate.of(currentYear, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                Date.from(LocalDate.of(currentYear, 12, 31).atStartOfDay(ZoneId.systemDefault()).toInstant())
-        );
+            List<Sales> salesForYear = salesRepository.findByDatavendaBetween(
+                    Date.from(LocalDate.of(currentYear, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                    Date.from(LocalDate.of(currentYear, 12, 31).atStartOfDay(ZoneId.systemDefault()).toInstant())
+            );
 
-        Map<String, BigDecimal> monthlyEarningsMap = new HashMap<>();
-        for (Sales sale : salesForYear) {
-            String month = new SimpleDateFormat("MMMM").format(sale.getDatavenda());
-            BigDecimal earnings = sale.getPrecovenda();
+            Map<String, BigDecimal> monthlyEarningsMap = new HashMap<>();
+            for (Sales sale : salesForYear) {
+                String month = new SimpleDateFormat("MMMM").format(sale.getDatavenda());
+                BigDecimal earnings = sale.getPrecovenda();
 
-            monthlyEarningsMap.put(month, monthlyEarningsMap.getOrDefault(month, BigDecimal.ZERO).add(earnings));
+                monthlyEarningsMap.put(month, monthlyEarningsMap.getOrDefault(month, BigDecimal.ZERO).add(earnings));
+            }
+
+            return monthlyEarningsMap;
         }
-
-        return monthlyEarningsMap;
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar ganhos mensais por ano! " + e.getMessage());
+        }
     }
 }

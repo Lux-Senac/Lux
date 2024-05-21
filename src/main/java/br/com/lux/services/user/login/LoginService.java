@@ -5,13 +5,14 @@ import br.com.lux.domain.user.User;
 import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.email.Email;
 import br.com.lux.services.email.EmailService;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.gravatar.GravatarService;
 import br.com.lux.services.user.UserService;
 import br.com.lux.domain.user.UserType;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,103 +39,177 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<User> findAllUsers()
     {
-        return userRepository.findAll();
+        try
+        {
+            return userRepository.findAll();
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os usuários! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Optional<User> authenticate(String email, String password)
     {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-
-        if(optionalUser.isPresent() && PasswordUtils.checkPassword(password, optionalUser.get().getPassword()))
-            return Optional.of(optionalUser.get());
-
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> createUser(User user)
-    {
-        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
-
-        if (existingUser.isPresent())
+        try
         {
+            Optional<User> optionalUser = userRepository.findByEmail(email);
+
+            if(optionalUser.isPresent() && PasswordUtils.checkPassword(password, optionalUser.get().getPassword()))
+                return Optional.of(optionalUser.get());
+
             return Optional.empty();
         }
-        else
+        catch (Exception e)
         {
-            String urlAvatar = gravatarService.getGravatarUrl(user.getEmail().toLowerCase());
-            user.setUrlavatar(urlAvatar);
-            user.setTipo(UserType.CLIENTE);
-            user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
-
-            userRepository.save(user);
-
-            return Optional.of(user);
+            throw new ServiceException("Erro ao autenticar usuário! " + e.getMessage());
         }
     }
 
     @Override
+    @Transactional
+    public Optional<User> createUser(User user)
+    {
+        try
+        {
+            Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+
+            if (existingUser.isPresent())
+            {
+                return Optional.empty();
+            }
+            else
+            {
+                String urlAvatar = gravatarService.getGravatarUrl(user.getEmail().toLowerCase());
+
+                user.setUrlavatar(urlAvatar);
+                user.setTipo(UserType.CLIENTE);
+                user.setPassword(PasswordUtils.encryptPassword(user.getPassword()));
+
+                userRepository.save(user);
+
+                return Optional.of(user);
+            }
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao criar usuário! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
     public void changeClientId(Integer id, Client client)
     {
-        Optional<User> optionalUser = userRepository.findById(id);
-
-        if(optionalUser.isPresent())
+        try
         {
-            User user = optionalUser.get();
-            user.setCliente(client);
-            userRepository.save(user);
+            Optional<User> optionalUser = userRepository.findById(id);
+            if(optionalUser.isPresent())
+            {
+                User user = optionalUser.get();
+                user.setCliente(client);
+                userRepository.save(user);
+            }
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao alterar id do cliente! " + e.getMessage());
         }
     }
 
     @Override
+    @Transactional
     public void deleteById(Integer id)
     {
-        userRepository.deleteById(id);
+       try
+       {
+            if (id == null || id == 1)
+                throw new ServiceException("Id inválido!");
+
+            userRepository.deleteById(id);
+       }
+       catch (ServiceException e)
+       {
+            throw new ServiceException("Erro ao deletar usuário por id! " + e.getMessage());
+       }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public User findById(Integer id)
     {
-        return userRepository.findById(id).orElse(null);
+        try
+        {
+            if (id == null)
+                throw new ServiceException("Id inválido!");
+
+            return userRepository.findById(id).orElse(null);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar usuário por id! " + e.getMessage());
+        }
     }
 
     @Override
+    @Transactional
     public void createUserAdmin(User user)
     {
-        if(user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
-            user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
+        try
+        {
+            if (userRepository.findByEmail(user.getEmail()).isPresent() && user.getId() == null)
+                throw new ServiceException("Já existe um usuário com este email!");
 
-        if(user.getTipo() == null)
-            user.setTipo(UserType.CLIENTE);
+            if (userRepository.findByUsername(user.getUsername()).isPresent() && user.getId() == null)
+                throw new ServiceException("Já existe um usuário com este username!");
 
-        if(user.getId() == 1)
-            user.setTipo(UserType.ADMIN);
+            if (user.getUrlavatar() == null || user.getUrlavatar().isEmpty())
+                user.setUrlavatar(gravatarService.getGravatarUrl(user.getEmail().toLowerCase()));
 
+            if (user.getTipo() == null)
+                user.setTipo(UserType.CLIENTE);
 
-        userRepository.save(user);
+            if (user.getId() != null)
+                if (user.getId() == 1)
+                    user.setTipo(UserType.ADMIN);
+
+            userRepository.save(user);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao criar usuário! + " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public String validarEmail(String email)
     {
-        if(email == null || email.isBlank())
-            return "Email inválido!";
+        try
+        {
+            if(email == null || email.isBlank())
+                return "Email inválido!";
 
-        Optional<User> optionalUser = userRepository.findByEmail(email);
+            Optional<User> optionalUser = userRepository.findByEmail(email);
 
-        if(optionalUser.isEmpty())
-            return "Email não cadastrado!";
+            if(optionalUser.isEmpty())
+                return "Email não cadastrado!";
 
-        return "null";
+            return "null";
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao validar email! " + e.getMessage());
+        }
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void enviarCodigoVerificacao(String email, HttpSession session)
     {
         try
@@ -151,32 +226,51 @@ public class LoginService implements UserService
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            throw new ServiceException("Erro ao enviar código de verificação! " + e.getMessage());
         }
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public boolean validarCodigoVerificacao(String email, String codigo, HttpSession session)
     {
-        String codigoSalvo = (String) session.getAttribute(email + "_verification_code_");
-
-        if (codigo.equals(codigoSalvo))
+        try
         {
-            session.removeAttribute(email + "_verification_code_");
-            return true;
-        }
+            String codigoSalvo = (String) session.getAttribute(email + "_verification_code_");
 
-        return false;
+            if (codigo.equals(codigoSalvo))
+            {
+                session.removeAttribute(email + "_verification_code_");
+                return true;
+            }
+
+            return false;
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao validar código de verificação! " + e.getMessage());
+        }
     }
 
     @Override
+    @Transactional
     public void redefinirSenha(String email, String novaSenha)
     {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado com o email: " + email));
+        try
+        {
+            Optional<User> optionalUser = userRepository.findByEmail(email);
 
-        user.setPassword(PasswordUtils.encryptPassword(novaSenha));
+            if (userRepository.findByEmail(email).isEmpty())
+                throw new ServiceException("Email não cadastrado!");
 
-        userRepository.save(user);
+            User user = optionalUser.get();
+            user.setPassword(PasswordUtils.encryptPassword(novaSenha));
+
+            userRepository.save(user);
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao redefinir senha! " + e.getMessage());
+        }
     }
 }

@@ -2,6 +2,7 @@ package br.com.lux.controller.admin.sales;
 
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.sales.SalesService;
 
 import jakarta.servlet.http.HttpSession;
@@ -18,9 +19,11 @@ import java.util.List;
 @RequestMapping("/admin/all-sales")
 public class AllSalesController
 {
+
     @Autowired
     private final SalesService saleService;
 
+    @Autowired
     public AllSalesController(SalesService saleService) {
         this.saleService = saleService;
     }
@@ -28,9 +31,24 @@ public class AllSalesController
     @GetMapping
     public String allSales(Model model, HttpSession session)
     {
-        List<Sales> sales = saleService.findSaleAll();
-        model.addAttribute("sales", sales);
+        try
+        {
+            List<Sales> sales = saleService.findSaleAll();
+            model.addAttribute("sales", sales);
 
-        return "admin/sales/gridSales";
+            return "admin/sales/gridSales";
+        }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("sales", new Sales());
+            return "admin/sales/gridSales";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao buscar vendas!");
+            model.addAttribute("sales", new Sales());
+            return "admin/sales/gridSales";
+        }
     }
 }

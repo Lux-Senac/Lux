@@ -52,18 +52,18 @@
 
                 <form class="user" th:action="@{/admin/edit-client(id=${clients.id})}" th:object="${clients}" method="post" enctype="multipart/form-data" onsubmit="return validarFormulario();">
 
-                    <input type="hidden" class="form-control form-text" id="id" placeholder="Digite o nome" readonly th:field="*{id}">
+                    <input type="hidden" id="id" th:field="*{id}">
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label class="mr-sm-2" for="id">Nome:</label>
                         <input type="text" class="form-control form-text" id="name"
-                               placeholder="" readonly th:field="*{nome}">
+                               placeholder=""  th:field="*{nome}">
                         <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label class="mr-sm-2" for="id">Sobrenome:</label>
                         <input type="text" class="form-control form-text" id="sobrenome"
-                               placeholder="" readonly th:field="*{sobrenome}">
+                               placeholder=""  th:field="*{sobrenome}">
                         <span class="text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -145,6 +145,20 @@
 <!-- Custom scripts for all pages-->
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
+</script>
 
 </body>
 

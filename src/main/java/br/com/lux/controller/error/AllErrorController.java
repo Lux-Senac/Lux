@@ -17,7 +17,8 @@ public class AllErrorController implements ErrorController
     {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
-        if (status != null) {
+        if (status != null)
+        {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.NOT_FOUND.value())

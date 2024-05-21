@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.reservation;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.reservation.ReservationService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -27,22 +28,34 @@ public class EditReservationController
     @GetMapping
     public String editReservation(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        if(id == null)
+        try
         {
+            if(id == null)
+            {
+                return "redirect:/admin/all-reservation";
+            }
+
+            Reservation reservation = reservationService.findReservationById(id);
+
+            if(reservation == null)
+            {
+                return "redirect:/admin/all-reservation";
+            }
+
+            model.addAttribute("reservation", reservation);
+
+            return "admin/reservation/updatereservation";
+        }
+        catch(ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
             return "redirect:/admin/all-reservation";
         }
-
-        Reservation reservation = reservationService.findReservationById(id);
-
-        if(reservation == null)
+        catch (Exception e)
         {
+            model.addAttribute("error", "Erro inesperado!");
             return "redirect:/admin/all-reservation";
         }
-
-        model.addAttribute("reservation", reservation);
-        model.addAttribute("user", session.getAttribute("user"));
-
-        return "admin/reservation/updatereservation";
     }
 
     @PostMapping
@@ -53,9 +66,24 @@ public class EditReservationController
         {
             return "admin/reservation/updatereservation";
         }
+        else
+        {
+            try
+            {
+                reservationService.registerReservation(reservation);
 
-        reservationService.registerReservation(reservation);
-
-        return "redirect:/admin/all-reservation";
+                return "redirect:/admin/all-reservation";
+            }
+            catch (ServiceException e)
+            {
+                model.addAttribute("error", e.getMessage());
+                return "admin/reservation/updatereservation";
+            }
+            catch (Exception e)
+            {
+                model.addAttribute("error", "Erro inesperado!");
+                return "admin/reservation/updatereservation";
+            }
+        }
     }
 }

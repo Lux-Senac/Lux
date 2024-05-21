@@ -2,6 +2,7 @@ package br.com.lux.controller.admin.reservation;
 
 import br.com.lux.domain.user.User;
 import br.com.lux.services.reservation.ReservationService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,8 +26,21 @@ public class AllReservationController
     @GetMapping
     public String allReservation(Model model, HttpSession session)
     {
-        model.addAttribute("reservations", reservationService.findAllReservations());
+        try
+        {
+            model.addAttribute("reservations", reservationService.findAllReservations());
 
-        return "admin/reservation/gridreservation";
+            return "admin/reservation/gridreservation";
+        }
+        catch(ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "admin/reservation/gridreservation";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro inesperado!");
+            return "admin/reservation/gridreservation";
+        }
     }
 }

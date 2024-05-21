@@ -54,7 +54,7 @@
                     <div class="form-group col-auto my-1">
                         <label for="name">Nome Do Carro:</label>
                         <input type="text" class="form-control form-text" id="name"
-                               placeholder="Digite o nome do Carro" required th:field="*{name}">
+                               placeholder="Digite o nome do Carro" th:field="*{name}">
                         <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                     </div>
 
@@ -62,13 +62,13 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="motor">Motor:</label>
                             <input type="text" class="form-control form-text"
-                                   id="motor" placeholder="Digite do motor" required th:field="*{motor}">
+                                   id="motor" placeholder="Digite do motor"  th:field="*{motor}">
                             <span class="text-danger" th:if="${#fields.hasErrors('motor')}" th:errors="*{motor}"></span>
                         </div>
                         <div class="col-sm-6">
                             <label for="cil">Cilindro:</label>
                             <input type="text" class="form-control form-text"
-                                   id="cil" placeholder="Digite o Cilindro" required th:field="*{cil}">
+                                   id="cil" placeholder="Digite o Cilindro"  th:field="*{cil}">
                             <span class="text-danger" th:if="${#fields.hasErrors('cil')}" th:errors="*{cil}"></span>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="acel">Aceleração:</label>
                             <input type="text" class="form-control form-text"
-                                   id="acel" placeholder="Digite a Aceleração" required th:field="*{acel}">
+                                   id="acel" placeholder="Digite a Aceleração"  th:field="*{acel}">
                             <span class="text-danger" th:if="${#fields.hasErrors('acel')}" th:errors="*{acel}"></span>
                         </div>
                         <div class="col-sm-6">
                             <label for="hp">Potência:</label>
                             <input type="text" class="form-control form-text"
-                                   id="hp" placeholder="Digite o Potência" required th:field="*{hp}">
+                                   id="hp" placeholder="Digite o Potência"  th:field="*{hp}">
                             <span class="text-danger" th:if="${#fields.hasErrors('hp')}" th:errors="*{hp}"></span>
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="torque">Torque:</label>
                             <input type="text" class="form-control form-text"
-                                   id="torque" placeholder="Digite o Torque" required th:field="*{torque}">
+                                   id="torque" placeholder="Digite o Torque"  th:field="*{torque}">
                             <span class="text-danger" th:if="${#fields.hasErrors('torque')}" th:errors="*{torque}"></span>
                         </div>
                         <div class="col-sm-6 mb-sm-0">
                             <label for="velmax">A Velocidade máxima:</label>
                             <input type="text" class="form-control form-text"
-                                   id="velmax" placeholder="Digite a Velocidade máxima" required th:field="*{velmax}">
+                                   id="velmax" placeholder="Digite a Velocidade máxima"  th:field="*{velmax}">
                             <span class="text-danger" th:if="${#fields.hasErrors('velmax')}" th:errors="*{velmax}"></span>
                         </div>
                     </div>
@@ -107,13 +107,13 @@
                         <div class="col-sm-6 mb-3 mb-sm-1">
                             <label for="doors">O numero de portas do carro:</label>
                             <input type="number" class="form-control form-text"
-                                   id="doors" placeholder="Digite o numero de Portas" required th:field="*{doors}">
+                                   id="doors" placeholder="Digite o numero de Portas"  th:field="*{doors}">
                             <span class="text-danger" th:if="${#fields.hasErrors('doors')}" th:errors="*{doors}"></span>
                         </div>
                         <div class="col-sm-6 mb-sm-1">
                             <label for="seats">O numero de assentos do carro:</label>
                             <input type="number" class="form-control form-text"
-                                   id="seats" placeholder="Digite o numero de assentos" required th:field="*{seats}">
+                                   id="seats" placeholder="Digite o numero de assentos"  th:field="*{seats}">
                             <span class="text-danger" th:if="${#fields.hasErrors('seats')}" th:errors="*{seats}"></span>
                         </div>
                     </div>
@@ -122,14 +122,14 @@
                         <div class="col-sm-6 mb-3 mb-sm-1">
                             <label for="val">Valor da válvula ou tipo da tração:</label>
                             <input type="text" class="form-control form-text"
-                                   id="val" placeholder="Coloquei o valor da válvula do carro ou tipo da tração." required
+                                   id="val" placeholder="Coloquei o valor da válvula do carro ou tipo da tração."
                                    th:field="*{val}">
                             <span class="text-danger" th:if="${#fields.hasErrors('val')}" th:errors="*{val}"></span>
                         </div>
                         <div class="col-sm-6 mb-sm-1">
                             <label for="price">O preço do carro:</label>
                             <input type="number" class="form-control form-text"
-                                   id="price" placeholder="Digite o preço do carro" required th:field="*{price}">
+                                   id="price" placeholder="Digite o preço do carro" th:field="*{price}">
                             <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
                         </div>
                     </div>
@@ -137,13 +137,13 @@
                     <div class="form-group col-auto my-1">
                         <label for="title">A descrição do carro:</label>
                         <input type="text" class="form-control form-text" id="title"
-                               placeholder="Digite a descrição" required th:field="*{title}">
+                               placeholder="Digite a descrição"  th:field="*{title}">
                         <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
 
                     <div class="form-group col-auto my-1">
                         <label class="mr-sm-2" for="page">Pagina do Carro:</label>
-                        <select class="custom-select mr-sm-2" id="page" required th:field="*{page}">
+                        <select class="custom-select mr-sm-2" id="page"  th:field="*{page}">
                             <option th:each="type : ${T(br.com.lux.domain.car.CarPageType).values()}"
                                     th:value="${type}" th:text="${type}" selected></option>
                         </select>
@@ -154,7 +154,7 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="image">A URL da imagem:</label>
                             <input type="text" class="form-control form-text"
-                                   id="image" placeholder="Coloque a URL da imagem" required
+                                   id="image" placeholder="Coloque a URL da imagem"
                                    oninput="updateImageSrc()" th:field="*{image}">
                             <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
                         </div>
@@ -220,6 +220,20 @@
     }
 </script>
 <script src="/login/validation.js"></script>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
+</script>
 </body>
 
 </html>

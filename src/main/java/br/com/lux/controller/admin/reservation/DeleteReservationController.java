@@ -1,6 +1,7 @@
 package br.com.lux.controller.admin.reservation;
 
 import br.com.lux.services.reservation.ReservationService;
+import br.com.lux.services.exception.ServiceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
