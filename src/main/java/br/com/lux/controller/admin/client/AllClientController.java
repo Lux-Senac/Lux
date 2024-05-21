@@ -25,9 +25,22 @@ public class AllClientController
     @GetMapping
     public String allClient(Model model, HttpSession session)
     {
-        model.addAttribute("clients", clientService.findAllClients());
-        model.addAttribute("user", session.getAttribute("user"));
+        try
+        {
+            model.addAttribute("clients", clientService.findAllClients());
+            model.addAttribute("user", session.getAttribute("user"));
 
-        return "admin/client/gridclient";
+            return "admin/client/gridclient";
+        }
+        catch(SecurityException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "admin/client/gridclient";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro inesperado!");
+            return "admin/client/gridclient";
+        }
     }
 }
