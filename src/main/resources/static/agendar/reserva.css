@@ -49,7 +49,7 @@ nav {
 
 .nav-itens>li>a {
     padding-left: 20px;
-    color: #202020;
+    color:  #202020;
     text-decoration: none;
     align-items: center;
     justify-content: center;
@@ -139,6 +139,7 @@ nav {
 .form-container input,
 .form-container select {
     padding: 10px;
+    width: 100%;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -299,4 +300,11 @@ button {
 
 .dropdown-content a:hover {
     background-color: #ddd;
+}
+
+input {
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #c6c7c6;
 }
