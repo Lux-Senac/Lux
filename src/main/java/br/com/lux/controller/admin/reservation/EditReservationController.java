@@ -51,8 +51,6 @@ public class EditReservationController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-
             return "admin/reservation/updatereservation";
         }
 
