@@ -41,8 +41,6 @@ public class AdminController
     @RequestMapping
     public String adminHome(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         model.addAttribute("totalDeCarros", carService.countCars());
 
         model.addAttribute("totalDeClientes", clientService.countClients());
