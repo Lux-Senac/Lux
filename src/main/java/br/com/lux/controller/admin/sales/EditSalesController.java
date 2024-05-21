@@ -51,7 +51,6 @@ public class EditSalesController
             return "redirect:/admin/all-sales";
         }
 
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("sales", sales);
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("clients", clientService.findAllClients());
@@ -64,7 +63,6 @@ public class EditSalesController
     {
         if(bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("clients", clientService.findAllClients());
 
