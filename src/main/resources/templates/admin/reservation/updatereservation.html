@@ -145,6 +145,21 @@
 <script src="/dashboard/js/sb-admin-2.min.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 <script src="/login/validation.js"></script>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
+</script>
+
 </body>
 
 </html>
