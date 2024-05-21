@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/all-clients")
-public class AllClientController
-{
+public class AllClientController {
     @Autowired
     private final ClientService clientService;
 
-    public AllClientController(ClientService clientService)
-    {
+    public AllClientController(ClientService clientService) {
         this.clientService = clientService;
     }
 
@@ -29,11 +27,10 @@ public class AllClientController
         try
         {
             model.addAttribute("clients", clientService.findAllClients());
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/client/gridclient";
         }
-        catch(ServiceException e)
+        catch (ServiceException e)
         {
             model.addAttribute("error", e.getMessage());
             return "admin/client/gridclient";
