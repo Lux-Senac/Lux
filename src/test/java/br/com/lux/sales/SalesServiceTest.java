@@ -2,6 +2,7 @@ package br.com.lux.sales;
 
 import br.com.lux.domain.car.CarPageType;
 import br.com.lux.repository.sales.SalesRepository;
+import br.com.lux.repository.user.UserRepository;
 import br.com.lux.services.sales.SalesService;
 import br.com.lux.services.sales.admin.SalesServiceIMP;
 
@@ -24,11 +25,14 @@ public class SalesServiceTest {
     @Mock
     private SalesRepository salesRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     private SalesService salesService;
 
     @Before
     public void setUp() {
-        salesService = new SalesServiceIMP(salesRepository);
+        salesService = new SalesServiceIMP(salesRepository, userRepository);
     }
 
     @Test
