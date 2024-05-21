@@ -30,7 +30,6 @@ public class AllCarController
     {
         List<Car> cars = carService.findCarAll();
         model.addAttribute("cars", cars);
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/gridcar";
     }
