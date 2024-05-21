@@ -260,6 +260,7 @@ button {
     cursor: pointer;
     display: flex;
     align-items: center;
+    width: 5vw;
 }
 
 .form-container label {
