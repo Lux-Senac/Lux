@@ -5,6 +5,7 @@ import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
 import br.com.lux.services.client.ClientService;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.sales.SalesService;
 import br.com.lux.services.user.UserService;
 
@@ -39,40 +40,66 @@ public class EditSalesController
     @GetMapping
     public String editSales(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        if(id == null)
+        try
         {
-            return "redirect:/admin/all-sales";
-        }
+            if(id == null)
+            {
+                return "redirect:/admin/all-sales";
+            }
 
-        Sales sales = salesService.findSalesById(id);
+            Sales sales = salesService.findSalesById(id);
 
-        if(sales == null)
-        {
-            return "redirect:/admin/all-sales";
-        }
+            if(sales == null)
+            {
+                return "redirect:/admin/all-sales";
+            }
 
-        model.addAttribute("user", session.getAttribute("user"));
-        model.addAttribute("sales", sales);
-        model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("clients", clientService.findAllClients());
-
-        return "admin/sales/updatesales";
-    }
-
-    @PostMapping
-    public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors())
-        {
             model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("sales", sales);
             model.addAttribute("users", userService.findAllUsers());
             model.addAttribute("clients", clientService.findAllClients());
 
             return "admin/sales/updatesales";
         }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "admin/sales/updatesales";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao editar venda! " + e.getMessage());
+            return "admin/sales/updatesales";
+        }
+    }
 
-        salesService.registerSale(sales);
+    @PostMapping
+    public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
+    {
+        try
+        {
+            if(bindingResult.hasErrors())
+            {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("users", userService.findAllUsers());
+                model.addAttribute("clients", clientService.findAllClients());
 
-        return "redirect:/admin/all-sales";
+                return "admin/sales/updatesales";
+            }
+
+            salesService.registerSale(sales);
+
+            return "redirect:/admin/all-sales";
+        }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "admin/sales/updatesales";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao editar venda! " + e.getMessage());
+            return "admin/sales/updatesales";
+        }
     }
 }
