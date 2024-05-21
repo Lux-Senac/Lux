@@ -42,7 +42,6 @@ public class EditCarController
         }
 
         model.addAttribute("car", car);
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/uptadecar";
     }
@@ -53,8 +52,6 @@ public class EditCarController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-
             return "admin/car/uptadecar";
         }
 
