@@ -3,7 +3,9 @@ package br.com.lux.domain.sales;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,10 +45,11 @@ public class Sales
     @JoinColumn(name = "id_user", referencedColumnName = "id")
     private User usuario;
 
-    @NotNull(message = "Data da venda é obrigatória.")
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "A data de venda não pode ser nula")
+    @PastOrPresent(message = "A data de venda não pode ser uma data futura")
     private Date datavenda;
 
     @NotNull(message = "Preço de venda é obrigatório.")
