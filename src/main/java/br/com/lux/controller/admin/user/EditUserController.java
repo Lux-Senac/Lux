@@ -55,7 +55,6 @@ public class EditUserController
             }
 
             model.addAttribute("users", user);
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/user/updateuser";
         }
@@ -75,8 +74,6 @@ public class EditUserController
     public String editUserPost(@Valid @ModelAttribute("users") User users,
                                BindingResult bindingResult, HttpSession session, Model model)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         try
         {
             if(bindingResult.hasErrors())
