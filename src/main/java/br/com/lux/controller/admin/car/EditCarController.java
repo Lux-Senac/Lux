@@ -69,8 +69,6 @@ public class EditCarController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-
             return "admin/car/uptadecar";
         }
         else
