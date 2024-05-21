@@ -39,7 +39,6 @@ public class RegisterReservationController
     @GetMapping
     public String createReservation(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("cars", carService.findCarAll());
         model.addAttribute("clients", clientService.findAllClients());
@@ -53,7 +52,6 @@ public class RegisterReservationController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("cars", carService.findCarAll());
             model.addAttribute("clients", clientService.findAllClients());
 
