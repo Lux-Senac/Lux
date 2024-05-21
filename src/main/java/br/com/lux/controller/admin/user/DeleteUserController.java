@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/admin/delete-user")
@@ -21,15 +22,24 @@ public class DeleteUserController
     }
 
     @DeleteMapping
-    public String deleteUser(@RequestParam("id") Integer id)
+    public String deleteUser(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes)
     {
-        if(id == null && id == 1)
+        try
         {
-            return "admin/user/allusers";
+            if(id == null && id == 1)
+            {
+                return "redirect:/admin/all-users";
+            }
+
+            userService.deleteById(id);
+
+            return "redirect:/admin/all-users";
         }
+        catch (Exception e)
+        {
+            redirectAttributes.addAttribute("error", e.getMessage());
 
-        userService.deleteById(id);
-
-        return "admin/user/deleteuser";
+            return "redirect:/admin/all-users";
+        }
     }
 }
