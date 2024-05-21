@@ -3,48 +3,15 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/cars/car.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <title>BYD Tan</title>
-
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 120px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -120,7 +87,7 @@
                 <h3>Aceleração: <span th:text="${car.acel}"></span></h3>
                 <h3>Velocidade Máxima: <span th:text="${car.velmax}"></span></h3>
                 <h3>Tração: <span th:text="${car.val}"></span></h3>
-    
+
                 <div class="car-img">
                     <img th:src="${car.image}" alt="${car.name}">
                 </div>
@@ -135,34 +102,38 @@
             </ul>
         </div>
     </div>
+
     <footer>
         <div class="secoes">
             <section class="informacoes">
                 <div class="info1">
-                    <li><a class="link3" th:href="@{/}">Home</a></li>
+                    <li><a class="link3" th:href="@{/home}">Home</a></li>
                 </div>
                 <div class="info2">
-                    <li><a class="link3" th:href="@{/find-all-cars}">Veículos</a></li>
+                    <li><a class="link3" th:href="@{/carros/find-all}">Veículos</a></li>
                 </div>
                 <div class="info3">
-                    <li><a class="link3" th:href="@{/Historia/historia}">Sobre</a></li>
+                    <li><a class="link3" th:href="@{/sobre}">Sobre</a></li>
                 </div>
             </section>
+
             <hr class="divisao">
+
             <section class="contato">
                 <ul class="redes-sociais">
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" class="redes-sociais"><i class='bx bxl-instagram'></i></a>
                 </ul>
                 <ul class="redes-sociais">
-                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#" class="redes-sociais"><i class='bx bxl-github'></i></a>
                 </ul>
                 <ul class="redes-sociais">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="redes-sociais"><i class='bx bxl-facebook'></i></a>
                 </ul>
                 <ul class="redes-sociais">
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" class="redes-sociais"><i class='bx bxl-twitter'></i></a>
                 </ul>
             </section>
+
             <section class="creditos">
                 <p>© LUX</p>
             </section>
