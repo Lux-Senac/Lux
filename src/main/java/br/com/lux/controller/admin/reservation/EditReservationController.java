@@ -28,8 +28,6 @@ public class EditReservationController
     @GetMapping
     public String editReservation(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         try
         {
             if(id == null)
@@ -64,8 +62,6 @@ public class EditReservationController
     public String editReservationPost(@Valid @ModelAttribute Reservation reservation, Model model,
                                       HttpSession session, BindingResult bindingResult)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         if (bindingResult.hasErrors())
         {
             return "admin/reservation/updatereservation";
