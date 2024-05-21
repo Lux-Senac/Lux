@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.reservation;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.reservation.ReservationService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -47,7 +48,7 @@ public class EditReservationController
 
             return "admin/reservation/updatereservation";
         }
-        catch(SecurityException e)
+        catch(ServiceException e)
         {
             model.addAttribute("error", e.getMessage());
             return "redirect:/admin/all-reservation";
@@ -77,7 +78,7 @@ public class EditReservationController
 
                 return "redirect:/admin/all-reservation";
             }
-            catch (SecurityException e)
+            catch (ServiceException e)
             {
                 model.addAttribute("error", e.getMessage());
                 return "admin/reservation/updatereservation";

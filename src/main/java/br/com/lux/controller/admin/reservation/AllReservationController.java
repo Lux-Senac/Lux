@@ -2,6 +2,7 @@ package br.com.lux.controller.admin.reservation;
 
 import br.com.lux.domain.user.User;
 import br.com.lux.services.reservation.ReservationService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,7 +33,7 @@ public class AllReservationController
 
             return "admin/reservation/gridreservation";
         }
-        catch(SecurityException e)
+        catch(ServiceException e)
         {
             model.addAttribute("error", e.getMessage());
             return "admin/reservation/gridreservation";

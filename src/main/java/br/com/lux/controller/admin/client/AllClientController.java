@@ -1,6 +1,7 @@
 package br.com.lux.controller.admin.client;
 
 import br.com.lux.services.client.ClientService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,7 +33,7 @@ public class AllClientController
 
             return "admin/client/gridclient";
         }
-        catch(SecurityException e)
+        catch(ServiceException e)
         {
             model.addAttribute("error", e.getMessage());
             return "admin/client/gridclient";

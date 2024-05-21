@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.car;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.user.User;
 import br.com.lux.services.car.CarService;
+import br.com.lux.services.exception.ServiceException;
 
 import jakarta.servlet.http.HttpSession;
 
