@@ -33,10 +33,12 @@ public class Reservation implements Serializable
     @JoinColumn(name = "id_client", nullable = false)
     private Client client;
 
+    @NotBlank(message = "Tipo da reserva é obrigatório")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationType tiporeserva;
 
+    @NotBlank(message = "Status da reserva é obrigatório")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ReservationStatus statusreserva;
