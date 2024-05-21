@@ -24,7 +24,6 @@ public class AllClientController
     public String allClient(Model model, HttpSession session)
     {
         model.addAttribute("clients", clientService.findAllClients());
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/client/gridclient";
     }
