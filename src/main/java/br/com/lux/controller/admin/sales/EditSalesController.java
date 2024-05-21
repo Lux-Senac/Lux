@@ -40,6 +40,10 @@ public class EditSalesController
     @GetMapping
     public String editSales(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("clients", clientService.findAllClients());
+
         try
         {
             if(id == null)
@@ -54,10 +58,7 @@ public class EditSalesController
                 return "redirect:/admin/all-sales";
             }
 
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("sales", sales);
-            model.addAttribute("users", userService.findAllUsers());
-            model.addAttribute("clients", clientService.findAllClients());
 
             return "admin/sales/updatesales";
         }
@@ -76,14 +77,14 @@ public class EditSalesController
     @PostMapping
     public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("clients", clientService.findAllClients());
+
         try
         {
             if(bindingResult.hasErrors())
             {
-                model.addAttribute("user", session.getAttribute("user"));
-                model.addAttribute("users", userService.findAllUsers());
-                model.addAttribute("clients", clientService.findAllClients());
-
                 return "admin/sales/updatesales";
             }
 
