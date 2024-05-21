@@ -3,6 +3,7 @@ package br.com.lux.controller.admin;
 import br.com.lux.domain.reservation.ReservationStatus;
 import br.com.lux.services.car.CarService;
 import br.com.lux.services.client.ClientService;
+import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.reservation.ReservationService;
 import br.com.lux.services.sales.SalesService;
 
@@ -44,14 +45,27 @@ public class AdminController
     {
         model.addAttribute("user", session.getAttribute("user"));
 
-        model.addAttribute("totalDeCarros", carService.countCars());
+        try
+        {
+            model.addAttribute("totalDeCarros", carService.countCars());
 
-        model.addAttribute("totalDeClientes", clientService.countClients());
+            model.addAttribute("totalDeClientes", clientService.countClients());
 
-        model.addAttribute("totalDeVendasPorMes", salesService.monthlyEarnings());
+            model.addAttribute("totalDeVendasPorMes", salesService.monthlyEarnings());
 
-        model.addAttribute("totalDeReservas", reservationService.countByStatusreserva(ReservationStatus.ESPERA));
+            model.addAttribute("totalDeReservas", reservationService.countByStatusreserva(ReservationStatus.ESPERA));
 
-        return "admin/adminHome";
+            return "admin/adminHome";
+        }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "home/index";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro inesperado!");
+            return "home/index";
+        }
     }
 }
