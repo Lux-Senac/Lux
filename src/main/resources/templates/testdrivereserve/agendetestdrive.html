@@ -11,10 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/agendar/agendar.css">
-  
-    <title>LUX - Agende Test-Drive</title>
-   
+    <title>LUX Agende Test-Drive</title>
     <style>
+        /* Estilo para o menu dropdown */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -35,6 +34,7 @@
             display: block;
         }
 
+        /* Estilo para os itens do menu */
         .dropdown-content a {
             display: block;
             padding: 10px;
@@ -49,25 +49,14 @@
 </head>
 
 <body>
-<nav>
-    <p class="logo">LUX</p>
-    <div class="links">
-        <ul class="nav-itens">
-            <li><a th:href="@{/home}">Home</a></li>
-            <li><a th:href="@{/sobre}">Sobre</a></li>
-            <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
-        </ul>
-    </div>
-    <div class="dropdown">
-        <div class="btn">
-            <i class='bx bx-user-circle profile-icon'></i>
-        </div>
-        <div class="dropdown-content">
-
-            <a th:href="@{/login}">Login</a>
-            <a href="/logout">Sair</a>
-
-
+    <nav>
+        <p class="logo">LUX</p>
+        <div class="links">
+            <ul class="nav-itens">
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/sobre}">Sobre</a></li>
+                <li><a th:href="@{/carros/find-all}">Veículos</a></li>
+            </ul>
         </div>
         <div class="right-icons">
             <div class="btn">
