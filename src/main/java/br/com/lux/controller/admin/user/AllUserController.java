@@ -26,10 +26,11 @@ public class AllUserController
     @GetMapping
     public String allUsers(Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+
         try
         {
             model.addAttribute("users", userService.findAllUsers());
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/user/griduser";
         }
