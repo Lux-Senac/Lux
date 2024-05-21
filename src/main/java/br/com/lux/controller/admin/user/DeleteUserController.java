@@ -2,11 +2,9 @@ package br.com.lux.controller.admin.user;
 
 import br.com.lux.services.user.UserService;
 
-import jakarta.servlet.http.HttpSession;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,31 +23,15 @@ public class DeleteUserController
     }
 
     @DeleteMapping
-    public String deleteUser(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes, HttpSession session)
+    public String deleteUser(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes)
     {
-        redirectAttributes.addAttribute("user", session.getAttribute("user"));
-
-        try
+        if(id == null && id == 1)
         {
-            if(id == null || id == 1)
-            {
-                redirectAttributes.addAttribute("error", "Usuário não encontrado. Tente novamente. Ou usuário administrador não pode ser deletado.");
-                return "redirect:/admin";
-            }
+            return "admin/user/allusers";
+        }
 
-            userService.deleteById(id);
+        userService.deleteById(id);
 
-            return "redirect:/admin/all-users";
-        }
-        catch (ServiceException e)
-        {
-            redirectAttributes.addAttribute("error", e.getMessage());
-            return "redirect:/admin";
-        }
-        catch (Exception e)
-        {
-            redirectAttributes.addAttribute("error", "Erro ao deletar usuário. Tente novamente.");
-            return "redirect:/admin";
-        }
+        return "admin/user/deleteuser";
     }
 }
