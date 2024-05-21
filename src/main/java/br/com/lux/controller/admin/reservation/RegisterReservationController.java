@@ -39,30 +39,58 @@ public class RegisterReservationController
     @GetMapping
     public String createReservation(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-        model.addAttribute("reservation", new Reservation());
-        model.addAttribute("cars", carService.findCarAll());
-        model.addAttribute("clients", clientService.findAllClients());
+        try
+        {
+            model.addAttribute("user", session.getAttribute("user"));
+            model.addAttribute("reservation", new Reservation());
+            model.addAttribute("cars", carService.findCarAll());
+            model.addAttribute("clients", clientService.findAllClients());
 
-        return "admin/reservation/registerrervation";
+            return "admin/reservation/registerrervation";
+        }
+        catch(SecurityException e)
+        {
+            model.addAttribute("error", e.getMessage());
+            return "admin/reservation/registerrervation";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro inesperado!");
+            return "admin/reservation/registerrervation";
+        }
     }
 
     @PostMapping
     public String createReservationPost(@Valid @ModelAttribute Reservation reservation, HttpSession session,
                                         Model model, BindingResult bindingResult)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("cars", carService.findCarAll());
+        model.addAttribute("clients", clientService.findAllClients());
+
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("cars", carService.findCarAll());
-            model.addAttribute("clients", clientService.findAllClients());
-
             return "admin/reservation/registerrervation";
         }
+        else
+        {
+            try
+            {
+                reservationService.registerReservation(reservation);
 
-        reservationService.registerReservation(reservation);
-
-        return "redirect:/admin/all-reservation";
+                return "redirect:/admin/all-reservation";
+            }
+            catch(SecurityException e)
+            {
+                model.addAttribute("error", e.getMessage());
+                return "admin/reservation/registerrervation";
+            }
+            catch (Exception e)
+            {
+                model.addAttribute("error", "Erro inesperado!");
+                return "admin/reservation/registerrervation";
+            }
+        }
     }
 
 }
