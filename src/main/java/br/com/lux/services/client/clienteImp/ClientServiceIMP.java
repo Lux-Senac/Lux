@@ -4,11 +4,13 @@ import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
 import br.com.lux.repository.client.ClientRepository;
 import br.com.lux.services.client.ClientService;
+import br.com.lux.services.exception.ServiceException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,57 +34,99 @@ public class ClientServiceIMP implements ClientService
     }
 
     @Override
+    @Transactional
     public Client registerClient(Client client)
     {
-        Set<ConstraintViolation<Client>> violations = validator.validate(client);
+        try
+        {
+            Set<ConstraintViolation<Client>> violations = validator.validate(client);
 
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
+            if (!violations.isEmpty()) {
+                throw new ConstraintViolationException(violations);
+            }
+
+            return clientRepository.save(client);
         }
-
-        return clientRepository.save(client);
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao salvar o cliente! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public void deleteClient(Integer id)
     {
-        Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado com ID: " + id));
+        try
+        {
+            Client client = clientRepository.findById(id)
+                    .orElseThrow(() -> new ServiceException("Cliente não encontrado com ID: " + id));
 
+            for (User user : client.getUsers()) {
+                user.setCliente(null);
+            }
 
-        for (User user : client.getUsers()) {
-            user.setCliente(null);
+            clientRepository.delete(client);
         }
-
-        clientRepository.delete(client);
+        catch (DataIntegrityViolationException e)
+        {
+            throw new ServiceException("Erro ao deletar o cliente! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findAllClients()
     {
-        return clientRepository.findAll();
+        try
+        {
+            return clientRepository.findAll();
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os clientes! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Client findClientById(Integer id)
     {
-        return clientRepository.findById(id).orElse(null);
+        try
+        {
+            return clientRepository.findById(id).orElse(null);
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Cliente não encontrado com ID: " + id);
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Client> findByUsersIsNull()
     {
-        return clientRepository.findByUsersIsNull();
+        try
+        {
+            return clientRepository.findByUsersIsNull();
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar clientes sem usuários! " + e.getMessage());
+        }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public long countClients()
     {
-        return clientRepository.count();
+        try
+        {
+            return clientRepository.count();
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao contar clientes! " + e.getMessage());
+        }
     }
 }
