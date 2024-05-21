@@ -43,8 +43,6 @@ public class AdminController
     @GetMapping
     public String adminHome(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         try
         {
             model.addAttribute("totalDeCarros", carService.countCars());
