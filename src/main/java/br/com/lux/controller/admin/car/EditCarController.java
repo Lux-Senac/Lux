@@ -26,10 +26,11 @@ public class EditCarController
         this.carService = carService;
     }
 
-    @RequestMapping
-    @GetMapping()
+    @GetMapping
     public String editarCarGet(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+
         try
         {
             if (id == null)
@@ -45,7 +46,6 @@ public class EditCarController
             }
 
             model.addAttribute("car", car);
-            model.addAttribute("user", session.getAttribute("user"));
 
             return "admin/car/uptadecar";
         }

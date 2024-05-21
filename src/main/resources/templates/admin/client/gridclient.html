@@ -153,19 +153,22 @@
 <script>
     function deleteCar(link) {
         const carId = link.getAttribute('href').split('=')[1];
-        fetch('/admin/delete-client?id=' + carId, {
-            method: 'DELETE'
-        })
-            .then(response => {
-                if (response.status >= 200 || response.status <= 399) {
-                    location.reload();
-                } else {
-                    console.error('Erro ao excluir carro.');
-                }
+        let confirmDelete = confirm("Tem certeza de que deseja excluir?");
+        if (confirmDelete) {
+            fetch('/admin/delete-client?id=' + carId, {
+                method: 'DELETE'
             })
-            .catch(error => {
-                console.error('Erro na requisição DELETE:', error);
-            });
+                .then(response => {
+                    if (response.status >= 200 || response.status <= 399) {
+                        window.location.reload();
+                    } else {
+                        console.error('Erro na requisição DELETE:');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição DELETE:', error);
+                });
+        }
     }
 </script>
 
