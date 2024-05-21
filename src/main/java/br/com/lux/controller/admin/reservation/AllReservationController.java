@@ -28,7 +28,6 @@ public class AllReservationController
     {
         try
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("reservations", reservationService.findAllReservations());
 
             return "admin/reservation/gridreservation";
