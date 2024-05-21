@@ -51,7 +51,6 @@ public class EditUserController
         }
 
         model.addAttribute("users", user);
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/user/updateuser";
     }
@@ -62,7 +61,6 @@ public class EditUserController
     {
         if(bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("clients", clientService.findByUsersIsNull());
 
             return "admin/user/updateuser";
