@@ -26,7 +26,6 @@ public class EditClientController
     @GetMapping
     public String editClient(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("clients", clientService.findClientById(id));
 
         return "admin/client/uptadeclient";
@@ -38,8 +37,6 @@ public class EditClientController
     {
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("user", session.getAttribute("user"));
-
             return "admin/client/uptadeclient";
         }
 
