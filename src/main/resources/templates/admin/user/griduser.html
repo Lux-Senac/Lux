@@ -163,9 +163,9 @@
             })
                 .then(response => {
                     if (response.status >= 200 || response.status <= 399) {
-                        location.reload();
+                        window.location.reload();
                     } else {
-                        console.error('Erro ao excluir carro.');
+                        console.error('Erro na requisição DELETE:');
                     }
                 })
                 .catch(error => {
