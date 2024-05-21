@@ -309,3 +309,17 @@ input {
     outline: none;
     border-bottom: 1px solid #c6c7c6;
 }
+
+.car-details {
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
+    gap: 10px;
+    margin: 0 0;
+    max-width: 90vw;
+    font-weight: 500;
+}
+
+.form-container label {
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
