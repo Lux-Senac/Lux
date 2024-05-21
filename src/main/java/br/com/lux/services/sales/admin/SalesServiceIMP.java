@@ -96,15 +96,17 @@ public class SalesServiceIMP implements SalesService {
             if(sales == null)
                 throw new ServiceException("Venda inválida!");
 
-            if(sales.getCarro() == null)
-                throw new ServiceException("Carro inválido!");
+            if(sales.getCarro().getId() == null)
+                throw new ServiceException("Selecionar um carro é obrigatório!");
 
-            if(sales.getCliente() == null)
-                throw new ServiceException("Cliente inválido!");
+            if(sales.getCliente().getId() == null)
+                throw new ServiceException("Selecionar um cliente é obrigatório!");
 
-            if(sales.getUsuario() == null)
-                throw new ServiceException("Usuário inválido!");
+            if(sales.getUsuario().getId() == null)
+                throw new ServiceException("Selecionar um usuário é obrigatório!");
 
+            if(sales.getUsuario().getTipo().name() != "ADMIN")
+                throw new ServiceException("Apenas usuários administradores podem registrar vendas!");
 
             salesRepository.save(sales);
         }

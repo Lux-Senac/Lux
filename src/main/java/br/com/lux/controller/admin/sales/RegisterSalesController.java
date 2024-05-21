@@ -74,12 +74,12 @@ public class RegisterSalesController
     {
         model.addAttribute("user", session.getAttribute("user"));
 
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("cars", carService.findCarAll());
+        model.addAttribute("clients", clientService.findAllClients());
+
         if (bindingResult.hasErrors())
         {
-            model.addAttribute("users", userService.findAllUsers());
-            model.addAttribute("cars", carService.findCarAll());
-            model.addAttribute("clients", clientService.findAllClients());
-
             return "admin/sales/registersales";
         }
         else
