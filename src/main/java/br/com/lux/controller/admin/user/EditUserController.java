@@ -64,22 +64,40 @@ public class EditUserController
             redirectAttributes.addAttribute("error", e.getMessage());
             return "redirect:/admin/all-users";
         }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao editar usuário! " + e.getMessage());
+            return "admin/user/updateuser";
+        }
     }
 
     @PostMapping
     public String editUserPost(@Valid @ModelAttribute User users,
                                BindingResult bindingResult, HttpSession session, Model model)
     {
-        if(bindingResult.hasErrors())
+        try
         {
-            model.addAttribute("user", session.getAttribute("user"));
-            model.addAttribute("clients", clientService.findByUsersIsNull());
+            if(bindingResult.hasErrors())
+            {
+                model.addAttribute("user", session.getAttribute("user"));
+                model.addAttribute("clients", clientService.findByUsersIsNull());
 
+                return "admin/user/updateuser";
+            }
+
+            userService.createUserAdmin(users);
+
+            return "redirect:/admin/all-users";
+        }
+        catch (ServiceException e)
+        {
+            model.addAttribute("error", e.getMessage());
             return "admin/user/updateuser";
         }
-
-        userService.createUserAdmin(users);
-
-        return "redirect:/admin/all-users";
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao editar usuário! " + e.getMessage());
+            return "admin/user/updateuser";
+        }
     }
 }
