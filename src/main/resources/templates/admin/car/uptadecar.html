@@ -137,13 +137,13 @@
                     <div class="form-group col-auto my-1">
                         <label for="title">A descrição do carro:</label>
                         <input type="text" class="form-control form-text" id="title"
-                               placeholder="Digite a descrição" required th:field="*{title}">
+                               placeholder="Digite a descrição" th:field="*{title}">
                         <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
 
                     <div class="form-group col-auto my-1">
                         <label class="mr-sm-2" for="page">Pagina do Carro:</label>
-                        <select class="custom-select mr-sm-2" id="page" required th:field="*{page}">
+                        <select class="custom-select mr-sm-2" id="page" th:field="*{page}">
                             <option value="Bmw" selected>Bmw</option>
                             <option value="BYDTan" selected>BYDTan</option>
                             <option value="BYDYuan" selected>BYDYuan</option>
@@ -158,7 +158,7 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="image">A URL da imagem:</label>
                             <input type="text" class="form-control form-text"
-                                   id="image" placeholder="Coloque a URL da imagem" required
+                                   id="image" placeholder="Coloque a URL da imagem" 
                                    oninput="updateImageSrc()" th:field="*{image}">
                             <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
                         </div>
