@@ -72,7 +72,7 @@ public class EditUserController
     }
 
     @PostMapping
-    public String editUserPost(@Valid @ModelAttribute User users,
+    public String editUserPost(@Valid @ModelAttribute("users") User users,
                                BindingResult bindingResult, HttpSession session, Model model)
     {
         try
