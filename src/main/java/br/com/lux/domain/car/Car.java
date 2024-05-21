@@ -30,7 +30,8 @@ public class Car implements Serializable
 
     @NotBlank(message = "O nome do carro é obrigatório.")
     @Size(max = 50, message = "O nome do carro deve ter no máximo 50 caracteres.")
-    @Pattern(regexp = "^[a-zA-Z]*$", message = "O nome do carro deve conter apenas letras.")
+    @Pattern(regexp = "^[a-zA-Z ]*$", message = "O nome do carro deve conter apenas " +
+            "letras.")
     @Column(nullable = false, length = 50)
     private String name;
 
