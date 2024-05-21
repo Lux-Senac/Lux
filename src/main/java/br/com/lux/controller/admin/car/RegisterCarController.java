@@ -33,7 +33,6 @@ public class RegisterCarController
     public String registerCar(Model model, HttpSession session)
     {
         model.addAttribute("car", new Car());
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/car/registercar";
     }
@@ -41,8 +40,6 @@ public class RegisterCarController
     @PostMapping
     public String registerCarPost(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult, HttpSession session, Model model)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         if (bindingResult.hasErrors())
         {
             return "admin/car/registercar";
