@@ -42,7 +42,6 @@ public class RegisterReservationController
     {
         try
         {
-            model.addAttribute("user", session.getAttribute("user"));
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("cars", carService.findCarAll());
             model.addAttribute("clients", clientService.findAllClients());
@@ -65,7 +64,6 @@ public class RegisterReservationController
     public String createReservationPost(@Valid @ModelAttribute Reservation reservation, HttpSession session,
                                         Model model, BindingResult bindingResult)
     {
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("cars", carService.findCarAll());
         model.addAttribute("clients", clientService.findAllClients());
 
