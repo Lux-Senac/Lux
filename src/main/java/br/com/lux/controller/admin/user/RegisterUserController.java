@@ -31,7 +31,6 @@ public class RegisterUserController
     @GetMapping
     public String registerSales(Model model, HttpSession session)
     {
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("users", new User());
 
         return "admin/user/registeruser";
@@ -40,8 +39,6 @@ public class RegisterUserController
     @PostMapping
     public String registerSalesPost(@Valid @ModelAttribute("users") User users, BindingResult bindingResult, HttpSession session, Model model)
     {
-        model.addAttribute("user", session.getAttribute("user"));
-
         if (bindingResult.hasErrors())
         {
             return "admin/user/registeruser";
