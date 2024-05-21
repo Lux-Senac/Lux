@@ -26,7 +26,6 @@ public class AllUserController
     public String allUsers(Model model, HttpSession session)
     {
         model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("user", session.getAttribute("user"));
 
         return "admin/user/griduser";
     }
