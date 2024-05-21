@@ -25,9 +25,18 @@ public class AllUserController
     @GetMapping
     public String allUsers(Model model, HttpSession session)
     {
-        model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("user", session.getAttribute("user"));
+        try
+        {
+            model.addAttribute("users", userService.findAllUsers());
+            model.addAttribute("user", session.getAttribute("user"));
 
-        return "admin/user/griduser";
+            return "admin/user/griduser";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao buscar usuários");
+
+            return "admin/user/griduser";
+        }
     }
 }
