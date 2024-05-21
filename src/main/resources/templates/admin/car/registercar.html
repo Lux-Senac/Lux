@@ -122,7 +122,7 @@
                         <div class="col-sm-6 mb-3 mb-sm-1">
                             <label for="val">Valor da válvula ou tipo da tração:</label>
                             <input type="text" class="form-control form-text"
-                                   id="val" placeholder="Coloquei o valor da válvula do carro ou tipo da tração." required
+                                   id="val" placeholder="Coloquei o valor da válvula do carro ou tipo da tração."
                                    th:field="*{val}">
                             <span class="text-danger" th:if="${#fields.hasErrors('val')}" th:errors="*{val}"></span>
                         </div>

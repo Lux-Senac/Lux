@@ -39,7 +39,7 @@ public class RegisterCarController
     }
 
     @PostMapping
-    public String registerCarPost(@Valid @ModelAttribute Car car, BindingResult bindingResult, HttpSession session, Model model)
+    public String registerCarPost(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult, HttpSession session, Model model)
     {
         model.addAttribute("user", session.getAttribute("user"));
 
