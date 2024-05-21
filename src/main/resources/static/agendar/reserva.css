@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -10,6 +10,12 @@ body {
     max-width: 100vw;
     max-height: 100vh;
     overflow-x: hidden;
+}
+
+p {
+    font-weight: 800;
+    font-size: 25px;
+    margin-left: 100px;
 }
 
 nav {
@@ -54,6 +60,7 @@ nav {
     font-size: 30px;
     border-radius: 50%;
     display: flex;
+    position: absolute;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -251,24 +258,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     display: flex;
-    text-align: center;
-    width: 5vw;
-}
-
-.car-details {
-    display: grid;
-    grid-template-columns: repeat(2, 3fr);
-    gap: 10px;
-    margin: 0 0;
-    max-width: 90vw;
-    font-weight: 500;
-}
-
-input {
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #c6c7c6;
+    align-items: center;
 }
 
 .form-container label {
@@ -280,3 +270,33 @@ input {
     font-size: 40px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
