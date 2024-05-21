@@ -19,9 +19,11 @@ import java.util.List;
 @RequestMapping("/admin/all-sales")
 public class AllSalesController
 {
+
     @Autowired
     private final SalesService saleService;
 
+    @Autowired
     public AllSalesController(SalesService saleService) {
         this.saleService = saleService;
     }
@@ -29,6 +31,8 @@ public class AllSalesController
     @GetMapping
     public String allSales(Model model, HttpSession session)
     {
+        model.addAttribute("user", session.getAttribute("user"));
+
         try {
             List<Sales> sales = saleService.findSaleAll();
             model.addAttribute("sales", sales);
@@ -39,6 +43,13 @@ public class AllSalesController
         catch (ServiceException e)
         {
             model.addAttribute("error", e.getMessage());
+            model.addAttribute("sales", new Sales());
+            return "admin/sales/gridSales";
+        }
+        catch (Exception e)
+        {
+            model.addAttribute("error", "Erro ao buscar vendas!");
+            model.addAttribute("sales", new Sales());
             return "admin/sales/gridSales";
         }
     }
