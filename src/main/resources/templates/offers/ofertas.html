@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/offers/oferta.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
@@ -56,6 +57,14 @@
             <li><a th:href="@{/sobre}">Sobre</a></li>
             <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
         </ul>
+        <div class="search">
+            <form action="">
+                <input type="text" placeholder="Pesquisar carro" name="search">
+                <button>
+                    <i class="fa fa-search" style="font-size: 18px;"></i>
+                </button>
+            </form>
+        </div>
     </div>
     <div class="dropdown">
         <div class="btn">
@@ -66,6 +75,7 @@
             <a href="/logout">Sair</a>
         </div>
     </div>
+
 </nav>
 <section class="carros">
     <div class="carro1">
@@ -89,6 +99,15 @@
         </form>
     </div>
 </div>
+
+<ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li ><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
 
 <footer>
     <div class="secoes">
@@ -123,7 +142,10 @@
             <p>© LUX</p>
         </section>
     </div>
+
 </footer>
+
 <script src="script.js"></script>
+<script src="/static/offers/paginacao.js"></script>
 </body>
 </html>
