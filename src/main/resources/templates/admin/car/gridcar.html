@@ -84,19 +84,6 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="car : ${cars}">
-                                    <td th:text="${car.id}"></td>
-                                    <td th:text="${car.name}"></td>
-                                    <td th:text="${car.price}"></td>
-                                    <td><img th:src="@{${car.image}}" th:alt="${car.name}" height="50"></td>
-                                    <td th:text="${car.page}"></td>
-                                    <td><a th:href="@{/carros/detalhes-carro(id=${car.id})}">Link</a></td>
-                                    <td>
-                                        <a th:href="@{/admin/edit-car(id=${car.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-car(id=${car.id})}" onclick="event.preventDefault();
-                                        deleteCar(this)">Excluir</a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -150,9 +137,8 @@
 <script src="/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/datatables-demo.js"></script>
+<script src="/admin/car/datatables-car.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
-
 
 <script>
     function deleteCar(link) {
