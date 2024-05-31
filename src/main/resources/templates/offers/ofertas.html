@@ -58,13 +58,14 @@
             <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
         </ul>
         <div class="search">
-            <form action="">
-                <input type="text" placeholder="Pesquisar carro" name="search">
+            <form th:action="@{/carros/find-all}" method="get">
+                <input type="text" placeholder="Pesquisar carro" name="search[value]">
                 <button>
                     <i class="fa fa-search" style="font-size: 18px;"></i>
                 </button>
             </form>
         </div>
+
     </div>
     <div class="dropdown">
         <div class="btn">
