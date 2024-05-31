@@ -36,12 +36,20 @@ public class CarController
     public String findAllCars(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
+            @RequestParam(value = "search[value]", required = false) String searchTerm,
             Model model, RedirectAttributes redirectAttributes
     )
     {
         try
         {
-            Page<Car> cars = carService.findCarAll(page, size);
+            Page<Car> cars;
+
+            if (searchTerm != null && !searchTerm.isEmpty())
+                cars = carService.searchCars(searchTerm, page, size);
+                else
+                    cars = carService.findCarAll(page, size);
+
+
             model.addAttribute("cars", cars);
             model.addAttribute("currentPage", page);
             return "offers/ofertas";
