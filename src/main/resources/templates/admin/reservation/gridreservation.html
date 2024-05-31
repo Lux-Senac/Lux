@@ -85,19 +85,6 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="reservation : ${reservations}">
-                                    <td th:text="${reservation.id}"></td>
-                                    <td th:text="${reservation.datareserva}"></td>
-                                    <td th:text="${reservation.client.nome + ' ' + reservation.client.sobrenome}"></td>
-                                    <td th:text="${reservation.car.name}"></td>
-                                    <td th:text="${reservation.tiporeserva.toString()}"></td>
-                                    <td th:text="${reservation.statusreserva.toString()}"></td>
-                                    <td>
-                                        <a th:href="@{/admin/edit-reservation(id=${reservation.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-reservation(id=${reservation.id})}" onclick="event.preventDefault();
-                                        deleteCar(this)">Excluir</a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -150,7 +137,7 @@
 <script src="/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/datatables-demo.js"></script>
+<script src="/admin/reservation/datatables-reservation.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 
 <script>
