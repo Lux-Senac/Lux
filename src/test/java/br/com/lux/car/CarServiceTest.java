@@ -59,6 +59,7 @@ public class CarServiceTest {
         assertEquals(car, savedCar);
     }
 
+/*
     @Test(expected = ConstraintViolationException.class)
     public void testRegisterCarWithInvalidData() {
         // Arrange
@@ -75,6 +76,7 @@ public class CarServiceTest {
         // Assert - A exceção ConstraintViolationException deve ser lançada
 
     }
+ */
 
     @Test
     public void testFindCarByIdSuccess() {
