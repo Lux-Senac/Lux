@@ -1,19 +1,24 @@
 package br.com.lux.controller.admin.client;
 
+import br.com.lux.domain.client.Client;
 import br.com.lux.services.client.ClientService;
-import br.com.lux.services.exception.ServiceException;
 
-import jakarta.servlet.http.HttpSession;
-
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/all-clients")
-public class AllClientController {
+public class AllClientController
+{
     @Autowired
     private final ClientService clientService;
 
@@ -21,24 +26,33 @@ public class AllClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping
-    public String allClient(Model model, HttpSession session)
-    {
-        try
-        {
-            model.addAttribute("clients", clientService.findAllClients());
+    private final Map<String, Object> response = new HashMap<>();
 
-            return "admin/client/gridclient";
+    @GetMapping
+    public String page()
+    {
+        return "admin/client/gridclient";
+    }
+
+    @GetMapping("/json")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> getAllClients(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(value = "search[value]", required = false) String searchTerm
+    )
+    {
+        Page<Client> clients;
+
+        if (searchTerm != null && !searchTerm.isEmpty()) {
+            clients = clientService.searchClients(searchTerm, page, size);
+        } else {
+            clients = clientService.findClientAll(page, size);
         }
-        catch (ServiceException e)
-        {
-            model.addAttribute("error", e.getMessage());
-            return "admin/client/gridclient";
-        }
-        catch (Exception e)
-        {
-            model.addAttribute("error", "Erro inesperado!");
-            return "admin/client/gridclient";
-        }
+
+        response.put("data", clients.getContent());
+        response.put("iTotalRecords", clients.getTotalElements());
+        response.put("iTotalDisplayRecords", clients.getTotalElements());
+        return ResponseEntity.ok(response);
     }
 }
