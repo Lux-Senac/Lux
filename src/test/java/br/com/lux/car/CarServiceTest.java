@@ -37,7 +37,7 @@ public class CarServiceTest {
 
     @Before
     public void setUp() {
-        carService = new CarImpService(carRepository, validator); // Substitua pela sua implementação
+        carService = new CarImpService(carRepository, validator);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CarServiceTest {
         car.setName("Example Car");
         car.setMotor("V6");
         car.setPrice(BigDecimal.valueOf(50000));
-        // ... defina outros campos obrigatórios ...
+
 
         // Act
         carService.registerCar(car);
@@ -73,6 +73,7 @@ public class CarServiceTest {
         carService.registerCar(car);
 
         // Assert - A exceção ConstraintViolationException deve ser lançada
+
     }
 
     @Test
