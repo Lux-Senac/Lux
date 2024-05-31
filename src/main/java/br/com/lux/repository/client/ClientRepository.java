@@ -1,6 +1,8 @@
 package br.com.lux.repository.client;
 
 import br.com.lux.domain.client.Client;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,4 +15,7 @@ public interface ClientRepository extends JpaRepository<Client, Integer>
 {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     List<Client> findByUsersIsNull();
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    Page<Client> findByNomeContainingIgnoreCase(String name, Pageable pageable);
 }
