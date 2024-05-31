@@ -3,6 +3,8 @@ package br.com.lux.domain.client;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.sales.Sales;
 import br.com.lux.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -62,12 +64,15 @@ public class Client implements Serializable
     @Column(nullable = false)
     private Countries pais;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.DETACH)
     private List<User> users;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE)
     private List<Reservation> reservations;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Sales> sales;
 }
