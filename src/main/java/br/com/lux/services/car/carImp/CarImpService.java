@@ -12,6 +12,9 @@ import jakarta.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +54,36 @@ public class CarImpService implements CarService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Car> findCarAll(int page, int size)
+    {
+        try
+        {
+            Pageable pageable = PageRequest.of(page, size);
+            return carRepository.findAll(pageable);
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os carros! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Car> searchCars(String searchTerm, int page, int size)
+    {
+        try
+        {
+            Pageable pageable = PageRequest.of(page, size);
+            return carRepository.findByNameContainingIgnoreCase(searchTerm, pageable);
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar os carros! " + e.getMessage());
+        }
+    }
+
+    @Override
     @Transactional
     public void registerCar(Car car)
     {
@@ -58,9 +91,7 @@ public class CarImpService implements CarService
         {
             Set<ConstraintViolation<Car>> violations = validator.validate(car);
             if(!violations.isEmpty())
-            {
                 throw new ConstraintViolationException(violations);
-            }
 
             carRepository.save(car);
         }
@@ -132,9 +163,8 @@ public class CarImpService implements CarService
             Map<CarPageType, Long> carTypeCounts = new HashMap<>();
 
             for (CarPageType type : CarPageType.values())
-            {
                 carTypeCounts.put(type, carRepository.countByPage(type));
-            }
+
 
             return carTypeCounts;
         }
