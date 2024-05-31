@@ -2,6 +2,8 @@ package br.com.lux.domain.user;
 
 import br.com.lux.domain.client.Client;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.*;
 
 import lombok.AllArgsConstructor;
@@ -50,6 +52,7 @@ public class User implements Serializable
     @Column(nullable = false)
     private UserType tipo;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id", unique = true)
     private Client cliente;

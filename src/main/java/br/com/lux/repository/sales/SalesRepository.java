@@ -1,6 +1,9 @@
 package br.com.lux.repository.sales;
 
 import br.com.lux.domain.sales.Sales;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
@@ -32,4 +35,8 @@ public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     List<Sales> findByDatavendaBetween(Date dataInicio, Date dataFim);
-}
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Query("SELECT s FROM Vendas s WHERE s.usuario.username = :userName or s.cliente.nome = :clientName or s.carro.name = :carName")
+    Page<Sales> findByUserNameAndClientNameAndCarName(String userName, String clientName, String carName, Pageable pageable);
+ }

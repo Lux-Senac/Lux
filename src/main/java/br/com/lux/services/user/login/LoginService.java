@@ -13,6 +13,8 @@ import br.com.lux.domain.user.UserType;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +51,34 @@ public class LoginService implements UserService
         catch (Exception e)
         {
             throw new ServiceException("Erro ao buscar todos os usuários! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<User> findAllUsers(int page, int size)
+    {
+        try
+        {
+            return userRepository.findAll(PageRequest.of(page, size));
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os usuários! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<User> searchUsers(String searchTerm, int page, int size)
+    {
+        try
+        {
+            return userRepository.findByUsernameOrEmailContaining(searchTerm, PageRequest.of(page, size));
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar usuários! " + e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package br.com.lux.services.sales;
 
 import br.com.lux.domain.sales.Sales;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,11 +13,8 @@ import java.util.SequencedCollection;
 @Service
 public interface SalesService
 {
-    List<Sales> findSaleAll();
 
     SequencedCollection<Object[]> findSalesByName(String carNameFilter);
-
-    List<Object[]> findTotalSalesPerCarModel();
 
     void registerSale(Sales sales);
 
@@ -27,4 +25,8 @@ public interface SalesService
     BigDecimal monthlyEarnings();
 
     Map<String, BigDecimal> getMonthlyEarningsForYear();
+
+    Page<Sales> searchSales(String searchTerm, int page, int size);
+
+    Page<Sales> findSaleAll(int page, int size);
 }

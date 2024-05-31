@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const pagination = document.querySelector('.pagination');
+    let currentPage = parseInt(pagination.dataset.currentPage);
     const pageItems = pagination.querySelectorAll('.page-item');
     const maxVisiblePages = 5;
-    let currentPage = 1;
 
     function updatePagination() {
         pageItems.forEach((item, index) => {
-            if (index === 0 || index === pageItems.length - 1) return; // Ignora os botões 'Previous' e 'Next'
+            if (index === 0 || index === pageItems.length - 1) return;
             const pageNumber = index;
             if (pageNumber >= currentPage && pageNumber < currentPage + maxVisiblePages) {
                 item.style.display = 'block';
@@ -16,9 +16,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    // Adiciona evento de clique para cada item da paginação
     pageItems.forEach((item, index) => {
-        if (index === 0 || index === pageItems.length - 1) return; // Ignora os botões 'Previous' e 'Next'
+        if (index === 0 || index === pageItems.length - 1) return;
         item.addEventListener('click', () => {
             currentPage = index;
             updatePagination();

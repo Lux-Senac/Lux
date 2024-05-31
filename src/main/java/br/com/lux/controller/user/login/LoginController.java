@@ -21,7 +21,12 @@ import java.util.Optional;
 public class LoginController
 {
     @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public LoginController(UserService userService)
+    {
+        this.userService = userService;
+    }
 
     @RequestMapping
     @GetMapping
@@ -31,7 +36,8 @@ public class LoginController
     }
 
     @PostMapping
-    public String loginPost(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+    public String loginPost(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session)
+    {
         Optional<User> optionalUser = userService.authenticate(email, password);
 
         if(optionalUser.isPresent())

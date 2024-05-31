@@ -115,6 +115,20 @@
         </section>
     </div>
 </footer>
+
+<input th:if="${error != null}" type="hidden" id="error" th:value="${error}">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('error');
+        if (messageInput) {
+            const errorMessage = messageInput.value;
+            if (errorMessage) {
+                alert(errorMessage);
+            }
+        }
+    });
+</script>
+
 </body>
 
 </html>

@@ -11,6 +11,9 @@ import br.com.lux.services.reservation.ReservationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,6 +95,36 @@ public class ReservationServiceImp implements ReservationService
         catch (ServiceException e)
         {
             throw new ServiceException("Erro ao buscar todas as reservas! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Reservation> findReservationAll(int page, int size)
+    {
+        try
+        {
+            Pageable pageable = PageRequest.of(page, size);
+            return reservationRepository.findAll(pageable);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar todas as reservas! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Reservation> searchReservations(String searchTerm, int page, int size)
+    {
+        try
+        {
+            Pageable pageable = PageRequest.of(page, size);
+            return reservationRepository.findByClientNomeContainingIgnoreCase(searchTerm, pageable);
+        }
+        catch (ServiceException e)
+        {
+            throw new ServiceException("Erro ao buscar reservas! " + e.getMessage());
         }
     }
 

@@ -11,6 +11,8 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,6 +87,34 @@ public class ClientServiceIMP implements ClientService
         catch (Exception e)
         {
             throw new ServiceException("Erro ao buscar todos os clientes! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Client> findClientAll(int page, int size)
+    {
+        try
+        {
+            return clientRepository.findAll(PageRequest.of(page, size));
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os clientes! " + e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public Page<Client> searchClients(String searchTerm, int page, int size)
+    {
+        try
+        {
+            return clientRepository.findByNomeContainingIgnoreCase(searchTerm, PageRequest.of(page, size));
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar clientes! " + e.getMessage());
         }
     }
 
