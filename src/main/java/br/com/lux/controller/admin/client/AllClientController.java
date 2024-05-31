@@ -7,10 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,15 +41,15 @@ public class AllClientController
     {
         Page<Client> clients;
 
-        if (searchTerm != null && !searchTerm.isEmpty()) {
+        if (searchTerm != null && !searchTerm.isEmpty())
             clients = clientService.searchClients(searchTerm, page, size);
-        } else {
-            clients = clientService.findClientAll(page, size);
-        }
+            else
+                clients = clientService.findClientAll(page, size);
 
         response.put("data", clients.getContent());
         response.put("iTotalRecords", clients.getTotalElements());
         response.put("iTotalDisplayRecords", clients.getTotalElements());
+
         return ResponseEntity.ok(response);
     }
 }
