@@ -22,8 +22,8 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LoginServiceTest {
-
+public class LoginServiceTest
+{
     @Mock
     private UserRepository userRepository;
 
