@@ -28,27 +28,6 @@ public class SalesController {
         this.salesService = salesService;
     }
 
-    @GetMapping
-    public String findSalesByName(@PathVariable String carNameFilter, Model model)
-    {
-       try
-       {
-           SequencedCollection<Object[]> sales = salesService.findSalesByName(carNameFilter);
-           model.addAttribute("sales", sales);
-
-           return "admin/adminHome";
-       }
-       catch(ServiceException e)
-       {
-           model.addAttribute("error", e.getMessage());
-           return "admin/adminHome";
-       }
-       catch (Exception e)
-       {
-           model.addAttribute("error", "Erro ao buscar vendas!");
-           return "admin/adminHome";
-       }
-    }
 
     @GetMapping("/monthlyEarnings")
     @ResponseBody
