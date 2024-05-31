@@ -12,6 +12,8 @@ import br.com.lux.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,37 +63,29 @@ public class SalesServiceIMP implements SalesService {
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public List<Object[]> findTotalSalesPerCarModel()
+    public Page<Sales> searchSales(String searchTerm, int page, int size)
     {
         try
         {
-            List<Object[]> salesData = salesRepository.findTotalSalesPerCarModel();
-
-            Map<String, Integer> salesMap = new HashMap<>();
-            for (Object[] row : salesData) {
-                CarPageType carPageType = (CarPageType) row[0];
-                salesMap.put(carPageType.name(), ((Long) row[1]).intValue());
-            }
-
-            return salesData;
+            return salesRepository.findByUserNameAndClientNameAndCarName(searchTerm, searchTerm, searchTerm, PageRequest.of(page, size));
         }
         catch (ServiceException e)
         {
-            throw new ServiceException("Erro ao buscar total de vendas por modelo de carro! " + e.getMessage());
+            throw new ServiceException("Erro ao buscar vendas por termo de pesquisa! " + e.getMessage());
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public List<Sales> findSaleAll()
+    public Page<Sales> findSaleAll(int page, int size)
     {
         try
         {
-            return salesRepository.findAll();
+            return salesRepository.findAll(PageRequest.of(page, size));
         }
         catch (ServiceException e)
         {
-            throw new ServiceException("Erro ao buscar todas as vendas! " + e.getMessage());
+            throw new ServiceException("Erro ao buscar todas as vendas paginadas! " + e.getMessage());
         }
     }
 
