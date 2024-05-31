@@ -3,6 +3,8 @@ package br.com.lux.domain.car;
 import br.com.lux.domain.reservation.Reservation;
 import br.com.lux.domain.sales.Sales;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -104,9 +106,11 @@ public class Car implements Serializable
     @Column(nullable = false)
     private CarPageType page;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "carro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Sales> sales = new ArrayList<>();
 }
