@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "searching": true,
         "ajax": {
-            "url": "/admin/all-cars/json",
+            "url": "/admin/all-users/json",
             "type": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -18,23 +18,24 @@ $(document).ready(function() {
         },
         "columns": [
             { "data": "id" },
-            { "data": "name" },
-            { "data": "price" },
-            { "data": "image", "render": function(data, type, row) {
-                    return '<img src="' + data + '" height="50">';
+            { "data": "username" },
+            { "data": "email" },
+            { "data": "urlavatar", "render": function(data, type, row) {
+                    return '<img src="' + data + '" width="50px" height="50px">';
                 }
             },
-            { "data": "page" },
-            { "data": "carPage", "render": function(data, type, row) {
-                    return '<a href="/carros/detalhes-carro?id=' + row.id + '">Link</a>';
+            { "data": "tipo" },
+            { "data": "cliente", "render": function(data, type, row) {
+                    return data ? data.nome + ' ' + data.sobrenome : 'Sem cliente associado';
                 }
             },
             { "data": null, "render": function(data, type, row) {
-                    return '<a href="/admin/edit-car?id=' + row.id + '">Editar</a> / ' +
-                        '<a href="/admin/delete-car?id=' + row.id + '" onclick="event.preventDefault(); deleteCar(this)">Excluir</a>';
+                    return '<a href="/admin/edit-user?userid=' + row.id + '">Editar</a> / ' +
+                        '<a href="/admin/delete-user?id=' + row.id + '" onclick="event.preventDefault(); deleteCar(this)">Excluir</a>';
                 }
             }
         ]
+
     });
 });
 

@@ -7,6 +7,9 @@ $(document).ready(function() {
         "ajax": {
             "url": "/admin/all-clients/json",
             "type": "GET",
+            "headers": {
+                "Accept": "application/json",
+            },
             "data": function ( d ) {
                 d.page = d.start / d.length;
                 d.size = d.length;
