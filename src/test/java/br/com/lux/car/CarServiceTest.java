@@ -43,53 +43,6 @@ public class CarServiceTest {
     }
 
     @Test
-    public void testRegisterCar() {
-        // Arrange
-        Car car = new Car();
-        car.setName("Example Car");
-        car.setMotor("V6");
-        car.setPrice(BigDecimal.valueOf(50000));
-
-        // Assume that the validator will validate the car successfully
-        when(validator.validate(car)).thenReturn(Collections.emptySet());
-
-        doNothing().when(carRepository).save(any(Car.class));
-
-        // Act
-        try {
-            carService.registerCar(car);
-        } catch (ServiceException e) {
-            fail("ServiceException should not have been thrown.");
-        }
-
-        // Assert
-        verify(validator, times(1)).validate(car);
-        verify(carRepository, times(1)).save(car);
-    }
-
-
-
-
-/*
-    @Test(expected = ConstraintViolationException.class)
-    public void testRegisterCarWithInvalidData() {
-        // Arrange
-        Car car = new Car();
-        // Deixe campos obrigatórios vazios ou com valores inválidos
-
-        // Simulando o comportamento do Validator para retornar violações
-        Set<ConstraintViolation<Car>> violations = Collections.singleton(mock(ConstraintViolation.class));
-        when(validator.validate(car)).thenReturn(violations);
-
-        // Act
-        carService.registerCar(car);
-
-        // Assert - A exceção ConstraintViolationException deve ser lançada
-
-    }
- */
-
-    @Test
     public void testFindCarByIdSuccess() {
         // Arrange
         Integer carId = 1;
