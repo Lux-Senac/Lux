@@ -83,18 +83,19 @@
                         <input type="hidden" class="form-control form-text"
                                id="id_car" placeholder="" readonly th:field="*{carro.id}">
                         <input type="text" class="form-control form-text" id="name"
-                               placeholder="" readonly th:field=="*{carro.name}">
+                               placeholder="" readonly th:field="*{carro.name}">
                         <span class="text-danger" th:if="${#fields.hasErrors('carro.id')}" th:errors="*{carro.id}"></span>
                     </div>
 
                     <div class="form-group col-auto my-1">
                         <label class="mr-sm-2" for="id_client">Cliente:</label>
-                        <select class="custom-select mr-sm-2" id="id_client" required th:field="*{cliente.id}">
-                            <option value="">Selecione um Cliente</option>
-                            <option th:each="clientt : ${clients}"
-                                    th:value="${clientt.id}"
-                                    th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
-                        </select>
+                        <div class="form-group row col-auto my-1">
+                            <input class="form-control form-control-sm mr-sm-1" type="number"
+                                   placeholder="Pesquisar cliente por id" name="id" id="id_client"
+                                   th:field="*{cliente.id}" style="width: auto">
+                            <label id="clientDetails" style="margin: auto">Detalhes do cliente</label>
+                        </div>
+                        <span class="text-danger" id="clientsError"></span>
                         <span class="text-danger" th:if="${#fields.hasErrors('cliente.id')}" th:errors="*{cliente.id}"></span>
                     </div>
 
@@ -161,7 +162,7 @@
         }
     });
 </script>
-
+<script src="/admin/geral/burcar.js"></script>
 </body>
 
 </html>

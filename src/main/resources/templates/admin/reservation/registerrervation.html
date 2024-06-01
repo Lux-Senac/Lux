@@ -54,23 +54,25 @@
                     <div class="form-group row col-auto my-1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_car">Carro:</label>
-                            <select class="custom-select mr-sm-2" id="id_car" th:field="*{car.id}">
-                                <option value="">Selecione um Carro</option>
-                                <option th:each="car : ${cars}"
-                                        th:value="${car.id}"
-                                        th:text="${'Carro: ' + car.name + ' Preço: ' + car.price}"></option>
-                            </select>
+                            <div class="form-group row col-auto my-1">
+                                <input class="form-control form-control-sm mr-sm-1" type="number"
+                                       placeholder="Pesquisar carro por id" name="id" id="id_car"
+                                       th:field="*{car.id}" style="width: auto">
+                                <label id="carDetails" style="margin: auto">Detalhes do Carro</label>
+                            </div>
+                            <span class="text-danger" id="carError"></span>
                             <span class="text-danger" th:if="${#fields.hasErrors('car.id')}" th:errors="*{car.id}"></span>
                         </div>
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="mr-sm-2" for="id_client">Cliente:</label>
-                            <select class="custom-select mr-sm-2" id="id_client" th:field="*{client.id}">
-                                <option value="">Selecione um Cliente</option>
-                                <option th:each="clientt : ${clients}"
-                                        th:value="${clientt.id}"
-                                        th:text="${'Nome: ' + clientt.nome + ' ' + clientt.sobrenome + ' Cep: ' + clientt.cep}"></option>
-                            </select>
+                            <div class="form-group row col-auto my-1">
+                                <input class="form-control form-control-sm mr-sm-1" type="number"
+                                       placeholder="Pesquisar cliente por id" name="id" id="id_client"
+                                       th:field="*{client.id}" style="width: auto">
+                                <label id="clientDetails" style="margin: auto">Detalhes do cliente</label>
+                            </div>
+                            <span class="text-danger" id="clientsError"></span>
                             <span class="text-danger" th:if="${#fields.hasErrors('client.id')}" th:errors="*{client.id}"></span>
                         </div>
                     </div>
@@ -104,7 +106,7 @@
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary" type="submit">Salvar</button>
+                        <button class="btn btn-primary" type="submit" id="searchButton">Salvar</button>
                     </div>
                 </form>
 
@@ -165,6 +167,7 @@
     });
 </script>
 
+<script src="/admin/geral/burcar.js"></script>
 </body>
 
 </html>

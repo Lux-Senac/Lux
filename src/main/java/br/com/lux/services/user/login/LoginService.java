@@ -102,6 +102,20 @@ public class LoginService implements UserService
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public List<User> findAllUsersByRole(String role)
+    {
+        try
+        {
+            return userRepository.findByTipo(UserType.valueOf(role));
+        }
+        catch (Exception e)
+        {
+            throw new ServiceException("Erro ao buscar todos os usuários por role! " + e.getMessage());
+        }
+    }
+
+    @Override
     @Transactional
     public Optional<User> createUser(User user)
     {

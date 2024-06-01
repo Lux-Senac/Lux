@@ -18,7 +18,8 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/all-cars")
-public class AllCarController {
+public class AllCarController
+{
     @Autowired
     private final CarService carService;
 

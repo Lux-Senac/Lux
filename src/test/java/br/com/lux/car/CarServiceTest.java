@@ -4,6 +4,7 @@ import br.com.lux.domain.car.Car;
 import br.com.lux.repository.car.CarRepository;
 import br.com.lux.services.car.CarService;
 import br.com.lux.services.car.carImp.CarImpService;
+import br.com.lux.services.exception.ServiceException;
 import jakarta.validation.Validation;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class CarServiceTest {
     @Mock
     private Validator validator;
 
+    @Mock
     private CarService carService;
 
     @Before
@@ -41,23 +43,32 @@ public class CarServiceTest {
     }
 
     @Test
-    public void testRegisterCarSuccess() {
+    public void testRegisterCar() {
         // Arrange
         Car car = new Car();
         car.setName("Example Car");
         car.setMotor("V6");
         car.setPrice(BigDecimal.valueOf(50000));
 
+        // Assume that the validator will validate the car successfully
+        when(validator.validate(car)).thenReturn(Collections.emptySet());
+
+        doNothing().when(carRepository).save(any(Car.class));
 
         // Act
-        carService.registerCar(car);
+        try {
+            carService.registerCar(car);
+        } catch (ServiceException e) {
+            fail("ServiceException should not have been thrown.");
+        }
 
         // Assert
-        ArgumentCaptor<Car> carCaptor = ArgumentCaptor.forClass(Car.class);
-        verify(carRepository).save(carCaptor.capture());
-        Car savedCar = carCaptor.getValue();
-        assertEquals(car, savedCar);
+        verify(validator, times(1)).validate(car);
+        verify(carRepository, times(1)).save(car);
     }
+
+
+
 
 /*
     @Test(expected = ConstraintViolationException.class)

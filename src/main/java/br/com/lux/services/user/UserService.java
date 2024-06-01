@@ -20,6 +20,8 @@ public interface UserService
 
     List<User> findAllUsers();
 
+    List<User> findAllUsersByRole(String role);
+
     void deleteById(Integer id);
 
     User findById(Integer id);

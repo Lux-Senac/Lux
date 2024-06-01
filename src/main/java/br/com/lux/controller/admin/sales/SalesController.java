@@ -1,6 +1,7 @@
 package br.com.lux.controller.admin.sales;
 
 
+import br.com.lux.domain.sales.Sales;
 import br.com.lux.services.sales.SalesService;
 
 import org.hibernate.service.spi.ServiceException;
@@ -28,7 +29,6 @@ public class SalesController {
         this.salesService = salesService;
     }
 
-
     @GetMapping("/monthlyEarnings")
     @ResponseBody
     public Map<String, BigDecimal> monthlyEarnings()
@@ -45,5 +45,19 @@ public class SalesController {
         {
             throw new ServiceException("Erro ao buscar vendas!");
         }
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Sales getSaleById(@PathVariable("id") Integer id) throws ServiceException
+    {
+        Sales sale = salesService.findSalesById(id);
+
+        if (sale == null)
+        {
+            throw new ServiceException("Venda não encontrada.");
+        }
+
+        return sale;
     }
 }

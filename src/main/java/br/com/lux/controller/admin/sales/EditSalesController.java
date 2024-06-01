@@ -40,8 +40,7 @@ public class EditSalesController
     @GetMapping
     public String editSales(@RequestParam("id") Integer id, Model model, HttpSession session)
     {
-        model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("clients", clientService.findAllClients());
+        model.addAttribute("users", userService.findAllUsersByRole("ADMIN"));
         try
         {
             if(id == null)
@@ -75,8 +74,7 @@ public class EditSalesController
     @PostMapping
     public String editSalesPost(@Valid @ModelAttribute Sales sales, Model model, HttpSession session, BindingResult bindingResult)
     {
-        model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("clients", clientService.findAllClients());
+        model.addAttribute("users", userService.findAllUsersByRole("ADMIN"));
 
         try
         {

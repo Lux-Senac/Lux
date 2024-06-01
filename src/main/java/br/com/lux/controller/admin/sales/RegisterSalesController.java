@@ -31,17 +31,9 @@ public class RegisterSalesController
     @Autowired
     private final UserService userService;
 
-    @Autowired
-    private final CarService carService;
-
-    @Autowired
-    private final ClientService clientService;
-
-    public RegisterSalesController(SalesService saleService, UserService userService, CarService carService, ClientService clientService) {
+    public RegisterSalesController(SalesService saleService, UserService userService) {
         this.saleService = saleService;
         this.userService = userService;
-        this.carService = carService;
-        this.clientService = clientService;
     }
 
     @GetMapping
@@ -50,9 +42,7 @@ public class RegisterSalesController
         try
         {
             model.addAttribute("sales", new Sales());
-            model.addAttribute("users", userService.findAllUsers());
-            model.addAttribute("cars", carService.findCarAll());
-            model.addAttribute("clients", clientService.findAllClients());
+            model.addAttribute("users", userService.findAllUsersByRole("ADMIN"));
 
             return "admin/sales/registersales";
         }
@@ -71,9 +61,7 @@ public class RegisterSalesController
     @PostMapping
     public String registerSalesPost(@Valid @ModelAttribute Sales sales, BindingResult bindingResult, HttpSession session, Model model)
     {
-        model.addAttribute("users", userService.findAllUsers());
-        model.addAttribute("cars", carService.findCarAll());
-        model.addAttribute("clients", clientService.findAllClients());
+        model.addAttribute("users", userService.findAllUsersByRole("ADMIN"));
 
         if (bindingResult.hasErrors())
         {
