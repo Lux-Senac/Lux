@@ -83,18 +83,6 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="client : ${clients}">
-                                    <td th:text="${client.id}"></td>
-                                    <td th:text="${client.nome + ' ' + client.sobrenome}"></td>
-                                    <td th:text="${client.email}"></td>
-                                    <td th:text="${client.preferenciacontato}"></td>
-                                    <td th:text="${client.pais}"></td>
-                                    <td>
-                                        <a th:href="@{/admin/edit-client(id=${client.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-client(id=${client.id})}" onclick="event.preventDefault();
-                                        deleteCar(this)">Excluir</a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -147,7 +135,7 @@
 <script src="/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/datatables-demo.js"></script>
+<script src="/admin/client/datatables-client.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 
 <script>

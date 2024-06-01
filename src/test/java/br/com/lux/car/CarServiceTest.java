@@ -44,17 +44,16 @@ public class CarServiceTest {
         car.setMotor("V6");
         car.setPrice(BigDecimal.valueOf(50000));
 
-        when(validator.validate(car)).thenReturn(Collections.emptySet());
-        when(carRepository.save(any(Car.class))).thenReturn(car);
 
-        try {
-            carService.registerCar(car);
-        } catch (ServiceException e) {
-            fail("ServiceException should not have been thrown.");
-        }
 
-        verify(validator, times(1)).validate(car);
-        verify(carRepository, times(1)).save(car);
+        // Act
+        carService.registerCar(car);
+
+        // Assert
+        ArgumentCaptor<Car> carCaptor = ArgumentCaptor.forClass(Car.class);
+        verify(carRepository).save(carCaptor.capture());
+        Car savedCar = carCaptor.getValue();
+        assertEquals(car, savedCar);
     }
 
     @Test

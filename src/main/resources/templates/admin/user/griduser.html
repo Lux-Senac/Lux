@@ -85,19 +85,6 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="use : ${users}">
-                                    <td th:text="${use.id}"></td>
-                                    <td th:text="${use.username}"></td>
-                                    <td th:text="${use.email}"></td>
-                                    <td><img th:src="${use.urlavatar}" width="50px" height="50px"></td>
-                                    <td th:text="${use.tipo}"></td>
-                                    <td th:text="${use.cliente != null ? use.cliente : 'Null'}"></td>
-                                    <td>
-                                        <a th:href="@{/admin/edit-user(userid=${use.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-user(id=${use.id})}" onclick="event.preventDefault();
-                                        deleteCar(this)">Excluir</a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -150,7 +137,7 @@
 <script src="/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/datatables-demo.js"></script>
+<script src="/admin/user/datatables-user.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 
 <script>

@@ -3,6 +3,7 @@ package br.com.lux.domain.sales;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -21,22 +23,25 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Sales
+public class Sales implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonManagedReference
     @NotNull(message = "iD do carro é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_carro", referencedColumnName = "id")
     private Car carro;
 
+    @JsonManagedReference
     @NotNull(message = "iD do cliente é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Client cliente;
 
+    @JsonManagedReference
     @NotNull(message = "iD do Usuario é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id")

@@ -1,4 +1,4 @@
-## Sistema de Gerenciamento de Concessionária de Veículos em Java
+## Sistema Gerenciador de Concessionária em Java
 
 ### Descrição
 

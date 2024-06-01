@@ -85,19 +85,6 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="sale : ${sales}">
-                                    <td th:text="${sale.id}"></td>
-                                    <td th:text="${sale.datavenda}"></td>
-                                    <td th:text="${sale.precovenda}"></td>
-                                    <td th:text="${sale.carro.name}"></td>
-                                    <td th:text="${sale.cliente.nome}"></td>
-                                    <td th:text="${sale.usuario.username}"></td>
-                                    <td>
-                                        <a th:href="@{/admin/edit-sales(id=${sale.id})}">Editar</a> /
-                                        <a th:href="@{/admin/delete-sales(id=${sale.id})}" onclick="event.preventDefault();
-                                        deleteCar(this)">Excluir</a>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -150,7 +137,7 @@
 <script src="/dashboard/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/dashboard/js/demo/datatables-demo.js"></script>
+<script src="/admin/sales/datatables-sales.js"></script>
 <script src="https://kit.fontawesome.com/b2ebd6ea81.js" crossorigin="anonymous"></script>
 
 <script>

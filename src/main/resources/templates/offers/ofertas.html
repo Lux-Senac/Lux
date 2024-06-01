@@ -58,13 +58,14 @@
             <li><a th:href="@{/carros/find-all}">Veiculos</a></li>
         </ul>
         <div class="search">
-            <form action="">
-                <input type="text" placeholder="Pesquisar carro" name="search">
+            <form th:action="@{/carros/find-all}" method="get">
+                <input type="text" placeholder="Pesquisar carro" name="search[value]">
                 <button>
                     <i class="fa fa-search" style="font-size: 18px;"></i>
                 </button>
             </form>
         </div>
+
     </div>
     <div class="dropdown">
         <div class="btn">
@@ -86,7 +87,7 @@
 <h2 class="models">Modelos</h2>
 
 <div class="container">
-    <div th:each="car : ${cars}">
+    <div th:each="car : ${cars.content}">
         <form th:action="@{/carros/detalhes-carro}" method="get">
             <button type="submit" class="article-card">
                 <div class="content">
@@ -100,13 +101,16 @@
     </div>
 </div>
 
-<ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li ><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">&raquo;</a></li>
+<ul class="pagination" th:data-current-page="${currentPage}">
+    <li class="page-item" th:if="${currentPage > 0}">
+        <a class="page-link" th:href="@{/carros/find-all(page=${currentPage - 1})}">&laquo;</a>
+    </li>
+    <li class="page-item" th:each="i : ${#numbers.sequence(1, cars.totalPages)}" th:classappend="${i == currentPage + 1} ? 'active'">
+        <a class="page-link" th:href="@{/carros/find-all(page=${i - 1})}">[[${i}]]</a>
+    </li>
+    <li class="page-item" th:if="${currentPage < cars.totalPages - 1}">
+        <a class="page-link" th:href="@{/carros/find-all(page=${currentPage + 1})}">&raquo;</a>
+    </li>
 </ul>
 
 <footer>
@@ -142,10 +146,8 @@
             <p>© LUX</p>
         </section>
     </div>
-
 </footer>
 
-<script src="script.js"></script>
-<script src="/static/offers/paginacao.js"></script>
+<script src="/offers/paginacao.js"></script>
 </body>
 </html>
