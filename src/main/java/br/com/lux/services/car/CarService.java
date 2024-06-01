@@ -27,6 +27,4 @@ public interface CarService
     long countCars();
 
     Map<CarPageType, Long> getCarTypeCounts();
-
-
 }
