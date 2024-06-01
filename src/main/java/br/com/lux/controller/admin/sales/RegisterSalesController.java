@@ -1,9 +1,6 @@
 package br.com.lux.controller.admin.sales;
 
 import br.com.lux.domain.sales.Sales;
-import br.com.lux.domain.user.User;
-import br.com.lux.services.car.CarService;
-import br.com.lux.services.client.ClientService;
 import br.com.lux.services.exception.ServiceException;
 import br.com.lux.services.sales.SalesService;
 import br.com.lux.services.user.UserService;

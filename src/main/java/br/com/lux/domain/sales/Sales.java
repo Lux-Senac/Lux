@@ -3,8 +3,12 @@ package br.com.lux.domain.sales;
 import br.com.lux.domain.car.Car;
 import br.com.lux.domain.client.Client;
 import br.com.lux.domain.user.User;
+import br.com.lux.services.validator.annotations.DecimalAnnotation;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.validation.constraints.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,9 +60,8 @@ public class Sales implements Serializable
 
     @NotNull(message = "O preço do carro é obrigatório.")
     @DecimalMin(value = "0.01", message = "O preço do carro não pode ser menor que 0")
-    @DecimalMax(value = "19999999.99", message = "O preço do carro não pode ser maior" +
-            " que " +
-            "19999999.99")
+    @DecimalMax(value = "19999999.99", message = "O preço do carro não pode ser maior que 19999999.99")
     @Column(precision = 10, scale = 2, nullable = false)
+    @DecimalAnnotation(message = "O preço de venda deve ser um número")
     private BigDecimal precovenda;
 }
