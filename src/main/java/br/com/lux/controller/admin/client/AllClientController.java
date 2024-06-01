@@ -3,6 +3,7 @@ package br.com.lux.controller.admin.client;
 import br.com.lux.domain.client.Client;
 import br.com.lux.services.client.ClientService;
 
+import br.com.lux.services.exception.ServiceException;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,5 +52,17 @@ public class AllClientController
         response.put("iTotalDisplayRecords", clients.getTotalElements());
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Client getClientById(@PathVariable("id") Integer id) throws ServiceException
+    {
+        Client client = clientService.findClientById(id);
+
+        if (client == null)
+            throw new ServiceException("Cliente não encontrado.");
+
+        return client;
     }
 }
