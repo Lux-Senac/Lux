@@ -43,8 +43,6 @@ public class RegisterReservationController
         try
         {
             model.addAttribute("reservation", new Reservation());
-            model.addAttribute("cars", carService.findCarAll());
-            model.addAttribute("clients", clientService.findAllClients());
 
             return "admin/reservation/registerrervation";
         }
